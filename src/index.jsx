@@ -6,7 +6,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className='filmfever'>
-				<div>Parcel Test</div>
+				<div>Good Morning</div>
 			</div>
 		);
 	}

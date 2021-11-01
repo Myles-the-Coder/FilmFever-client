@@ -29687,7 +29687,7 @@ var App = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return /*#__PURE__*/_react.default.createElement("div", {
         className: "filmfever"
-      }, /*#__PURE__*/_react.default.createElement("div", null, "Parcel Test"));
+      }, /*#__PURE__*/_react.default.createElement("div", null, "Good Morning"));
     }
   }]);
 
