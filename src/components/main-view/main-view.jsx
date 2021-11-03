@@ -1,6 +1,9 @@
 import React from 'react';
 import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movieView';
+import img1 from '../../img/inception.jpg'
+import img2 from '../../img/shawshank_redemption.jpeg'
+import img3 from '../../img/gladiator.jpeg'
 
 class MainView extends React.Component {
 	constructor() {
@@ -11,19 +14,19 @@ class MainView extends React.Component {
 					_id: 1,
 					Title: 'Inception',
 					Description: 'A man named Dom Cobb wakes up on a shore and is dragged into a house belonging to a wealthy Japanese businessman named Mr. Saito.',
-					ImagePath: '',
+					ImagePath: img1,
 				},
 				{
 					_id: 2,
 					Title: 'The Shawshank Redemption',
 					Description: 'Bank Merchant Andy Dufresne is convicted of the murder of his wife and her lover, and sentenced to life imprisonment at Shawshank prison.',
-					ImagePath: '',
+					ImagePath: img2,
 				},
 				{
 					_id: 3,
 					Title: 'Gladiator',
 					Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.',
-					ImagePath: '',
+					ImagePath: img3,
 				},
 			],
 			selectedMovie: null,
