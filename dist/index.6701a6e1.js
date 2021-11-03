@@ -22893,6 +22893,12 @@ var _movieCard = require("../movie-card/movie-card");
 var _movieCardDefault = parcelHelpers.interopDefault(_movieCard);
 var _movieView = require("../movie-view/movieView");
 var _movieViewDefault = parcelHelpers.interopDefault(_movieView);
+var _inceptionJpg = require("../../img/inception.jpg");
+var _inceptionJpgDefault = parcelHelpers.interopDefault(_inceptionJpg);
+var _shawshankRedemptionJpeg = require("../../img/shawshank_redemption.jpeg");
+var _shawshankRedemptionJpegDefault = parcelHelpers.interopDefault(_shawshankRedemptionJpeg);
+var _gladiatorJpeg = require("../../img/gladiator.jpeg");
+var _gladiatorJpegDefault = parcelHelpers.interopDefault(_gladiatorJpeg);
 class MainView extends _reactDefault.default.Component {
     constructor(){
         super();
@@ -22902,19 +22908,19 @@ class MainView extends _reactDefault.default.Component {
                     _id: 1,
                     Title: 'Inception',
                     Description: 'A man named Dom Cobb wakes up on a shore and is dragged into a house belonging to a wealthy Japanese businessman named Mr. Saito.',
-                    ImagePath: ''
+                    ImagePath: _inceptionJpgDefault.default
                 },
                 {
                     _id: 2,
                     Title: 'The Shawshank Redemption',
                     Description: 'Bank Merchant Andy Dufresne is convicted of the murder of his wife and her lover, and sentenced to life imprisonment at Shawshank prison.',
-                    ImagePath: ''
+                    ImagePath: _shawshankRedemptionJpegDefault.default
                 },
                 {
                     _id: 3,
                     Title: 'Gladiator',
                     Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.',
-                    ImagePath: ''
+                    ImagePath: _gladiatorJpegDefault.default
                 }, 
             ],
             selectedMovie: null
@@ -22934,7 +22940,7 @@ class MainView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 44
+                lineNumber: 47
             },
             __self: this
         }));
@@ -22942,7 +22948,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 53
+                lineNumber: 56
             },
             __self: this,
             children: "This list is empty!"
@@ -22951,7 +22957,7 @@ class MainView extends _reactDefault.default.Component {
             className: "main-view",
             __source: {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 57
+                lineNumber: 60
             },
             __self: this,
             children: selectedMovie ? /*#__PURE__*/ _jsxRuntime.jsx(_movieViewDefault.default, {
@@ -22961,7 +22967,7 @@ class MainView extends _reactDefault.default.Component {
                 },
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 59
+                    lineNumber: 62
                 },
                 __self: this
             }) : movies.map((movie)=>/*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
@@ -22970,7 +22976,7 @@ class MainView extends _reactDefault.default.Component {
                     ,
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 67
+                        lineNumber: 70
                     },
                     __self: this
                 }, movie._id)
@@ -22985,7 +22991,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","../movie-card/movie-card":"6EiBJ","../movie-view/movieView":"jpHFW","@parcel/transformer-js/src/esmodule-helpers.js":"3EToe","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"87rkw"}],"6EiBJ":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","../movie-card/movie-card":"6EiBJ","../movie-view/movieView":"jpHFW","@parcel/transformer-js/src/esmodule-helpers.js":"3EToe","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"87rkw","../../img/inception.jpg":"h2O3G","../../img/gladiator.jpeg":"3y42U","../../img/shawshank_redemption.jpeg":"52JFs"}],"6EiBJ":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4249 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -23051,6 +23057,7 @@ class MovieView extends _reactDefault.default.Component {
                     },
                     __self: this,
                     children: /*#__PURE__*/ _jsxRuntime.jsx("img", {
+                        className: "movie-card",
                         src: movie.ImagePath,
                         alt: movie.Title,
                         __source: {
@@ -23117,6 +23124,7 @@ class MovieView extends _reactDefault.default.Component {
                     ]
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx("button", {
+                    className: "btn",
                     onClick: ()=>onBackClick(null)
                     ,
                     __source: {
@@ -23137,6 +23145,50 @@ exports.default = MovieView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"3EToe","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"87rkw"}]},["jYGLx","wqLbX","dLPEP"], "dLPEP", "parcelRequire17c3")
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"3EToe","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"87rkw"}],"h2O3G":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('3VpAv') + "inception.f919e30a.jpg";
+
+},{"./helpers/bundle-url":"iqXcN"}],"iqXcN":[function(require,module,exports) {
+"use strict";
+var bundleURL = {
+};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp):\/\/.+)\/[^/]+$/, '$1') + '/';
+} // TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"3y42U":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('3VpAv') + "gladiator.fa9daa86.jpeg";
+
+},{"./helpers/bundle-url":"iqXcN"}],"52JFs":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('3VpAv') + "shawshank_redemption.989a87ae.jpeg";
+
+},{"./helpers/bundle-url":"iqXcN"}]},["jYGLx","wqLbX","dLPEP"], "dLPEP", "parcelRequire17c3")
 
 //# sourceMappingURL=index.6701a6e1.js.map
