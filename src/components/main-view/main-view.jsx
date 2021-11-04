@@ -1,36 +1,24 @@
 import React from 'react';
+import axios from 'axios';
 import MovieCard from '../movie-card/movie-card';
-import MovieView from '../movie-view/movieView';
-import img1 from '../../img/inception.jpg'
-import img2 from '../../img/shawshank_redemption.jpeg'
-import img3 from '../../img/gladiator.jpeg'
+import MovieView from '../movie-view/movie-view';
+import { LoginView } from '../login-view/login-view';
 
 class MainView extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			movies: [
-				{
-					_id: 1,
-					Title: 'Inception',
-					Description: 'A man named Dom Cobb wakes up on a shore and is dragged into a house belonging to a wealthy Japanese businessman named Mr. Saito.',
-					ImagePath: img1,
-				},
-				{
-					_id: 2,
-					Title: 'The Shawshank Redemption',
-					Description: 'Bank Merchant Andy Dufresne is convicted of the murder of his wife and her lover, and sentenced to life imprisonment at Shawshank prison.',
-					ImagePath: img2,
-				},
-				{
-					_id: 3,
-					Title: 'Gladiator',
-					Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.',
-					ImagePath: img3,
-				},
-			],
+			movies: [],
 			selectedMovie: null,
+      user: null
 		};
+	}
+
+	componentDidMount() {
+		axios
+			.get('https://film-fever-api.herokuapp.com/movies')
+			.then(res => this.setState({ movies: res.data }))
+			.catch(err => console.log(err));
 	}
 
 	setSelectedMovie(newSelectedMovie) {
@@ -39,8 +27,14 @@ class MainView extends React.Component {
 		});
 	}
 
+  onLoggedIn(user) {this.setState({user})}
+
 	render() {
-		let { movies, selectedMovie } = this.state;
+		let { movies, selectedMovie, user } = this.state;
+
+    if(!user) {
+      return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+    }
 
 		if (selectedMovie)
 			return (
@@ -52,9 +46,7 @@ class MainView extends React.Component {
 				/>
 			);
 
-		if (movies.length === 0) {
-			return <div className='main-view'>This list is empty!</div>;
-		}
+		if (movies.length === 0) return <div className='main-view' />;
 
 		return (
 			<div className='main-view'>
