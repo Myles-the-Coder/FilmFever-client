@@ -1,8 +1,12 @@
 import React from 'react';
 import axios from 'axios';
+import Navigation from '../navigation/navigation';
 import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
+
+import './main-view.scss';
 
 class MainView extends React.Component {
 	constructor() {
@@ -10,7 +14,8 @@ class MainView extends React.Component {
 		this.state = {
 			movies: [],
 			selectedMovie: null,
-      user: null
+			isSignedIn: false,
+			route: 'login',
 		};
 	}
 
@@ -27,44 +32,58 @@ class MainView extends React.Component {
 		});
 	}
 
-  onLoggedIn(user) {this.setState({user})}
+	onLoggedIn(user) {
+		this.setState({ user });
+	}
+
+	onRouteChange = route => {
+		if (route === 'signout') {
+			this.setState(initialState);
+		} else if (route === 'home') {
+			this.setState({ isSignedIn: true });
+		}
+		this.setState({ route: route });
+	};
 
 	render() {
-		let { movies, selectedMovie, user } = this.state;
-
-    if(!user) {
-      return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-    }
+		let { movies, selectedMovie, route, isSignedIn } = this.state;
 
 		if (selectedMovie)
 			return (
-				<MovieView
-					movie={selectedMovie}
-					onBackClick={movie => {
-						this.setSelectedMovie(movie);
-					}}
-				/>
-			);
-
-		if (movies.length === 0) return <div className='main-view' />;
-
-		return (
-			<div className='main-view'>
-				{selectedMovie ? (
+				<>
+					<Navigation
+						isSignedIn={isSignedIn}
+						onRouteChange={this.onRouteChange}
+					/>
 					<MovieView
 						movie={selectedMovie}
 						onBackClick={movie => {
 							this.setSelectedMovie(movie);
 						}}
 					/>
-				) : (
-					movies.map(movie => (
+				</>
+			);
+
+		if (movies.length === 0) return <div className='main-view' />;
+
+		return (
+			<div className='main-view'>
+				<Navigation
+					isSignedIn={isSignedIn}
+					onRouteChange={this.onRouteChange}
+				/>
+				{route === 'home' ? (
+          movies.map(movie => (
 						<MovieCard
 							key={movie._id}
 							movie={movie}
 							onMovieClick={movie => this.setSelectedMovie(movie)}
 						/>
 					))
+				) : route === 'login' ? (
+					<LoginView onRouteChange={this.onRouteChange} />
+				) : (
+					<RegistrationView onRouteChange={this.onRouteChange} />
 				)}
 			</div>
 		);
