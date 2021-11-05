@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types'
 
+import './movie-card.scss'
+
 class MovieCard extends React.Component {
 	render() {
 		const { movie, onMovieClick } = this.props;
@@ -8,9 +10,10 @@ class MovieCard extends React.Component {
   }
 }
 
-const {shape, string, func, instanceOf, bool} = PropTypes
+const {shape, string, func, bool} = PropTypes
 
 MovieCard.propTypes = {
+key: string.isRequired,
 movie: shape({
   Title: string.isRequired,
   Description: string.isRequired,
@@ -21,8 +24,8 @@ movie: shape({
   Director: shape({
     Name: string.isRequired,
     Bio: string.isRequired,
-    BirthDate: instanceOf(Date).isRequired,
-    DeathDate: instanceOf(Date)
+    BirthDate: string.isRequired,
+    DeathDate: string
   }).isRequired,
   ImagePath: string.isRequired,
   Featured: bool
