@@ -27,8 +27,8 @@ const Navigation = ({ onRouteChange, isSignedIn }) => {
 };
 
 Navigation.propTypes = {
-  onRouteChange = PropTypes.func.isRequired,
-  isSignedIn = PropTypes.bool.isRequired
+  onRouteChange: PropTypes.func.isRequired,
+  isSignedIn: PropTypes.bool.isRequired
 }
 
 export default Navigation

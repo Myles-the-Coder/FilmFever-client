@@ -37651,8 +37651,8 @@ const Navigation = ({ onRouteChange , isSignedIn  })=>{
 };
 _c = Navigation;
 Navigation.propTypes = {
-    onRouteChange=_propTypesDefault.default.func.isRequired,
-    isSignedIn=_propTypesDefault.default.bool.isRequired
+    onRouteChange: _propTypesDefault.default.func.isRequired,
+    isSignedIn: _propTypesDefault.default.bool.isRequired
 };
 exports.default = Navigation;
 var _c;
