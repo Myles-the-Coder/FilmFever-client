@@ -25439,7 +25439,7 @@ class MovieView extends _reactDefault.default.Component {
 }
 const { shape , string , func , bool  } = _propTypesDefault.default;
 MovieView.propTypes = {
-    key: string.isRequired,
+    _id: string,
     movie: shape({
         Title: string.isRequired,
         Description: string.isRequired,

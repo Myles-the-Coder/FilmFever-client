@@ -28,7 +28,7 @@ class MovieView extends React.Component {
 const {shape, string, func, bool} = PropTypes
 
 MovieView.propTypes = {
-    key: string.isRequired,
+    _id: string,
     movie: shape({
       Title: string.isRequired,
       Description: string.isRequired,
