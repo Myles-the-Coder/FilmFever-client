@@ -1,12 +1,29 @@
 import React from 'react';
 import PropTypes from 'prop-types'
+import { Card, Button } from 'react-bootstrap';
 
 import './movie-card.scss'
 
 class MovieCard extends React.Component {
-	render() {
+  render() {
 		const { movie, onMovieClick } = this.props;
-		return <div className='movie-card' onClick={() => onMovieClick(movie)}>{movie.Title}</div>
+    const {Title, ImagePath, Description} = movie
+    const {Img, Body, Text, Header} = Card
+    const cardStyling = {
+      margin: '5px',
+      backgroundColor: 'lightgray'
+    }
+
+		return (
+      <Card style={cardStyling} className="text-center">
+        <Header as='h5'>{Title}</Header>
+        <Img variant='top' src={ImagePath} alt={Title} crossOrigin="anonymous"/>
+          <Body>
+            <Text>{Description}</Text>
+            <Button onClick={() => onMovieClick(movie)} variant='primary'>Open</Button>
+          </Body>
+        </Card>
+    )
   }
 }
 

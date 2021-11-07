@@ -5,6 +5,7 @@ import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
+import { Row, Col, Container } from 'react-bootstrap';
 
 import './main-view.scss';
 
@@ -55,12 +56,18 @@ class MainView extends React.Component {
 						isSignedIn={isSignedIn}
 						onRouteChange={this.onRouteChange}
 					/>
-					<MovieView
-						movie={selectedMovie}
-						onBackClick={movie => {
-							this.setSelectedMovie(movie);
-						}}
-					/>
+					<Container>
+						<Row className='justify-content-md-center'>
+							<Col md={6}>
+								<MovieView
+									movie={selectedMovie}
+									onBackClick={movie => {
+										this.setSelectedMovie(movie);
+									}}
+								/>
+							</Col>
+						</Row>
+					</Container>
 				</>
 			);
 
@@ -73,15 +80,21 @@ class MainView extends React.Component {
 					onRouteChange={this.onRouteChange}
 				/>
 				{route === 'home' ? (
-          movies.map(movie => (
-						<MovieCard
-							key={movie._id}
-							movie={movie}
-							onMovieClick={movie => this.setSelectedMovie(movie)}
-						/>
-					))
+					<Container>
+						<Row className='justify-content-md-center'>
+							{movies.map(movie => (
+								<Col xs={10} sm={6} md={3}>
+									<MovieCard
+										key={movie._id}
+										movie={movie}
+										onMovieClick={movie => this.setSelectedMovie(movie)}
+									/>
+								</Col>
+							))}
+						</Row>
+					</Container>
 				) : route === 'login' ? (
-					<LoginView onRouteChange={this.onRouteChange} />
+								<LoginView onRouteChange={this.onRouteChange} />
 				) : (
 					<RegistrationView onRouteChange={this.onRouteChange} />
 				)}

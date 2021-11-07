@@ -4,7 +4,6 @@ import {Button} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
 import './login-view.scss'
-import { func } from 'prop-types';
 
 export function LoginView({onRouteChange}) {
 	const [username, setUsername] = useState('');
@@ -22,27 +21,29 @@ export function LoginView({onRouteChange}) {
   const {Group, Label, Control} = Form
 
 	return (
-		<Form>
+		<Form className='mt-2'>
       <Group>
-			<Label htmlFor='username'>Username</Label>
+			<Label htmlFor='username'>Username:</Label>
 			<Control
 				type='text'
 				value={username}
 				name='username'
 				id='username'
+        placeholder='Enter Username...'
 				onChange={e => setUsername(e.target.value)}
 			/>
       </Group>
       <Group>
-			<Label htmlFor='password'>Password</Label>
+			<Label htmlFor='password'>Password:</Label>
 			<Control
 				type='password'
 				value={password}
 				id='password'
         name="password"
+        placeholder="Enter Password..."
 				onChange={e => setPassword(e.target.value)}
 			/>
-      <Button type="submit" onClick={handleSubmit}>Submit</Button>
+      <Button type="submit" onClick={handleSubmit} className='m-2'>Submit</Button>
 		</Group>
     <p>Don't have an account? <Button type="button" onClick={switchToRegister}>Register</Button></p>
     </Form>
