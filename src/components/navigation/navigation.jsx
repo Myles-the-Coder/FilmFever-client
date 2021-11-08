@@ -4,30 +4,30 @@ import PropTypes from "prop-types"
 import './navigation.scss'
 import logo from '../../img/FilmFever.png'
 
-const Navigation = ({ onRouteChange, isSignedIn }) => {
+const Navigation = ({ onLoggedOut, route }) => {
   const {Brand} = Navbar
 
-	if (isSignedIn) {
+	if (route === 'login') {
 		return (
-			<Navbar bg="light" className=''>
-        <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
-				<Button className='btn' onClick={() => onRouteChange('login')} >
-					Sign Out
-				</Button>
-			</Navbar>
+      <Navbar bg="light">
+      <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
+    </Navbar>
 		);
 	} else {
 		return (
 			<Navbar bg="light">
         <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
+				<Button className='btn' onClick={onLoggedOut} >
+					Sign Out
+				</Button>
 			</Navbar>
 		);
 	}
 };
 
 Navigation.propTypes = {
-  onRouteChange: PropTypes.func.isRequired,
-  isSignedIn: PropTypes.bool.isRequired
+  onLoggedOut: PropTypes.func.isRequired,
+  route: PropTypes.string.isRequired
 }
 
 export default Navigation
