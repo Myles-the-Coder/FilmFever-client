@@ -16,16 +16,17 @@ class MainView extends React.Component {
 			movies: [],
 			selectedMovie: null,
 			isSignedIn: false,
+			user: {},
 			route: 'login',
 		};
 	}
 
-	componentDidMount() {
-		axios
-			.get('https://film-fever-api.herokuapp.com/movies')
-			.then(res => this.setState({ movies: res.data }))
-			.catch(err => console.log(err));
-	}
+	// componentDidMount() {
+	// 	axios
+	// 		.get('https://film-fever-api.herokuapp.com/movies')
+	// 		.then(res => this.setState({ movies: res.data }))
+	// 		.catch(err => console.log(err));
+	// }
 
 	setSelectedMovie(newSelectedMovie) {
 		this.setState({
@@ -33,8 +34,22 @@ class MainView extends React.Component {
 		});
 	}
 
-	onLoggedIn(user) {
-		this.setState({ user });
+	onLoggedIn(authData) {
+		console.log(authData);
+		this.setState({ user: authData.user.Username });
+		localStorage.setItem('token', authData.token);
+		localStorage.setItem('user', authData.user.Username);
+
+		this.getMovies(authData);
+	}
+
+	getMovies(token) {
+		axios
+			.get('https://film-fever-api.herokuapp.com/movies', {
+				headers: { Authorization: `Bearer ${token}` },
+			})
+			.then(res => this.setState({ movies: res.data }))
+			.catch(err => console.log(err));
 	}
 
 	onRouteChange = route => {
@@ -83,7 +98,7 @@ class MainView extends React.Component {
 					<Container>
 						<Row className='justify-content-md-center'>
 							{movies.map(movie => (
-								<Col xs={10} sm={6} md={3}>
+								<Col xs={10} sm={6} md={4} lg={3}>
 									<MovieCard
 										key={movie._id}
 										movie={movie}
@@ -94,7 +109,10 @@ class MainView extends React.Component {
 						</Row>
 					</Container>
 				) : route === 'login' ? (
-								<LoginView onRouteChange={this.onRouteChange} />
+					<LoginView
+						onRouteChange={this.onRouteChange}
+						onLoggedIn={this.onLoggedIn}
+					/>
 				) : (
 					<RegistrationView onRouteChange={this.onRouteChange} />
 				)}
