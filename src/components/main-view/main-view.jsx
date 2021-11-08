@@ -5,6 +5,7 @@ import MovieCard from '../movie-card/movie-card';
 import MovieView from '../movie-view/movie-view';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
+import { Row, Col, Container } from 'react-bootstrap';
 
 import './main-view.scss';
 
@@ -15,16 +16,17 @@ class MainView extends React.Component {
 			movies: [],
 			selectedMovie: null,
 			isSignedIn: false,
+			user: {},
 			route: 'login',
 		};
 	}
 
-	componentDidMount() {
-		axios
-			.get('https://film-fever-api.herokuapp.com/movies')
-			.then(res => this.setState({ movies: res.data }))
-			.catch(err => console.log(err));
-	}
+	// componentDidMount() {
+	// 	axios
+	// 		.get('https://film-fever-api.herokuapp.com/movies')
+	// 		.then(res => this.setState({ movies: res.data }))
+	// 		.catch(err => console.log(err));
+	// }
 
 	setSelectedMovie(newSelectedMovie) {
 		this.setState({
@@ -32,8 +34,22 @@ class MainView extends React.Component {
 		});
 	}
 
-	onLoggedIn(user) {
-		this.setState({ user });
+	onLoggedIn(authData) {
+		console.log(authData);
+		this.setState({ user: authData.user.Username });
+		localStorage.setItem('token', authData.token);
+		localStorage.setItem('user', authData.user.Username);
+
+		this.getMovies(authData);
+	}
+
+	getMovies(token) {
+		axios
+			.get('https://film-fever-api.herokuapp.com/movies', {
+				headers: { Authorization: `Bearer ${token}` },
+			})
+			.then(res => this.setState({ movies: res.data }))
+			.catch(err => console.log(err));
 	}
 
 	onRouteChange = route => {
@@ -55,12 +71,18 @@ class MainView extends React.Component {
 						isSignedIn={isSignedIn}
 						onRouteChange={this.onRouteChange}
 					/>
-					<MovieView
-						movie={selectedMovie}
-						onBackClick={movie => {
-							this.setSelectedMovie(movie);
-						}}
-					/>
+					<Container>
+						<Row className='justify-content-md-center'>
+							<Col md={6}>
+								<MovieView
+									movie={selectedMovie}
+									onBackClick={movie => {
+										this.setSelectedMovie(movie);
+									}}
+								/>
+							</Col>
+						</Row>
+					</Container>
 				</>
 			);
 
@@ -73,15 +95,24 @@ class MainView extends React.Component {
 					onRouteChange={this.onRouteChange}
 				/>
 				{route === 'home' ? (
-          movies.map(movie => (
-						<MovieCard
-							key={movie._id}
-							movie={movie}
-							onMovieClick={movie => this.setSelectedMovie(movie)}
-						/>
-					))
+					<Container>
+						<Row className='justify-content-md-center'>
+							{movies.map(movie => (
+								<Col xs={10} sm={6} md={4} lg={3}>
+									<MovieCard
+										key={movie._id}
+										movie={movie}
+										onMovieClick={movie => this.setSelectedMovie(movie)}
+									/>
+								</Col>
+							))}
+						</Row>
+					</Container>
 				) : route === 'login' ? (
-					<LoginView onRouteChange={this.onRouteChange} />
+					<LoginView
+						onRouteChange={this.onRouteChange}
+						onLoggedIn={this.onLoggedIn}
+					/>
 				) : (
 					<RegistrationView onRouteChange={this.onRouteChange} />
 				)}

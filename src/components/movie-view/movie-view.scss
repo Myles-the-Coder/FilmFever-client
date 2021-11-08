@@ -1,20 +1,30 @@
-.movie-view {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin: auto;
-  text-align: center;
-  background: lightgray;
-  border-radius: 5px;
-  width: 500px;
-}
+// .movie-view {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   margin: auto;
+//   text-align: center;
+//   background: lightgray;
+//   border-radius: 5px;
+//   padding: 20px;
+//   width: 500px;
+// }
 
-.movie-poster img{
-  width: 250px;
-  box-shadow: 0px 0px 3px 6px;
-}
+// .single-movie-card {
+//   width: 500px;
+// box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+// }
 
-.movie-title, .movie-description {
-  font-weight: bold;
-}
+// .movie-title, .movie-description {
+//   font-weight: bold;
+//   margin: 10px 0;
+// }
+
+// .movie-title {
+//   font-size: 2rem;
+// }
+
+// .label {
+//   display: block;
+// }
