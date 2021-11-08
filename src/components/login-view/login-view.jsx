@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 
 import './login-view.scss';
 
-export function LoginView({ onRouteChange, onLoggedIn }) {
+function LoginView({ onRouteChange, onLoggedIn}) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -18,9 +18,7 @@ export function LoginView({ onRouteChange, onLoggedIn }) {
 				Password: password,
 			})
 			.then(res => onLoggedIn(res.data))
-			.catch(err => console.log('No such user'));
-
-		onRouteChange('home');
+			.catch(err => console.log(err));
 	};
 
 	const switchToSignup = () => {
@@ -55,7 +53,7 @@ export function LoginView({ onRouteChange, onLoggedIn }) {
 				</Button>
 			</Group>
 			<p>
-				Don't have an account?{' '}
+				Don't have an account?
 				<Button type='button' onClick={switchToSignup}>
 					Sign Up
 				</Button>
@@ -68,3 +66,5 @@ LoginView.propTypes = {
 	onRouteChange: PropTypes.func.isRequired,
 	onLoggedIn: PropTypes.func.isRequired,
 };
+
+export default LoginView
