@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import './registration-view.scss';
 
-export function RegistrationView({ onRouteChange }) {
+function RegistrationView({ onRouteChange }) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
@@ -15,15 +15,15 @@ export function RegistrationView({ onRouteChange }) {
 
   const	handleRegister = e => {
 		e.preventDefault()
-    if (password !== confirmPassword) {
-      alert('Passwords do not match')
-    } else {
-			onRouteChange('login')
-    }
+    // if (password !== confirmPassword) {
+    //   alert('Passwords do not match')
+    // } else {
+		// 	onRouteChange('login')
+    // }
 	};
 
 	return (
-		<Form className='mt-2'>
+		<Form className='mt-2' noValidate>
 			<Group>
 				<Label>Username</Label>
 				<Control
@@ -49,7 +49,7 @@ export function RegistrationView({ onRouteChange }) {
 			</Group>
 
 			<Group>
-				<Label htmlFor='birthday'>Birthday</Label>
+				<Label htmlFor='birthday'>Birthday (optional)</Label>
 				<Control
 					type='date'
 					value={birthday}
@@ -94,3 +94,5 @@ export function RegistrationView({ onRouteChange }) {
 RegistrationView.propTypes = {
 	onRouteChange: PropTypes.func.isRequired,
 };
+
+export default RegistrationView
