@@ -7,13 +7,15 @@ class MovieView extends React.Component {
 	render() {
 		const { movie, onBackClick } = this.props;
 		const { Img, Body, Title, Text } = Card;
-    
+
 		return (
-			<Card className='text-center mt-1' style={{backgroundColor: 'lightgray'}}>
+			<Card
+				className='text-center mt-1'
+				style={{ backgroundColor: 'lightgray' }}>
 				<Img
 					src={movie.ImagePath}
 					alt={movie.Title}
-					className='w-25 m-md-auto pt-2'
+					className='w-25 m-auto pt-2'
 					crossOrigin='anonymous'
 				/>
 				<Body>
