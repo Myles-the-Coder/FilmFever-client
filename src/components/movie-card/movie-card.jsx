@@ -1,53 +1,60 @@
 import React from 'react';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 
-import './movie-card.scss'
+import './movie-card.scss';
 
 class MovieCard extends React.Component {
-  render() {
+	render() {
 		const { movie, onMovieClick } = this.props;
-    const {Title, ImagePath, Description} = movie
-    const {Img, Body, Text, Header} = Card
-    const cardStyling = {
-      margin: '5px',
-      backgroundColor: 'lightgray'
-    }
+		const { Title, ImagePath, Description } = movie;
+		const { Img, Body, Text, Header } = Card;
+		const cardStyling = {
+			margin: '5px',
+			backgroundColor: 'lightgray',
+		};
 
 		return (
-      <Card style={cardStyling} className="text-center">
-        <Header as='h5'>{Title}</Header>
-        <Img variant='top' src={ImagePath} alt={Title} crossOrigin="anonymous"/>
-          <Body>
-            <Text>{Description}</Text>
-            <Button onClick={() => onMovieClick(movie)} variant='primary'>Open</Button>
-          </Body>
-        </Card>
-    )
-  }
+			<Card style={cardStyling} className='text-center'>
+				<Header as='h5'>{Title}</Header>
+				<Img
+					variant='top'
+					src={ImagePath}
+					alt={Title}
+					crossOrigin='anonymous'
+				/>
+				<Body>
+					<Text>{Description}</Text>
+					<Button onClick={() => onMovieClick(movie)} variant='primary'>
+						Open
+					</Button>
+				</Body>
+			</Card>
+		);
+	}
 }
 
-const {shape, string, func, bool} = PropTypes
+const { shape, string, func, bool } = PropTypes;
 
 MovieCard.propTypes = {
-key: string.isRequired,
-movie: shape({
-  Title: string.isRequired,
-  Description: string.isRequired,
-  Genre: shape({
-    Name: string.isRequired,
-    Description: string.isRequired
-  }).isRequired,
-  Director: shape({
-    Name: string.isRequired,
-    Bio: string.isRequired,
-    BirthDate: string.isRequired,
-    DeathDate: string
-  }).isRequired,
-  ImagePath: string.isRequired,
-  Featured: bool
-}).isRequired,
-onMovieClick:func.isRequired
-}
+	key: string,
+	movie: shape({
+		Title: string.isRequired,
+		Description: string.isRequired,
+		Genre: shape({
+			Name: string.isRequired,
+			Description: string.isRequired,
+		}).isRequired,
+		Director: shape({
+			Name: string.isRequired,
+			Bio: string.isRequired,
+			BirthDate: string.isRequired,
+			DeathDate: string,
+		}).isRequired,
+		ImagePath: string.isRequired,
+		Featured: bool,
+	}).isRequired,
+	onMovieClick: func.isRequired,
+};
 
 export default MovieCard;
