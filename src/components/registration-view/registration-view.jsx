@@ -25,12 +25,11 @@ export function RegistrationView({ onRouteChange }) {
 	return (
 		<Form className='mt-2'>
 			<Group>
-				<Label htmlFor='username'>Username</Label>
+				<Label>Username</Label>
 				<Control
 					type='text'
 					value={username}
 					name='username'
-					id='username'
 					placeholder='Enter username...'
 					onChange={e => setUsername(e.target.value)}
           required
@@ -38,11 +37,10 @@ export function RegistrationView({ onRouteChange }) {
 			</Group>
 
 			<Group>
-				<Label htmlFor='email'>Email</Label>
+				<Label>Email</Label>
 				<Control
 					type='email'
 					value={email}
-					id='email'
 					name='email'
 					placeholder='Enter email...'
 					onChange={e => setEmail(e.target.value)}
