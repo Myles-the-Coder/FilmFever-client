@@ -1,36 +1,29 @@
 import React from 'react';
+import axios from 'axios';
+import Navigation from '../navigation/navigation';
 import MovieCard from '../movie-card/movie-card';
-import MovieView from '../movie-view/movieView';
-import img1 from '../../img/inception.jpg'
-import img2 from '../../img/shawshank_redemption.jpeg'
-import img3 from '../../img/gladiator.jpeg'
+import MovieView from '../movie-view/movie-view';
+import { LoginView } from '../login-view/login-view';
+import { RegistrationView } from '../registration-view/registration-view';
+
+import './main-view.scss';
 
 class MainView extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			movies: [
-				{
-					_id: 1,
-					Title: 'Inception',
-					Description: 'A man named Dom Cobb wakes up on a shore and is dragged into a house belonging to a wealthy Japanese businessman named Mr. Saito.',
-					ImagePath: img1,
-				},
-				{
-					_id: 2,
-					Title: 'The Shawshank Redemption',
-					Description: 'Bank Merchant Andy Dufresne is convicted of the murder of his wife and her lover, and sentenced to life imprisonment at Shawshank prison.',
-					ImagePath: img2,
-				},
-				{
-					_id: 3,
-					Title: 'Gladiator',
-					Description: 'A former Roman General sets out to exact vengeance against the corrupt emperor who murdered his family and sent him into slavery.',
-					ImagePath: img3,
-				},
-			],
+			movies: [],
 			selectedMovie: null,
+			isSignedIn: false,
+			route: 'login',
 		};
+	}
+
+	componentDidMount() {
+		axios
+			.get('https://film-fever-api.herokuapp.com/movies')
+			.then(res => this.setState({ movies: res.data }))
+			.catch(err => console.log(err));
 	}
 
 	setSelectedMovie(newSelectedMovie) {
@@ -39,40 +32,58 @@ class MainView extends React.Component {
 		});
 	}
 
+	onLoggedIn(user) {
+		this.setState({ user });
+	}
+
+	onRouteChange = route => {
+		if (route === 'signout') {
+			this.setState(initialState);
+		} else if (route === 'home') {
+			this.setState({ isSignedIn: true });
+		}
+		this.setState({ route: route });
+	};
+
 	render() {
-		let { movies, selectedMovie } = this.state;
+		let { movies, selectedMovie, route, isSignedIn } = this.state;
 
 		if (selectedMovie)
 			return (
-				<MovieView
-					movie={selectedMovie}
-					onBackClick={movie => {
-						this.setSelectedMovie(movie);
-					}}
-				/>
-			);
-
-		if (movies.length === 0) {
-			return <div className='main-view'>This list is empty!</div>;
-		}
-
-		return (
-			<div className='main-view'>
-				{selectedMovie ? (
+				<>
+					<Navigation
+						isSignedIn={isSignedIn}
+						onRouteChange={this.onRouteChange}
+					/>
 					<MovieView
 						movie={selectedMovie}
 						onBackClick={movie => {
 							this.setSelectedMovie(movie);
 						}}
 					/>
-				) : (
-					movies.map(movie => (
+				</>
+			);
+
+		if (movies.length === 0) return <div className='main-view' />;
+
+		return (
+			<div className='main-view'>
+				<Navigation
+					isSignedIn={isSignedIn}
+					onRouteChange={this.onRouteChange}
+				/>
+				{route === 'home' ? (
+          movies.map(movie => (
 						<MovieCard
 							key={movie._id}
 							movie={movie}
 							onMovieClick={movie => this.setSelectedMovie(movie)}
 						/>
 					))
+				) : route === 'login' ? (
+					<LoginView onRouteChange={this.onRouteChange} />
+				) : (
+					<RegistrationView onRouteChange={this.onRouteChange} />
 				)}
 			</div>
 		);

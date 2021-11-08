@@ -1,0 +1,18 @@
+.btn {
+  border: none;
+  padding: 15px;
+  width: 100px;
+  margin: 10px 0;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: lightslategray;
+  color: #fff;
+}
+
+.btn:hover {
+  filter: brightness(110%);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}

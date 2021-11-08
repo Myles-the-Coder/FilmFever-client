@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import MainView  from './components/main-view/main-view';
-import './index.scss';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import '../src/components/main-view/main-view.scss'
 class App extends React.Component {
 	render() {
 		return (
