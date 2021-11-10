@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -15,15 +16,22 @@ function RegistrationView({ onRouteChange }) {
 
   const	handleRegister = e => {
 		e.preventDefault()
-    // if (password !== confirmPassword) {
-    //   alert('Passwords do not match')
-    // } else {
-		// 	onRouteChange('login')
-    // }
+    axios.post('https://film-fever-api.herokuapp.com/signup', {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday
+    })
+    .then(res => {
+      const data = res.data
+      console.log(data)
+      window.open('/', '_self')
+    })
+    .catch(err => console.log('error registering the user'))
 	};
 
 	return (
-		<Form className='mt-2' noValidate>
+		<Form className='mt-2'>
 			<Group>
 				<Label>Username</Label>
 				<Control
@@ -92,7 +100,7 @@ function RegistrationView({ onRouteChange }) {
 }
 
 RegistrationView.propTypes = {
-	onRouteChange: PropTypes.func.isRequired,
+	onRouteChange: PropTypes.func,
 };
 
 export default RegistrationView

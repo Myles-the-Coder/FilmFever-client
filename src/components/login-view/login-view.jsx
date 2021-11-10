@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 import { Form } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
@@ -17,7 +18,10 @@ function LoginView({ onRouteChange, onLoggedIn}) {
 				Username: username,
 				Password: password,
 			})
-			.then(res => onLoggedIn(res.data))
+			.then(res => {
+        onLoggedIn(res.data)
+        onRouteChange('login')
+      })
 			.catch(err => console.log(err));
 	};
 
@@ -54,16 +58,18 @@ function LoginView({ onRouteChange, onLoggedIn}) {
 			</Group>
 			<p>
 				Don't have an account?
-				<Button type='button' onClick={switchToSignup}>
+        <Link to='/register'>
+				<Button variant='primary'>
 					Sign Up
 				</Button>
+        </Link>
 			</p>
 		</Form>
 	);
 }
 
 LoginView.propTypes = {
-	onRouteChange: PropTypes.func.isRequired,
+	onRouteChange: PropTypes.func,
 	onLoggedIn: PropTypes.func.isRequired,
 };
 

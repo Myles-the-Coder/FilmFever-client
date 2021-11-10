@@ -22746,7 +22746,7 @@ parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
-var _reactRouter = require("react-router");
+var _reactRouterDom = require("react-router-dom");
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _navigation = require("../navigation/navigation");
@@ -22799,7 +22799,6 @@ class MainView extends _reactDefault.default.Component {
         this.setState({
             user: null
         });
-        this.onRouteChange('login');
     };
     getMovies = (token)=>{
         _axiosDefault.default.get('https://film-fever-api.herokuapp.com/movies', {
@@ -22815,145 +22814,169 @@ class MainView extends _reactDefault.default.Component {
         );
     };
     onRouteChange = (route)=>{
-        if (route === 'signout') this.setState(initialState);
-        else if (route === 'home') this.setState({
-            isSignedIn: true
-        });
         this.setState({
-            route: route
+            route
         });
     };
     render() {
-        let { movies , selectedMovie , route , isSignedIn  } = this.state;
-        if (selectedMovie) return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
+        let { movies , user: user1 , route  } = this.state;
+        return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
             children: [
-                /*#__PURE__*/ _jsxRuntime.jsx(_navigationDefault.default, {
-                    route: route,
-                    onRouteChange: this.onRouteChange,
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 82,
-                        columnNumber: 6
+                        lineNumber: 80,
+                        columnNumber: 9
                     },
-                    __self: this
+                    __self: this,
+                    children: /*#__PURE__*/ _jsxRuntime.jsx(_navigationDefault.default, {
+                        onLoggedOut: this.onLoggedOut,
+                        route: route,
+                        __source: {
+                            fileName: "src/components/main-view/main-view.jsx",
+                            lineNumber: 81,
+                            columnNumber: 5
+                        },
+                        __self: this
+                    })
                 }),
                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
                     __source: {
                         fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 86,
-                        columnNumber: 6
-                    },
-                    __self: this,
-                    children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-                        className: "justify-content-md-center",
-                        __source: {
-                            fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 87,
-                            columnNumber: 7
-                        },
-                        __self: this,
-                        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
-                            md: 6,
-                            __source: {
-                                fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 88,
-                                columnNumber: 8
-                            },
-                            __self: this,
-                            children: /*#__PURE__*/ _jsxRuntime.jsx(_movieViewDefault.default, {
-                                movie: selectedMovie,
-                                onBackClick: (movie)=>{
-                                    this.setSelectedMovie(movie);
-                                },
-                                __source: {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 89,
-                                    columnNumber: 9
-                                },
-                                __self: this
-                            })
-                        })
-                    })
-                })
-            ]
-        }));
-        // if (movies.length === 0) return <div className='main-view' />;
-        return(/*#__PURE__*/ _jsxRuntime.jsxs("div", {
-            className: "main-view",
-            __source: {
-                fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 104,
-                columnNumber: 4
-            },
-            __self: this,
-            children: [
-                /*#__PURE__*/ _jsxRuntime.jsx(_navigationDefault.default, {
-                    onLoggedOut: this.onLoggedOut,
-                    route: route,
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 105,
+                        lineNumber: 83,
                         columnNumber: 5
                     },
-                    __self: this
-                }),
-                route === 'home' ? /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 110,
-                        columnNumber: 6
-                    },
                     __self: this,
-                    children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-                        className: "justify-content-md-center",
+                    children: /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.BrowserRouter, {
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 111,
-                            columnNumber: 7
+                            lineNumber: 84,
+                            columnNumber: 6
                         },
                         __self: this,
-                        children: movies.map((movie1)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
-                                xs: 10,
-                                sm: 6,
-                                md: 4,
-                                lg: 3,
-                                __source: {
-                                    fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 113,
-                                    columnNumber: 9
-                                },
-                                __self: this,
-                                children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
-                                    movie: movie1,
-                                    onMovieClick: (movie)=>this.setSelectedMovie(movie)
-                                    ,
+                        children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Row, {
+                            className: "main-view justify-content-md-center",
+                            __source: {
+                                fileName: "src/components/main-view/main-view.jsx",
+                                lineNumber: 85,
+                                columnNumber: 7
+                            },
+                            __self: this,
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
+                                    exact: true,
+                                    path: "/",
+                                    render: ()=>{
+                                        if (user1 === null) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                            children: /*#__PURE__*/ _jsxRuntime.jsx(_loginViewDefault.default, {
+                                                onLoggedIn: (user)=>this.onLoggedIn(user)
+                                            })
+                                        }));
+                                        // if (movies.length === 0) return <div className='main-view' />;
+                                        return movies.map((movie1)=>/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                                xs: 10,
+                                                sm: 6,
+                                                md: 4,
+                                                lg: 3,
+                                                children: /*#__PURE__*/ _jsxRuntime.jsx(_movieCardDefault.default, {
+                                                    movie: movie1,
+                                                    onMovieClick: (movie)=>this.setSelectedMovie(movie)
+                                                })
+                                            }, movie1._id)
+                                        );
+                                    },
                                     __source: {
                                         fileName: "src/components/main-view/main-view.jsx",
-                                        lineNumber: 114,
-                                        columnNumber: 10
+                                        lineNumber: 86,
+                                        columnNumber: 9
                                     },
                                     __self: this
-                                }, movie1._id)
-                            })
-                        )
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
+                                    exact: true,
+                                    path: "/register",
+                                    render: ()=>{
+                                        if (user1) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Redirect, {
+                                            to: "/"
+                                        }));
+                                        return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                            children: /*#__PURE__*/ _jsxRuntime.jsx(_registrationViewDefault.default, {
+                                            })
+                                        }));
+                                    },
+                                    __source: {
+                                        fileName: "src/components/main-view/main-view.jsx",
+                                        lineNumber: 112,
+                                        columnNumber: 9
+                                    },
+                                    __self: this
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
+                                    exact: true,
+                                    path: "/movies/:movieId",
+                                    render: ({ match , history  })=>{
+                                        return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                            md: 8,
+                                            children: /*#__PURE__*/ _jsxRuntime.jsx(_movieViewDefault.default, {
+                                                movie: movies.find((movie)=>movie._id === match.params.movieId
+                                                ),
+                                                onBackClick: ()=>history.goBack()
+                                            })
+                                        }));
+                                    },
+                                    __source: {
+                                        fileName: "src/components/main-view/main-view.jsx",
+                                        lineNumber: 125,
+                                        columnNumber: 9
+                                    },
+                                    __self: this
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
+                                    exact: true,
+                                    path: "genres/:name",
+                                    render: ({ match , history  })=>{
+                                        if (!movies) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+                                            className: "main-view"
+                                        }));
+                                        /*#__PURE__*/ _jsxRuntime.jsx(GenreView, {
+                                            director: movies.find((movie)=>movie.Genre.Name === match.params.name
+                                            ).Genre,
+                                            onBackClick: ()=>history.goBack()
+                                        });
+                                    },
+                                    __source: {
+                                        fileName: "src/components/main-view/main-view.jsx",
+                                        lineNumber: 142,
+                                        columnNumber: 9
+                                    },
+                                    __self: this
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Route, {
+                                    exact: true,
+                                    path: "directors/:name",
+                                    render: ({ match , history  })=>{
+                                        if (!movies) return(/*#__PURE__*/ _jsxRuntime.jsx("div", {
+                                            className: "main-view"
+                                        }));
+                                        return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                            md: 8,
+                                            children: /*#__PURE__*/ _jsxRuntime.jsx(DirectorView, {
+                                                director: movies.find((movie)=>movie.Director.Name === match.params.name
+                                                ).Director,
+                                                onBackClick: ()=>history.goBack()
+                                            })
+                                        }));
+                                    },
+                                    __source: {
+                                        fileName: "src/components/main-view/main-view.jsx",
+                                        lineNumber: 158,
+                                        columnNumber: 9
+                                    },
+                                    __self: this
+                                })
+                            ]
+                        })
                     })
-                }) : route === 'login' ? /*#__PURE__*/ _jsxRuntime.jsx(_loginViewDefault.default, {
-                    onRouteChange: this.onRouteChange,
-                    onLoggedIn: this.onLoggedIn,
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 124,
-                        columnNumber: 6
-                    },
-                    __self: this
-                }) : /*#__PURE__*/ _jsxRuntime.jsx(_registrationViewDefault.default, {
-                    onRouteChange: this.onRouteChange,
-                    __source: {
-                        fileName: "src/components/main-view/main-view.jsx",
-                        lineNumber: 129,
-                        columnNumber: 6
-                    },
-                    __self: this
                 })
             ]
         }));
@@ -22966,1322 +22989,7 @@ exports.default = MainView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-router":"g791w","axios":"1IeuP","../navigation/navigation":"hpb39","../movie-card/movie-card":"04zIX","../movie-view/movie-view":"8S478","../login-view/login-view":"7IGV8","../registration-view/registration-view":"lGbHG","react-bootstrap":"9qMdX","./main-view.scss":"hRkrD","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"g791w":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "MemoryRouter", ()=>MemoryRouter
-);
-parcelHelpers.export(exports, "Navigate", ()=>Navigate
-);
-parcelHelpers.export(exports, "Outlet", ()=>Outlet
-);
-parcelHelpers.export(exports, "Route", ()=>Route
-);
-parcelHelpers.export(exports, "Router", ()=>Router
-);
-parcelHelpers.export(exports, "Routes", ()=>Routes
-);
-parcelHelpers.export(exports, "UNSAFE_LocationContext", ()=>LocationContext
-);
-parcelHelpers.export(exports, "UNSAFE_NavigationContext", ()=>NavigationContext
-);
-parcelHelpers.export(exports, "UNSAFE_RouteContext", ()=>RouteContext
-);
-parcelHelpers.export(exports, "createRoutesFromChildren", ()=>createRoutesFromChildren
-);
-parcelHelpers.export(exports, "generatePath", ()=>generatePath
-);
-parcelHelpers.export(exports, "matchPath", ()=>matchPath
-);
-parcelHelpers.export(exports, "matchRoutes", ()=>matchRoutes
-);
-parcelHelpers.export(exports, "renderMatches", ()=>renderMatches
-);
-parcelHelpers.export(exports, "resolvePath", ()=>resolvePath
-);
-parcelHelpers.export(exports, "useHref", ()=>useHref
-);
-parcelHelpers.export(exports, "useInRouterContext", ()=>useInRouterContext
-);
-parcelHelpers.export(exports, "useLocation", ()=>useLocation
-);
-parcelHelpers.export(exports, "useMatch", ()=>useMatch
-);
-parcelHelpers.export(exports, "useNavigate", ()=>useNavigate
-);
-parcelHelpers.export(exports, "useNavigationType", ()=>useNavigationType
-);
-parcelHelpers.export(exports, "useOutlet", ()=>useOutlet
-);
-parcelHelpers.export(exports, "useParams", ()=>useParams
-);
-parcelHelpers.export(exports, "useResolvedPath", ()=>useResolvedPath
-);
-parcelHelpers.export(exports, "useRoutes", ()=>useRoutes
-);
-/**
- * React Router v6.0.1
- *
- * Copyright (c) Remix Software Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE.md file in the root directory of this source tree.
- *
- * @license MIT
- */ var _react = require("react");
-var _history = require("history");
-function invariant(cond, message) {
-    if (!cond) throw new Error(message);
-}
-function warning(cond, message) {
-    if (!cond) {
-        // eslint-disable-next-line no-console
-        if (typeof console !== "undefined") console.warn(message);
-        try {
-            // Welcome to debugging React Router!
-            //
-            // This error is thrown as a convenience so you can more easily
-            // find the source for a warning that appears in the console by
-            // enabling "pause on exceptions" in your JavaScript debugger.
-            throw new Error(message); // eslint-disable-next-line no-empty
-        } catch (e) {
-        }
-    }
-}
-const alreadyWarned = {
-};
-function warningOnce(key, cond, message) {
-    if (!cond && !alreadyWarned[key]) {
-        alreadyWarned[key] = true;
-        warning(false, message);
-    }
-} ///////////////////////////////////////////////////////////////////////////////
-// CONTEXT
-///////////////////////////////////////////////////////////////////////////////
-/**
- * A Navigator is a "location changer"; it's how you get to different locations.
- *
- * Every history instance conforms to the Navigator interface, but the
- * distinction is useful primarily when it comes to the low-level <Router> API
- * where both the location and a navigator must be provided separately in order
- * to avoid "tearing" that may occur in a suspense-enabled app if the action
- * and/or location were to be read directly from the history instance.
- */ const NavigationContext = /*#__PURE__*/ _react.createContext(null);
-NavigationContext.displayName = "Navigation";
-const LocationContext = /*#__PURE__*/ _react.createContext(null);
-LocationContext.displayName = "Location";
-const RouteContext = /*#__PURE__*/ _react.createContext({
-    outlet: null,
-    matches: []
-});
-RouteContext.displayName = "Route";
-// COMPONENTS
-///////////////////////////////////////////////////////////////////////////////
-/**
- * A <Router> that stores all entries in memory.
- *
- * @see https://reactrouter.com/docs/en/v6/api#memoryrouter
- */ function MemoryRouter(_ref) {
-    let { basename , children , initialEntries , initialIndex  } = _ref;
-    let historyRef = _react.useRef();
-    if (historyRef.current == null) historyRef.current = _history.createMemoryHistory({
-        initialEntries,
-        initialIndex
-    });
-    let history = historyRef.current;
-    let [state, setState] = _react.useState({
-        action: history.action,
-        location: history.location
-    });
-    _react.useLayoutEffect(()=>history.listen(setState)
-    , [
-        history
-    ]);
-    return(/*#__PURE__*/ _react.createElement(Router, {
-        basename: basename,
-        children: children,
-        location: state.location,
-        navigationType: state.action,
-        navigator: history
-    }));
-}
-/**
- * Changes the current location.
- *
- * Note: This API is mostly useful in React.Component subclasses that are not
- * able to use hooks. In functional components, we recommend you use the
- * `useNavigate` hook instead.
- *
- * @see https://reactrouter.com/docs/en/v6/api#navigate
- */ function Navigate(_ref2) {
-    let { to , replace , state  } = _ref2;
-    !useInRouterContext() && invariant(false, // the router loaded. We can help them understand how to avoid that.
-    "<Navigate> may be used only in the context of a <Router> component.");
-    warning(!_react.useContext(NavigationContext).static, "<Navigate> must not be used on the initial render in a <StaticRouter>. This is a no-op, but you should modify your code so the <Navigate> is only ever rendered in response to some user interaction or state change.");
-    let navigate = useNavigate();
-    _react.useEffect(()=>{
-        navigate(to, {
-            replace,
-            state
-        });
-    });
-    return null;
-}
-/**
- * Renders the child route's element, if there is one.
- *
- * @see https://reactrouter.com/docs/en/v6/api#outlet
- */ function Outlet(_props) {
-    return useOutlet();
-}
-/**
- * Declares an element that should be rendered at a certain URL path.
- *
- * @see https://reactrouter.com/docs/en/v6/api#route
- */ function Route(_props) {
-    invariant(false, "A <Route> is only ever to be used as the child of <Routes> element, never rendered directly. Please wrap your <Route> in a <Routes>.");
-}
-/**
- * Provides location context for the rest of the app.
- *
- * Note: You usually won't render a <Router> directly. Instead, you'll render a
- * router that is more specific to your environment such as a <BrowserRouter>
- * in web browsers or a <StaticRouter> for server rendering.
- *
- * @see https://reactrouter.com/docs/en/v6/api#router
- */ function Router(_ref3) {
-    let { basename: basenameProp = "/" , children =null , location: locationProp , navigationType =_history.Action.Pop , navigator , static: staticProp = false  } = _ref3;
-    !!useInRouterContext() && invariant(false, "You cannot render a <Router> inside another <Router>. You should never have more than one in your app.");
-    let basename = normalizePathname(basenameProp);
-    let navigationContext = _react.useMemo(()=>({
-            basename,
-            navigator,
-            static: staticProp
-        })
-    , [
-        basename,
-        navigator,
-        staticProp
-    ]);
-    if (typeof locationProp === "string") locationProp = _history.parsePath(locationProp);
-    let { pathname ="/" , search ="" , hash ="" , state =null , key ="default"  } = locationProp;
-    let location = _react.useMemo(()=>{
-        let trailingPathname = stripBasename(pathname, basename);
-        if (trailingPathname == null) return null;
-        return {
-            pathname: trailingPathname,
-            search,
-            hash,
-            state,
-            key
-        };
-    }, [
-        basename,
-        pathname,
-        search,
-        hash,
-        state,
-        key
-    ]);
-    warning(location != null, "<Router basename=\"" + basename + "\"> is not able to match the URL " + ("\"" + pathname + search + hash + "\" because it does not start with the ") + "basename, so the <Router> won't render anything.");
-    if (location == null) return null;
-    return(/*#__PURE__*/ _react.createElement(NavigationContext.Provider, {
-        value: navigationContext
-    }, /*#__PURE__*/ _react.createElement(LocationContext.Provider, {
-        children: children,
-        value: {
-            location,
-            navigationType
-        }
-    })));
-}
-/**
- * A container for a nested tree of <Route> elements that renders the branch
- * that best matches the current location.
- *
- * @see https://reactrouter.com/docs/en/v6/api#routes
- */ function Routes(_ref4) {
-    let { children , location  } = _ref4;
-    return useRoutes(createRoutesFromChildren(children), location);
-} ///////////////////////////////////////////////////////////////////////////////
-// HOOKS
-///////////////////////////////////////////////////////////////////////////////
-/**
- * Returns the full href for the given "to" value. This is useful for building
- * custom links that are also accessible and preserve right-click behavior.
- *
- * @see https://reactrouter.com/docs/en/v6/api#usehref
- */ function useHref(to) {
-    !useInRouterContext() && invariant(false, // router loaded. We can help them understand how to avoid that.
-    "useHref() may be used only in the context of a <Router> component.");
-    let { basename , navigator  } = _react.useContext(NavigationContext);
-    let { hash , pathname , search  } = useResolvedPath(to);
-    let joinedPathname = pathname;
-    if (basename !== "/") {
-        let toPathname = getToPathname(to);
-        let endsWithSlash = toPathname != null && toPathname.endsWith("/");
-        joinedPathname = pathname === "/" ? basename + (endsWithSlash ? "/" : "") : joinPaths([
-            basename,
-            pathname
-        ]);
-    }
-    return navigator.createHref({
-        pathname: joinedPathname,
-        search,
-        hash
-    });
-}
-/**
- * Returns true if this component is a descendant of a <Router>.
- *
- * @see https://reactrouter.com/docs/en/v6/api#useinroutercontext
- */ function useInRouterContext() {
-    return _react.useContext(LocationContext) != null;
-}
-/**
- * Returns the current location object, which represents the current URL in web
- * browsers.
- *
- * Note: If you're using this it may mean you're doing some of your own
- * "routing" in your app, and we'd like to know what your use case is. We may
- * be able to provide something higher-level to better suit your needs.
- *
- * @see https://reactrouter.com/docs/en/v6/api#uselocation
- */ function useLocation() {
-    !useInRouterContext() && invariant(false, // router loaded. We can help them understand how to avoid that.
-    "useLocation() may be used only in the context of a <Router> component.");
-    return _react.useContext(LocationContext).location;
-}
-/**
- * Returns the current navigation action which describes how the router came to
- * the current location, either by a pop, push, or replace on the history stack.
- *
- * @see https://reactrouter.com/docs/en/v6/api#usenavigationtype
- */ function useNavigationType() {
-    return _react.useContext(LocationContext).navigationType;
-}
-/**
- * Returns true if the URL for the given "to" value matches the current URL.
- * This is useful for components that need to know "active" state, e.g.
- * <NavLink>.
- *
- * @see https://reactrouter.com/docs/en/v6/api#usematch
- */ function useMatch(pattern) {
-    !useInRouterContext() && invariant(false, // router loaded. We can help them understand how to avoid that.
-    "useMatch() may be used only in the context of a <Router> component.");
-    return matchPath(pattern, useLocation().pathname);
-}
-/**
- * The interface for the navigate() function returned from useNavigate().
- */ /**
- * Returns an imperative method for changing the location. Used by <Link>s, but
- * may also be used by other elements to change the location.
- *
- * @see https://reactrouter.com/docs/en/v6/api#usenavigate
- */ function useNavigate() {
-    !useInRouterContext() && invariant(false, // router loaded. We can help them understand how to avoid that.
-    "useNavigate() may be used only in the context of a <Router> component.");
-    let { basename , navigator  } = _react.useContext(NavigationContext);
-    let { matches  } = _react.useContext(RouteContext);
-    let { pathname: locationPathname  } = useLocation();
-    let routePathnamesJson = JSON.stringify(matches.map((match)=>match.pathnameBase
-    ));
-    let activeRef = _react.useRef(false);
-    _react.useEffect(()=>{
-        activeRef.current = true;
-    });
-    let navigate = _react.useCallback(function(to, options) {
-        if (options === void 0) options = {
-        };
-        warning(activeRef.current, "You should call navigate() in a React.useEffect(), not when your component is first rendered.");
-        if (!activeRef.current) return;
-        if (typeof to === "number") {
-            navigator.go(to);
-            return;
-        }
-        let path = resolveTo(to, JSON.parse(routePathnamesJson), locationPathname);
-        if (basename !== "/") path.pathname = joinPaths([
-            basename,
-            path.pathname
-        ]);
-        (!!options.replace ? navigator.replace : navigator.push)(path, options.state);
-    }, [
-        basename,
-        navigator,
-        routePathnamesJson,
-        locationPathname
-    ]);
-    return navigate;
-}
-/**
- * Returns the element for the child route at this level of the route
- * hierarchy. Used internally by <Outlet> to render child routes.
- *
- * @see https://reactrouter.com/docs/en/v6/api#useoutlet
- */ function useOutlet() {
-    return _react.useContext(RouteContext).outlet;
-}
-/**
- * Returns an object of key/value pairs of the dynamic params from the current
- * URL that were matched by the route path.
- *
- * @see https://reactrouter.com/docs/en/v6/api#useparams
- */ function useParams() {
-    let { matches  } = _react.useContext(RouteContext);
-    let routeMatch = matches[matches.length - 1];
-    return routeMatch ? routeMatch.params : {
-    };
-}
-/**
- * Resolves the pathname of the given `to` value against the current location.
- *
- * @see https://reactrouter.com/docs/en/v6/api#useresolvedpath
- */ function useResolvedPath(to) {
-    let { matches  } = _react.useContext(RouteContext);
-    let { pathname: locationPathname  } = useLocation();
-    let routePathnamesJson = JSON.stringify(matches.map((match)=>match.pathnameBase
-    ));
-    return _react.useMemo(()=>resolveTo(to, JSON.parse(routePathnamesJson), locationPathname)
-    , [
-        to,
-        routePathnamesJson,
-        locationPathname
-    ]);
-}
-/**
- * Returns the element of the route that matched the current location, prepared
- * with the correct context to render the remainder of the route tree. Route
- * elements in the tree must render an <Outlet> to render their child route's
- * element.
- *
- * @see https://reactrouter.com/docs/en/v6/api#useroutes
- */ function useRoutes(routes, locationArg) {
-    !useInRouterContext() && invariant(false, // router loaded. We can help them understand how to avoid that.
-    "useRoutes() may be used only in the context of a <Router> component.");
-    let { matches: parentMatches  } = _react.useContext(RouteContext);
-    let routeMatch = parentMatches[parentMatches.length - 1];
-    let parentParams = routeMatch ? routeMatch.params : {
-    };
-    let parentPathname = routeMatch ? routeMatch.pathname : "/";
-    let parentPathnameBase = routeMatch ? routeMatch.pathnameBase : "/";
-    let parentRoute = routeMatch && routeMatch.route;
-    {
-        // You won't get a warning about 2 different <Routes> under a <Route>
-        // without a trailing *, but this is a best-effort warning anyway since we
-        // cannot even give the warning unless they land at the parent route.
-        //
-        // Example:
-        //
-        // <Routes>
-        //   {/* This route path MUST end with /* because otherwise
-        //       it will never match /blog/post/123 */}
-        //   <Route path="blog" element={<Blog />} />
-        //   <Route path="blog/feed" element={<BlogFeed />} />
-        // </Routes>
-        //
-        // function Blog() {
-        //   return (
-        //     <Routes>
-        //       <Route path="post/:id" element={<Post />} />
-        //     </Routes>
-        //   );
-        // }
-        let parentPath = parentRoute && parentRoute.path || "";
-        warningOnce(parentPathname, !parentRoute || parentPath.endsWith("*"), "You rendered descendant <Routes> (or called `useRoutes()`) at " + ("\"" + parentPathname + "\" (under <Route path=\"" + parentPath + "\">) but the ") + "parent route path has no trailing \"*\". This means if you navigate " + "deeper, the parent won't match anymore and therefore the child " + "routes will never render.\n\n" + ("Please change the parent <Route path=\"" + parentPath + "\"> to <Route ") + ("path=\"" + parentPath + "/*\">."));
-    }
-    let locationFromContext = useLocation();
-    let location;
-    if (locationArg) {
-        var _parsedLocationArg$pa;
-        let parsedLocationArg = typeof locationArg === "string" ? _history.parsePath(locationArg) : locationArg;
-        !(parentPathnameBase === "/" || ((_parsedLocationArg$pa = parsedLocationArg.pathname) == null ? void 0 : _parsedLocationArg$pa.startsWith(parentPathnameBase))) && invariant(false, "When overriding the location using `<Routes location>` or `useRoutes(routes, location)`, the location pathname must begin with the portion of the URL pathname that was " + ("matched by all parent routes. The current pathname base is \"" + parentPathnameBase + "\" ") + ("but pathname \"" + parsedLocationArg.pathname + "\" was given in the `location` prop."));
-        location = parsedLocationArg;
-    } else location = locationFromContext;
-    let pathname = location.pathname || "/";
-    let remainingPathname = parentPathnameBase === "/" ? pathname : pathname.slice(parentPathnameBase.length) || "/";
-    let matches = matchRoutes(routes, {
-        pathname: remainingPathname
-    });
-    warning(parentRoute || matches != null, "No routes matched location \"" + location.pathname + location.search + location.hash + "\" ");
-    warning(matches == null || matches[matches.length - 1].route.element !== undefined, "Matched leaf route at location \"" + location.pathname + location.search + location.hash + "\" does not have an element. " + "This means it will render an <Outlet /> with a null value by default resulting in an \"empty\" page.");
-    return _renderMatches(matches && matches.map((match)=>Object.assign({
-        }, match, {
-            params: Object.assign({
-            }, parentParams, match.params),
-            pathname: joinPaths([
-                parentPathnameBase,
-                match.pathname
-            ]),
-            pathnameBase: match.pathnameBase === "/" ? parentPathnameBase : joinPaths([
-                parentPathnameBase,
-                match.pathnameBase
-            ])
-        })
-    ), parentMatches);
-} ///////////////////////////////////////////////////////////////////////////////
-// UTILS
-///////////////////////////////////////////////////////////////////////////////
-/**
- * Creates a route config from a React "children" object, which is usually
- * either a `<Route>` element or an array of them. Used internally by
- * `<Routes>` to create a route config from its children.
- *
- * @see https://reactrouter.com/docs/en/v6/api#createroutesfromchildren
- */ function createRoutesFromChildren(children) {
-    let routes = [];
-    _react.Children.forEach(children, (element)=>{
-        if (!/*#__PURE__*/ _react.isValidElement(element)) // Ignore non-elements. This allows people to more easily inline
-        // conditionals in their route config.
-        return;
-        if (element.type === _react.Fragment) {
-            // Transparently support React.Fragment and its children.
-            routes.push.apply(routes, createRoutesFromChildren(element.props.children));
-            return;
-        }
-        !(element.type === Route) && invariant(false, "[" + (typeof element.type === "string" ? element.type : element.type.name) + "] is not a <Route> component. All component children of <Routes> must be a <Route> or <React.Fragment>");
-        let route = {
-            caseSensitive: element.props.caseSensitive,
-            element: element.props.element,
-            index: element.props.index,
-            path: element.props.path
-        };
-        if (element.props.children) route.children = createRoutesFromChildren(element.props.children);
-        routes.push(route);
-    });
-    return routes;
-}
-/**
- * The parameters that were parsed from the URL path.
- */ /**
- * Returns a path with params interpolated.
- *
- * @see https://reactrouter.com/docs/en/v6/api#generatepath
- */ function generatePath(path, params) {
-    if (params === void 0) params = {
-    };
-    return path.replace(/:(\w+)/g, (_, key)=>{
-        !(params[key] != null) && invariant(false, "Missing \":" + key + "\" param");
-        return params[key];
-    }).replace(/\/*\*$/, (_)=>params["*"] == null ? "" : params["*"].replace(/^\/*/, "/")
-    );
-}
-/**
- * A RouteMatch contains info about how a route matched a URL.
- */ /**
- * Matches the given routes to a location and returns the match data.
- *
- * @see https://reactrouter.com/docs/en/v6/api#matchroutes
- */ function matchRoutes(routes, locationArg, basename) {
-    if (basename === void 0) basename = "/";
-    let location = typeof locationArg === "string" ? _history.parsePath(locationArg) : locationArg;
-    let pathname = stripBasename(location.pathname || "/", basename);
-    if (pathname == null) return null;
-    let branches = flattenRoutes(routes);
-    rankRouteBranches(branches);
-    let matches = null;
-    for(let i = 0; matches == null && i < branches.length; ++i)matches = matchRouteBranch(branches[i], routes, pathname);
-    return matches;
-}
-function flattenRoutes(routes, branches, parentsMeta, parentPath) {
-    if (branches === void 0) branches = [];
-    if (parentsMeta === void 0) parentsMeta = [];
-    if (parentPath === void 0) parentPath = "";
-    routes.forEach((route, index)=>{
-        let meta = {
-            relativePath: route.path || "",
-            caseSensitive: route.caseSensitive === true,
-            childrenIndex: index
-        };
-        if (meta.relativePath.startsWith("/")) {
-            !meta.relativePath.startsWith(parentPath) && invariant(false, "Absolute route path \"" + meta.relativePath + "\" nested under path " + ("\"" + parentPath + "\" is not valid. An absolute child route path ") + "must start with the combined path of all its parent routes.");
-            meta.relativePath = meta.relativePath.slice(parentPath.length);
-        }
-        let path = joinPaths([
-            parentPath,
-            meta.relativePath
-        ]);
-        let routesMeta = parentsMeta.concat(meta); // Add the children before adding this route to the array so we traverse the
-        // route tree depth-first and child routes appear before their parents in
-        // the "flattened" version.
-        if (route.children && route.children.length > 0) {
-            !(route.index !== true) && invariant(false, "Index routes must not have child routes. Please remove " + ("all child routes from route path \"" + path + "\"."));
-            flattenRoutes(route.children, branches, routesMeta, path);
-        } // Routes without a path shouldn't ever match by themselves unless they are
-        // index routes, so don't add them to the list of possible branches.
-        if (route.path == null && !route.index) return;
-        branches.push({
-            path,
-            score: computeScore(path, route.index),
-            routesMeta
-        });
-    });
-    return branches;
-}
-function rankRouteBranches(branches) {
-    branches.sort((a, b)=>a.score !== b.score ? b.score - a.score // Higher score first
-         : compareIndexes(a.routesMeta.map((meta)=>meta.childrenIndex
-        ), b.routesMeta.map((meta)=>meta.childrenIndex
-        ))
-    );
-}
-const paramRe = /^:\w+$/;
-const dynamicSegmentValue = 3;
-const indexRouteValue = 2;
-const emptySegmentValue = 1;
-const staticSegmentValue = 10;
-const splatPenalty = -2;
-const isSplat = (s)=>s === "*"
-;
-function computeScore(path, index) {
-    let segments = path.split("/");
-    let initialScore = segments.length;
-    if (segments.some(isSplat)) initialScore += splatPenalty;
-    if (index) initialScore += indexRouteValue;
-    return segments.filter((s)=>!isSplat(s)
-    ).reduce((score, segment)=>score + (paramRe.test(segment) ? dynamicSegmentValue : segment === "" ? emptySegmentValue : staticSegmentValue)
-    , initialScore);
-}
-function compareIndexes(a, b) {
-    let siblings = a.length === b.length && a.slice(0, -1).every((n, i)=>n === b[i]
-    );
-    return siblings ? // first. This allows people to have fine-grained control over the matching
-    // behavior by simply putting routes with identical paths in the order they
-    // want them tried.
-    a[a.length - 1] - b[b.length - 1] : // so they sort equally.
-    0;
-}
-function matchRouteBranch(branch, routesArg, pathname) {
-    let routes = routesArg;
-    let { routesMeta  } = branch;
-    let matchedParams = {
-    };
-    let matchedPathname = "/";
-    let matches = [];
-    for(let i = 0; i < routesMeta.length; ++i){
-        let meta = routesMeta[i];
-        let end = i === routesMeta.length - 1;
-        let remainingPathname = matchedPathname === "/" ? pathname : pathname.slice(matchedPathname.length) || "/";
-        let match = matchPath({
-            path: meta.relativePath,
-            caseSensitive: meta.caseSensitive,
-            end
-        }, remainingPathname);
-        if (!match) return null;
-        Object.assign(matchedParams, match.params);
-        let route = routes[meta.childrenIndex];
-        matches.push({
-            params: matchedParams,
-            pathname: joinPaths([
-                matchedPathname,
-                match.pathname
-            ]),
-            pathnameBase: joinPaths([
-                matchedPathname,
-                match.pathnameBase
-            ]),
-            route
-        });
-        if (match.pathnameBase !== "/") matchedPathname = joinPaths([
-            matchedPathname,
-            match.pathnameBase
-        ]);
-        routes = route.children;
-    }
-    return matches;
-}
-/**
- * Renders the result of `matchRoutes()` into a React element.
- */ function renderMatches(matches) {
-    return _renderMatches(matches);
-}
-function _renderMatches(matches, parentMatches) {
-    if (parentMatches === void 0) parentMatches = [];
-    if (matches == null) return null;
-    return matches.reduceRight((outlet, match, index)=>{
-        return(/*#__PURE__*/ _react.createElement(RouteContext.Provider, {
-            children: match.route.element !== undefined ? match.route.element : /*#__PURE__*/ _react.createElement(Outlet, null),
-            value: {
-                outlet,
-                matches: parentMatches.concat(matches.slice(0, index + 1))
-            }
-        }));
-    }, null);
-}
-/**
- * A PathPattern is used to match on some portion of a URL pathname.
- */ /**
- * Performs pattern matching on a URL pathname and returns information about
- * the match.
- *
- * @see https://reactrouter.com/docs/en/v6/api#matchpath
- */ function matchPath(pattern, pathname) {
-    if (typeof pattern === "string") pattern = {
-        path: pattern,
-        caseSensitive: false,
-        end: true
-    };
-    let [matcher, paramNames] = compilePath(pattern.path, pattern.caseSensitive, pattern.end);
-    let match = pathname.match(matcher);
-    if (!match) return null;
-    let matchedPathname = match[0];
-    let pathnameBase = matchedPathname.replace(/(.)\/+$/, "$1");
-    let captureGroups = match.slice(1);
-    let params = paramNames.reduce((memo, paramName, index)=>{
-        // We need to compute the pathnameBase here using the raw splat value
-        // instead of using params["*"] later because it will be decoded then
-        if (paramName === "*") {
-            let splatValue = captureGroups[index] || "";
-            pathnameBase = matchedPathname.slice(0, matchedPathname.length - splatValue.length).replace(/(.)\/+$/, "$1");
-        }
-        memo[paramName] = safelyDecodeURIComponent(captureGroups[index] || "", paramName);
-        return memo;
-    }, {
-    });
-    return {
-        params,
-        pathname: matchedPathname,
-        pathnameBase,
-        pattern
-    };
-}
-function compilePath(path, caseSensitive, end) {
-    if (caseSensitive === void 0) caseSensitive = false;
-    if (end === void 0) end = true;
-    warning(path === "*" || !path.endsWith("*") || path.endsWith("/*"), "Route path \"" + path + "\" will be treated as if it were " + ("\"" + path.replace(/\*$/, "/*") + "\" because the `*` character must ") + "always follow a `/` in the pattern. To get rid of this warning, " + ("please change the route path to \"" + path.replace(/\*$/, "/*") + "\"."));
-    let paramNames = [];
-    let regexpSource = "^" + path.replace(/\/*\*?$/, "") // Ignore trailing / and /*, we'll handle it below
-    .replace(/^\/*/, "/") // Make sure it has a leading /
-    .replace(/[\\.*+^$?{}|()[\]]/g, "\\$&") // Escape special regex chars
-    .replace(/:(\w+)/g, (_, paramName)=>{
-        paramNames.push(paramName);
-        return "([^\\/]+)";
-    });
-    if (path.endsWith("*")) {
-        paramNames.push("*");
-        regexpSource += path === "*" || path === "/*" ? "(.*)$" // Already matched the initial /, just match the rest
-         : "(?:\\/(.+)|\\/*)$"; // Don't include the / in params["*"]
-    } else regexpSource += end ? "\\/*$" // When matching to the end, ignore trailing slashes
-     : // routes to matching only their own words and nothing more, e.g. parent
-    // route "/home" should not match "/home2".
-    "(?:\\b|$)";
-    let matcher = new RegExp(regexpSource, caseSensitive ? undefined : "i");
-    return [
-        matcher,
-        paramNames
-    ];
-}
-function safelyDecodeURIComponent(value, paramName) {
-    try {
-        return decodeURIComponent(value);
-    } catch (error) {
-        warning(false, "The value for the URL param \"" + paramName + "\" will not be decoded because" + (" the string \"" + value + "\" is a malformed URL segment. This is probably") + (" due to a bad percent encoding (" + error + ")."));
-        return value;
-    }
-}
-/**
- * Returns a resolved path object relative to the given pathname.
- *
- * @see https://reactrouter.com/docs/en/v6/api#resolvepath
- */ function resolvePath(to, fromPathname) {
-    if (fromPathname === void 0) fromPathname = "/";
-    let { pathname: toPathname , search ="" , hash =""  } = typeof to === "string" ? _history.parsePath(to) : to;
-    let pathname = toPathname ? toPathname.startsWith("/") ? toPathname : resolvePathname(toPathname, fromPathname) : fromPathname;
-    return {
-        pathname,
-        search: normalizeSearch(search),
-        hash: normalizeHash(hash)
-    };
-}
-function resolvePathname(relativePath, fromPathname) {
-    let segments = fromPathname.replace(/\/+$/, "").split("/");
-    let relativeSegments = relativePath.split("/");
-    relativeSegments.forEach((segment)=>{
-        if (segment === "..") // Keep the root "" segment so the pathname starts at /
-        {
-            if (segments.length > 1) segments.pop();
-        } else if (segment !== ".") segments.push(segment);
-    });
-    return segments.length > 1 ? segments.join("/") : "/";
-}
-function resolveTo(toArg, routePathnames, locationPathname) {
-    let to = typeof toArg === "string" ? _history.parsePath(toArg) : toArg;
-    let toPathname = toArg === "" || to.pathname === "" ? "/" : to.pathname; // If a pathname is explicitly provided in `to`, it should be relative to the
-    // route context. This is explained in `Note on `<Link to>` values` in our
-    // migration guide from v5 as a means of disambiguation between `to` values
-    // that begin with `/` and those that do not. However, this is problematic for
-    // `to` values that do not provide a pathname. `to` can simply be a search or
-    // hash string, in which case we should assume that the navigation is relative
-    // to the current location's pathname and *not* the route pathname.
-    let from;
-    if (toPathname == null) from = locationPathname;
-    else {
-        let routePathnameIndex = routePathnames.length - 1;
-        if (toPathname.startsWith("..")) {
-            let toSegments = toPathname.split("/"); // Each leading .. segment means "go up one route" instead of "go up one
-            // URL segment".  This is a key difference from how <a href> works and a
-            // major reason we call this a "to" value instead of a "href".
-            while(toSegments[0] === ".."){
-                toSegments.shift();
-                routePathnameIndex -= 1;
-            }
-            to.pathname = toSegments.join("/");
-        } // If there are more ".." segments than parent routes, resolve relative to
-        // the root / URL.
-        from = routePathnameIndex >= 0 ? routePathnames[routePathnameIndex] : "/";
-    }
-    let path = resolvePath(to, from); // Ensure the pathname has a trailing slash if the original to value had one.
-    if (toPathname && toPathname !== "/" && toPathname.endsWith("/") && !path.pathname.endsWith("/")) path.pathname += "/";
-    return path;
-}
-function getToPathname(to) {
-    // Empty strings should be treated the same as / paths
-    return to === "" || to.pathname === "" ? "/" : typeof to === "string" ? _history.parsePath(to).pathname : to.pathname;
-}
-function stripBasename(pathname, basename) {
-    if (basename === "/") return pathname;
-    if (!pathname.toLowerCase().startsWith(basename.toLowerCase())) return null;
-    let nextChar = pathname.charAt(basename.length);
-    if (nextChar && nextChar !== "/") // pathname does not start with basename/
-    return null;
-    return pathname.slice(basename.length) || "/";
-}
-const joinPaths = (paths)=>paths.join("/").replace(/\/\/+/g, "/")
-;
-const normalizePathname = (pathname)=>pathname.replace(/\/+$/, "").replace(/^\/*/, "/")
-;
-const normalizeSearch = (search)=>!search || search === "?" ? "" : search.startsWith("?") ? search : "?" + search
-;
-const normalizeHash = (hash)=>!hash || hash === "#" ? "" : hash.startsWith("#") ? hash : "#" + hash
-; ///////////////////////////////////////////////////////////////////////////////
-
-},{"react":"4mchR","history":"2DMpe","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"2DMpe":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-parcelHelpers.export(exports, "Action", ()=>r
-);
-parcelHelpers.export(exports, "createBrowserHistory", ()=>createBrowserHistory
-);
-parcelHelpers.export(exports, "createHashHistory", ()=>createHashHistory
-);
-parcelHelpers.export(exports, "createMemoryHistory", ()=>createMemoryHistory
-);
-parcelHelpers.export(exports, "createPath", ()=>I
-);
-parcelHelpers.export(exports, "parsePath", ()=>J
-);
-var _extends = require("@babel/runtime/helpers/esm/extends");
-var _extendsDefault = parcelHelpers.interopDefault(_extends);
-var r, B = r || (r = {
-});
-B.Pop = "POP";
-B.Push = "PUSH";
-B.Replace = "REPLACE";
-var C = function(b) {
-    return Object.freeze(b);
-};
-function D(b, h) {
-    if (!b) {
-        "undefined" !== typeof console && console.warn(h);
-        try {
-            throw Error(h);
-        } catch (k) {
-        }
-    }
-}
-function E(b) {
-    b.preventDefault();
-    b.returnValue = "";
-}
-function F() {
-    var b = [];
-    return {
-        get length () {
-            return b.length;
-        },
-        push: function(h) {
-            b.push(h);
-            return function() {
-                b = b.filter(function(k) {
-                    return k !== h;
-                });
-            };
-        },
-        call: function(h) {
-            b.forEach(function(k) {
-                return k && k(h);
-            });
-        }
-    };
-}
-function H() {
-    return Math.random().toString(36).substr(2, 8);
-}
-function I(b) {
-    var h = b.pathname, k = b.search;
-    b = b.hash;
-    return (void 0 === h ? "/" : h) + (void 0 === k ? "" : k) + (void 0 === b ? "" : b);
-}
-function J(b) {
-    var h = {
-    };
-    if (b) {
-        var k = b.indexOf("#");
-        0 <= k && (h.hash = b.substr(k), b = b.substr(0, k));
-        k = b.indexOf("?");
-        0 <= k && (h.search = b.substr(k), b = b.substr(0, k));
-        b && (h.pathname = b);
-    }
-    return h;
-}
-function createBrowserHistory(b) {
-    function h() {
-        var c = p.location, a = m.state || {
-        };
-        return [
-            a.idx,
-            C({
-                pathname: c.pathname,
-                search: c.search,
-                hash: c.hash,
-                state: a.usr || null,
-                key: a.key || "default"
-            })
-        ];
-    }
-    function k(c) {
-        return "string" === typeof c ? c : I(c);
-    }
-    function x(c, a) {
-        void 0 === a && (a = null);
-        return C(_extendsDefault.default({
-            pathname: q.pathname,
-            hash: "",
-            search: ""
-        }, "string" === typeof c ? J(c) : c, {
-            state: a,
-            key: H()
-        }));
-    }
-    function z(c) {
-        t = c;
-        c = h();
-        v = c[0];
-        q = c[1];
-        d.call({
-            action: t,
-            location: q
-        });
-    }
-    function A(c, a) {
-        function e() {
-            A(c, a);
-        }
-        var l = r.Push, g = x(c, a);
-        if (!f.length || (f.call({
-            action: l,
-            location: g,
-            retry: e
-        }), !1)) {
-            var n = [
-                {
-                    usr: g.state,
-                    key: g.key,
-                    idx: v + 1
-                },
-                k(g)
-            ];
-            g = n[0];
-            n = n[1];
-            try {
-                m.pushState(g, "", n);
-            } catch (G) {
-                p.location.assign(n);
-            }
-            z(l);
-        }
-    }
-    function y(c, a) {
-        function e() {
-            y(c, a);
-        }
-        var l = r.Replace, g = x(c, a);
-        f.length && (f.call({
-            action: l,
-            location: g,
-            retry: e
-        }), 1) || (g = [
-            {
-                usr: g.state,
-                key: g.key,
-                idx: v
-            },
-            k(g)
-        ], m.replaceState(g[0], "", g[1]), z(l));
-    }
-    function w(c) {
-        m.go(c);
-    }
-    void 0 === b && (b = {
-    });
-    b = b.window;
-    var p = void 0 === b ? document.defaultView : b, m = p.history, u = null;
-    p.addEventListener("popstate", function() {
-        if (u) f.call(u), u = null;
-        else {
-            var c = r.Pop, a = h(), e = a[0];
-            a = a[1];
-            if (f.length) {
-                if (null != e) {
-                    var l = v - e;
-                    l && (u = {
-                        action: c,
-                        location: a,
-                        retry: function() {
-                            w(-1 * l);
-                        }
-                    }, w(l));
-                } else D(!1, "You are trying to block a POP navigation to a location that was not created by the history library. The block will fail silently in production, but in general you should do all navigation with the history library (instead of using window.history.pushState directly) to avoid this situation.");
-            } else z(c);
-        }
-    });
-    var t = r.Pop;
-    b = h();
-    var v = b[0], q = b[1], d = F(), f = F();
-    null == v && (v = 0, m.replaceState(_extendsDefault.default({
-    }, m.state, {
-        idx: v
-    }), ""));
-    return {
-        get action () {
-            return t;
-        },
-        get location () {
-            return q;
-        },
-        createHref: k,
-        push: A,
-        replace: y,
-        go: w,
-        back: function() {
-            w(-1);
-        },
-        forward: function() {
-            w(1);
-        },
-        listen: function(c) {
-            return d.push(c);
-        },
-        block: function(c) {
-            var a = f.push(c);
-            1 === f.length && p.addEventListener("beforeunload", E);
-            return function() {
-                a();
-                f.length || p.removeEventListener("beforeunload", E);
-            };
-        }
-    };
-}
-function createHashHistory(b) {
-    function h() {
-        var a = J(m.location.hash.substr(1)), e = a.pathname, l = a.search;
-        a = a.hash;
-        var g = u.state || {
-        };
-        return [
-            g.idx,
-            C({
-                pathname: void 0 === e ? "/" : e,
-                search: void 0 === l ? "" : l,
-                hash: void 0 === a ? "" : a,
-                state: g.usr || null,
-                key: g.key || "default"
-            })
-        ];
-    }
-    function k() {
-        if (t) c.call(t), t = null;
-        else {
-            var a = r.Pop, e = h(), l = e[0];
-            e = e[1];
-            if (c.length) {
-                if (null != l) {
-                    var g = q - l;
-                    g && (t = {
-                        action: a,
-                        location: e,
-                        retry: function() {
-                            p(-1 * g);
-                        }
-                    }, p(g));
-                } else D(!1, "You are trying to block a POP navigation to a location that was not created by the history library. The block will fail silently in production, but in general you should do all navigation with the history library (instead of using window.history.pushState directly) to avoid this situation.");
-            } else A(a);
-        }
-    }
-    function x(a) {
-        var e = document.querySelector("base"), l = "";
-        e && e.getAttribute("href") && (e = m.location.href, l = e.indexOf("#"), l = -1 === l ? e : e.slice(0, l));
-        return l + "#" + ("string" === typeof a ? a : I(a));
-    }
-    function z(a, e) {
-        void 0 === e && (e = null);
-        return C(_extendsDefault.default({
-            pathname: d.pathname,
-            hash: "",
-            search: ""
-        }, "string" === typeof a ? J(a) : a, {
-            state: e,
-            key: H()
-        }));
-    }
-    function A(a) {
-        v = a;
-        a = h();
-        q = a[0];
-        d = a[1];
-        f.call({
-            action: v,
-            location: d
-        });
-    }
-    function y(a, e) {
-        function l() {
-            y(a, e);
-        }
-        var g = r.Push, n = z(a, e);
-        D("/" === n.pathname.charAt(0), "Relative pathnames are not supported in hash history.push(" + JSON.stringify(a) + ")");
-        if (!c.length || (c.call({
-            action: g,
-            location: n,
-            retry: l
-        }), !1)) {
-            var G = [
-                {
-                    usr: n.state,
-                    key: n.key,
-                    idx: q + 1
-                },
-                x(n)
-            ];
-            n = G[0];
-            G = G[1];
-            try {
-                u.pushState(n, "", G);
-            } catch (K) {
-                m.location.assign(G);
-            }
-            A(g);
-        }
-    }
-    function w(a, e) {
-        function l() {
-            w(a, e);
-        }
-        var g = r.Replace, n = z(a, e);
-        D("/" === n.pathname.charAt(0), "Relative pathnames are not supported in hash history.replace(" + JSON.stringify(a) + ")");
-        c.length && (c.call({
-            action: g,
-            location: n,
-            retry: l
-        }), 1) || (n = [
-            {
-                usr: n.state,
-                key: n.key,
-                idx: q
-            },
-            x(n)
-        ], u.replaceState(n[0], "", n[1]), A(g));
-    }
-    function p(a) {
-        u.go(a);
-    }
-    void 0 === b && (b = {
-    });
-    b = b.window;
-    var m = void 0 === b ? document.defaultView : b, u = m.history, t = null;
-    m.addEventListener("popstate", k);
-    m.addEventListener("hashchange", function() {
-        var a = h()[1];
-        I(a) !== I(d) && k();
-    });
-    var v = r.Pop;
-    b = h();
-    var q = b[0], d = b[1], f = F(), c = F();
-    null == q && (q = 0, u.replaceState(_extendsDefault.default({
-    }, u.state, {
-        idx: q
-    }), ""));
-    return {
-        get action () {
-            return v;
-        },
-        get location () {
-            return d;
-        },
-        createHref: x,
-        push: y,
-        replace: w,
-        go: p,
-        back: function() {
-            p(-1);
-        },
-        forward: function() {
-            p(1);
-        },
-        listen: function(a) {
-            return f.push(a);
-        },
-        block: function(a) {
-            var e = c.push(a);
-            1 === c.length && m.addEventListener("beforeunload", E);
-            return function() {
-                e();
-                c.length || m.removeEventListener("beforeunload", E);
-            };
-        }
-    };
-}
-function createMemoryHistory(b) {
-    function h(d, f) {
-        void 0 === f && (f = null);
-        return C(_extendsDefault.default({
-            pathname: t.pathname,
-            search: "",
-            hash: ""
-        }, "string" === typeof d ? J(d) : d, {
-            state: f,
-            key: H()
-        }));
-    }
-    function k(d, f, c) {
-        return !q.length || (q.call({
-            action: d,
-            location: f,
-            retry: c
-        }), !1);
-    }
-    function x(d, f) {
-        u = d;
-        t = f;
-        v.call({
-            action: u,
-            location: t
-        });
-    }
-    function z(d, f) {
-        var c = r.Push, a = h(d, f);
-        D("/" === t.pathname.charAt(0), "Relative pathnames are not supported in memory history.push(" + JSON.stringify(d) + ")");
-        k(c, a, function() {
-            z(d, f);
-        }) && (m += 1, p.splice(m, p.length, a), x(c, a));
-    }
-    function A(d, f) {
-        var c = r.Replace, a = h(d, f);
-        D("/" === t.pathname.charAt(0), "Relative pathnames are not supported in memory history.replace(" + JSON.stringify(d) + ")");
-        k(c, a, function() {
-            A(d, f);
-        }) && (p[m] = a, x(c, a));
-    }
-    function y(d) {
-        var f = Math.min(Math.max(m + d, 0), p.length - 1), c = r.Pop, a = p[f];
-        k(c, a, function() {
-            y(d);
-        }) && (m = f, x(c, a));
-    }
-    void 0 === b && (b = {
-    });
-    var w = b;
-    b = w.initialEntries;
-    w = w.initialIndex;
-    var p = (void 0 === b ? [
-        "/"
-    ] : b).map(function(d) {
-        var f = C(_extendsDefault.default({
-            pathname: "/",
-            search: "",
-            hash: "",
-            state: null,
-            key: H()
-        }, "string" === typeof d ? J(d) : d));
-        D("/" === f.pathname.charAt(0), "Relative pathnames are not supported in createMemoryHistory({ initialEntries }) (invalid entry: " + JSON.stringify(d) + ")");
-        return f;
-    }), m = Math.min(Math.max(null == w ? p.length - 1 : w, 0), p.length - 1), u = r.Pop, t = p[m], v = F(), q = F();
-    return {
-        get index () {
-            return m;
-        },
-        get action () {
-            return u;
-        },
-        get location () {
-            return t;
-        },
-        createHref: function(d) {
-            return "string" === typeof d ? d : I(d);
-        },
-        push: z,
-        replace: A,
-        go: y,
-        back: function() {
-            y(-1);
-        },
-        forward: function() {
-            y(1);
-        },
-        listen: function(d) {
-            return v.push(d);
-        },
-        block: function(d) {
-            return q.push(d);
-        }
-    };
-}
-
-},{"@babel/runtime/helpers/esm/extends":"5inYT","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"5inYT":[function(require,module,exports) {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-function _extends() {
-    _extends = Object.assign || function(target) {
-        for(var i = 1; i < arguments.length; i++){
-            var source = arguments[i];
-            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
-        }
-        return target;
-    };
-    return _extends.apply(this, arguments);
-}
-exports.default = _extends;
-
-},{"@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"kcnWw":[function(require,module,exports) {
-exports.interopDefault = function(a) {
-    return a && a.__esModule ? a : {
-        default: a
-    };
-};
-exports.defineInteropFlag = function(a) {
-    Object.defineProperty(a, '__esModule', {
-        value: true
-    });
-};
-exports.exportAll = function(source, dest) {
-    Object.keys(source).forEach(function(key) {
-        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
-        Object.defineProperty(dest, key, {
-            enumerable: true,
-            get: function() {
-                return source[key];
-            }
-        });
-    });
-    return dest;
-};
-exports.export = function(dest, destName, get) {
-    Object.defineProperty(dest, destName, {
-        enumerable: true,
-        get: get
-    });
-};
-
-},{}],"1IeuP":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","axios":"1IeuP","../navigation/navigation":"hpb39","../movie-card/movie-card":"04zIX","../movie-view/movie-view":"8S478","../login-view/login-view":"7IGV8","react-bootstrap":"9qMdX","./main-view.scss":"hRkrD","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","react-router-dom":"etVME","../registration-view/registration-view":"lGbHG"}],"1IeuP":[function(require,module,exports) {
 module.exports = require('./lib/axios');
 
 },{"./lib/axios":"ePOwX"}],"ePOwX":[function(require,module,exports) {
@@ -25852,6 +24560,7 @@ var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _navigationScss = require("./navigation.scss");
@@ -25863,14 +24572,14 @@ const Navigation = ({ onLoggedOut , route  })=>{
         bg: "light",
         __source: {
             fileName: "src/components/navigation/navigation.jsx",
-            lineNumber: 12,
+            lineNumber: 13,
             columnNumber: 7
         },
         __self: undefined,
         children: /*#__PURE__*/ _jsxRuntime.jsx(Brand, {
             __source: {
                 fileName: "src/components/navigation/navigation.jsx",
-                lineNumber: 13,
+                lineNumber: 14,
                 columnNumber: 7
             },
             __self: undefined,
@@ -25880,59 +24589,70 @@ const Navigation = ({ onLoggedOut , route  })=>{
                 width: "60px",
                 __source: {
                     fileName: "src/components/navigation/navigation.jsx",
-                    lineNumber: 13,
+                    lineNumber: 14,
                     columnNumber: 14
                 },
                 __self: undefined
             })
         })
     }));
-    else return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Navbar, {
-        bg: "light",
-        __source: {
-            fileName: "src/components/navigation/navigation.jsx",
-            lineNumber: 18,
-            columnNumber: 4
-        },
-        __self: undefined,
-        children: [
-            /*#__PURE__*/ _jsxRuntime.jsx(Brand, {
-                __source: {
-                    fileName: "src/components/navigation/navigation.jsx",
-                    lineNumber: 19,
-                    columnNumber: 9
-                },
-                __self: undefined,
-                children: /*#__PURE__*/ _jsxRuntime.jsx("img", {
-                    src: _filmFeverPngDefault.default,
-                    alt: "FilmFever logo",
-                    width: "60px",
+    else return(/*#__PURE__*/ _jsxRuntime.jsx(_jsxRuntime.Fragment, {
+        children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Navbar, {
+            bg: "light",
+            __source: {
+                fileName: "src/components/navigation/navigation.jsx",
+                lineNumber: 20,
+                columnNumber: 5
+            },
+            __self: undefined,
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsx(Brand, {
                     __source: {
                         fileName: "src/components/navigation/navigation.jsx",
-                        lineNumber: 19,
-                        columnNumber: 16
+                        lineNumber: 21,
+                        columnNumber: 5
                     },
-                    __self: undefined
+                    __self: undefined,
+                    children: /*#__PURE__*/ _jsxRuntime.jsx("img", {
+                        src: _filmFeverPngDefault.default,
+                        alt: "FilmFever logo",
+                        width: "60px",
+                        __source: {
+                            fileName: "src/components/navigation/navigation.jsx",
+                            lineNumber: 21,
+                            columnNumber: 12
+                        },
+                        __self: undefined
+                    })
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                    to: "/",
+                    __source: {
+                        fileName: "src/components/navigation/navigation.jsx",
+                        lineNumber: 22,
+                        columnNumber: 5
+                    },
+                    __self: undefined,
+                    children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                        className: "btn",
+                        onClick: onLoggedOut,
+                        __source: {
+                            fileName: "src/components/navigation/navigation.jsx",
+                            lineNumber: 23,
+                            columnNumber: 9
+                        },
+                        __self: undefined,
+                        children: "Sign Out"
+                    })
                 })
-            }),
-            /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                className: "btn",
-                onClick: onLoggedOut,
-                __source: {
-                    fileName: "src/components/navigation/navigation.jsx",
-                    lineNumber: 20,
-                    columnNumber: 5
-                },
-                __self: undefined,
-                children: "Sign Out"
-            })
-        ]
+            ]
+        })
     }));
 };
 _c = Navigation;
 Navigation.propTypes = {
     onLoggedOut: _propTypesDefault.default.func.isRequired,
-    route: _propTypesDefault.default.string.isRequired
+    user: _propTypesDefault.default.any
 };
 exports.default = Navigation;
 var _c;
@@ -25943,7 +24663,7 @@ $RefreshReg$(_c, "Navigation");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","prop-types":"2bysO","./navigation.scss":"gpicW","../../img/FilmFever.png":"cYrWD","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"9qMdX":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","prop-types":"2bysO","./navigation.scss":"gpicW","../../img/FilmFever.png":"cYrWD","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","react-router-dom":"etVME"}],"9qMdX":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "Accordion", ()=>_accordionDefault.default
@@ -26446,7 +25166,52 @@ function useUncontrolled(props, config) {
 }
 exports.default = useUncontrolled;
 
-},{"@babel/runtime/helpers/esm/extends":"5inYT","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"9unNO","react":"4mchR","./utils":"5zfpz","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"9unNO":[function(require,module,exports) {
+},{"@babel/runtime/helpers/esm/extends":"5inYT","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"9unNO","react":"4mchR","./utils":"5zfpz","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"5inYT":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function _extends() {
+    _extends = Object.assign || function(target) {
+        for(var i = 1; i < arguments.length; i++){
+            var source = arguments[i];
+            for(var key in source)if (Object.prototype.hasOwnProperty.call(source, key)) target[key] = source[key];
+        }
+        return target;
+    };
+    return _extends.apply(this, arguments);
+}
+exports.default = _extends;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"kcnWw":[function(require,module,exports) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || dest.hasOwnProperty(key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
+
+},{}],"9unNO":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -38585,7 +37350,2302 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"dDMVT"}],"04zIX":[function(require,module,exports) {
+},{"react-refresh/runtime":"dDMVT"}],"etVME":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MemoryRouter", ()=>_reactRouter.MemoryRouter
+);
+parcelHelpers.export(exports, "Prompt", ()=>_reactRouter.Prompt
+);
+parcelHelpers.export(exports, "Redirect", ()=>_reactRouter.Redirect
+);
+parcelHelpers.export(exports, "Route", ()=>_reactRouter.Route
+);
+parcelHelpers.export(exports, "Router", ()=>_reactRouter.Router
+);
+parcelHelpers.export(exports, "StaticRouter", ()=>_reactRouter.StaticRouter
+);
+parcelHelpers.export(exports, "Switch", ()=>_reactRouter.Switch
+);
+parcelHelpers.export(exports, "generatePath", ()=>_reactRouter.generatePath
+);
+parcelHelpers.export(exports, "matchPath", ()=>_reactRouter.matchPath
+);
+parcelHelpers.export(exports, "useHistory", ()=>_reactRouter.useHistory
+);
+parcelHelpers.export(exports, "useLocation", ()=>_reactRouter.useLocation
+);
+parcelHelpers.export(exports, "useParams", ()=>_reactRouter.useParams
+);
+parcelHelpers.export(exports, "useRouteMatch", ()=>_reactRouter.useRouteMatch
+);
+parcelHelpers.export(exports, "withRouter", ()=>_reactRouter.withRouter
+);
+parcelHelpers.export(exports, "BrowserRouter", ()=>BrowserRouter1
+);
+parcelHelpers.export(exports, "HashRouter", ()=>HashRouter1
+);
+parcelHelpers.export(exports, "Link", ()=>Link
+);
+parcelHelpers.export(exports, "NavLink", ()=>NavLink
+);
+var _reactRouter = require("react-router");
+var _inheritsLoose = require("@babel/runtime/helpers/esm/inheritsLoose");
+var _inheritsLooseDefault = parcelHelpers.interopDefault(_inheritsLoose);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _history = require("history");
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _tinyWarning = require("tiny-warning");
+var _tinyWarningDefault = parcelHelpers.interopDefault(_tinyWarning);
+var _extends = require("@babel/runtime/helpers/esm/extends");
+var _extendsDefault = parcelHelpers.interopDefault(_extends);
+var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
+var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
+var _tinyInvariant = require("tiny-invariant");
+var _tinyInvariantDefault = parcelHelpers.interopDefault(_tinyInvariant);
+/**
+ * The public API for a <Router> that uses HTML5 history.
+ */ var BrowserRouter1 = /*#__PURE__*/ function(_React$Component) {
+    _inheritsLooseDefault.default(BrowserRouter, _React$Component);
+    function BrowserRouter() {
+        var _this;
+        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++)args[_key] = arguments[_key];
+        _this = _React$Component.call.apply(_React$Component, [
+            this
+        ].concat(args)) || this;
+        _this.history = _history.createBrowserHistory(_this.props);
+        return _this;
+    }
+    var _proto = BrowserRouter.prototype;
+    _proto.render = function render() {
+        return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouter.Router, {
+            history: this.history,
+            children: this.props.children
+        }));
+    };
+    return BrowserRouter;
+}(_reactDefault.default.Component);
+BrowserRouter1.propTypes = {
+    basename: _propTypesDefault.default.string,
+    children: _propTypesDefault.default.node,
+    forceRefresh: _propTypesDefault.default.bool,
+    getUserConfirmation: _propTypesDefault.default.func,
+    keyLength: _propTypesDefault.default.number
+};
+BrowserRouter1.prototype.componentDidMount = function() {
+    _tinyWarningDefault.default(!this.props.history, "<BrowserRouter> ignores the history prop. To use a custom history, use `import { Router }` instead of `import { BrowserRouter as Router }`.");
+};
+/**
+ * The public API for a <Router> that uses window.location.hash.
+ */ var HashRouter1 = /*#__PURE__*/ function(_React$Component) {
+    _inheritsLooseDefault.default(HashRouter, _React$Component);
+    function HashRouter() {
+        var _this;
+        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++)args[_key] = arguments[_key];
+        _this = _React$Component.call.apply(_React$Component, [
+            this
+        ].concat(args)) || this;
+        _this.history = _history.createHashHistory(_this.props);
+        return _this;
+    }
+    var _proto = HashRouter.prototype;
+    _proto.render = function render() {
+        return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouter.Router, {
+            history: this.history,
+            children: this.props.children
+        }));
+    };
+    return HashRouter;
+}(_reactDefault.default.Component);
+HashRouter1.propTypes = {
+    basename: _propTypesDefault.default.string,
+    children: _propTypesDefault.default.node,
+    getUserConfirmation: _propTypesDefault.default.func,
+    hashType: _propTypesDefault.default.oneOf([
+        "hashbang",
+        "noslash",
+        "slash"
+    ])
+};
+HashRouter1.prototype.componentDidMount = function() {
+    _tinyWarningDefault.default(!this.props.history, "<HashRouter> ignores the history prop. To use a custom history, use `import { Router }` instead of `import { HashRouter as Router }`.");
+};
+var resolveToLocation = function resolveToLocation(to, currentLocation) {
+    return typeof to === "function" ? to(currentLocation) : to;
+};
+var normalizeToLocation = function normalizeToLocation(to, currentLocation) {
+    return typeof to === "string" ? _history.createLocation(to, null, null, currentLocation) : to;
+};
+var forwardRefShim = function forwardRefShim(C) {
+    return C;
+};
+var forwardRef = _reactDefault.default.forwardRef;
+if (typeof forwardRef === "undefined") forwardRef = forwardRefShim;
+function isModifiedEvent(event) {
+    return !!(event.metaKey || event.altKey || event.ctrlKey || event.shiftKey);
+}
+var LinkAnchor = forwardRef(function(_ref, forwardedRef) {
+    var innerRef = _ref.innerRef, navigate = _ref.navigate, _onClick = _ref.onClick, rest = _objectWithoutPropertiesLooseDefault.default(_ref, [
+        "innerRef",
+        "navigate",
+        "onClick"
+    ]);
+    var target = rest.target;
+    var props = _extendsDefault.default({
+    }, rest, {
+        onClick: function onClick(event) {
+            try {
+                if (_onClick) _onClick(event);
+            } catch (ex) {
+                event.preventDefault();
+                throw ex;
+            }
+            if (!event.defaultPrevented && event.button === 0 && (!target || target === "_self") && !isModifiedEvent(event) // ignore clicks with modifier keys
+            ) {
+                event.preventDefault();
+                navigate();
+            }
+        }
+    }); // React 15 compat
+    if (forwardRefShim !== forwardRef) props.ref = forwardedRef || innerRef;
+    else props.ref = innerRef;
+    /* eslint-disable-next-line jsx-a11y/anchor-has-content */ return(/*#__PURE__*/ _reactDefault.default.createElement("a", props));
+});
+LinkAnchor.displayName = "LinkAnchor";
+/**
+ * The public API for rendering a history-aware <a>.
+ */ var Link = forwardRef(function(_ref2, forwardedRef) {
+    var _ref2$component = _ref2.component, component = _ref2$component === void 0 ? LinkAnchor : _ref2$component, replace = _ref2.replace, to = _ref2.to, innerRef = _ref2.innerRef, rest = _objectWithoutPropertiesLooseDefault.default(_ref2, [
+        "component",
+        "replace",
+        "to",
+        "innerRef"
+    ]);
+    return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouter.__RouterContext.Consumer, null, function(context) {
+        !context && _tinyInvariantDefault.default(false, "You should not use <Link> outside a <Router>");
+        var history = context.history;
+        var location1 = normalizeToLocation(resolveToLocation(to, context.location), context.location);
+        var href = location1 ? history.createHref(location1) : "";
+        var props = _extendsDefault.default({
+        }, rest, {
+            href: href,
+            navigate: function navigate() {
+                var location = resolveToLocation(to, context.location);
+                var isDuplicateNavigation = _history.createPath(context.location) === _history.createPath(normalizeToLocation(location));
+                var method = replace || isDuplicateNavigation ? history.replace : history.push;
+                method(location);
+            }
+        }); // React 15 compat
+        if (forwardRefShim !== forwardRef) props.ref = forwardedRef || innerRef;
+        else props.innerRef = innerRef;
+        return(/*#__PURE__*/ _reactDefault.default.createElement(component, props));
+    }));
+});
+var toType = _propTypesDefault.default.oneOfType([
+    _propTypesDefault.default.string,
+    _propTypesDefault.default.object,
+    _propTypesDefault.default.func
+]);
+var refType = _propTypesDefault.default.oneOfType([
+    _propTypesDefault.default.string,
+    _propTypesDefault.default.func,
+    _propTypesDefault.default.shape({
+        current: _propTypesDefault.default.any
+    })
+]);
+Link.displayName = "Link";
+Link.propTypes = {
+    innerRef: refType,
+    onClick: _propTypesDefault.default.func,
+    replace: _propTypesDefault.default.bool,
+    target: _propTypesDefault.default.string,
+    to: toType.isRequired
+};
+var forwardRefShim$1 = function forwardRefShim(C) {
+    return C;
+};
+var forwardRef$1 = _reactDefault.default.forwardRef;
+if (typeof forwardRef$1 === "undefined") forwardRef$1 = forwardRefShim$1;
+function joinClassnames() {
+    for(var _len = arguments.length, classnames = new Array(_len), _key = 0; _key < _len; _key++)classnames[_key] = arguments[_key];
+    return classnames.filter(function(i) {
+        return i;
+    }).join(" ");
+}
+/**
+ * A <Link> wrapper that knows if it's "active" or not.
+ */ var NavLink = forwardRef$1(function(_ref, forwardedRef) {
+    var _ref$ariaCurrent = _ref["aria-current"], ariaCurrent = _ref$ariaCurrent === void 0 ? "page" : _ref$ariaCurrent, _ref$activeClassName = _ref.activeClassName, activeClassName = _ref$activeClassName === void 0 ? "active" : _ref$activeClassName, activeStyle = _ref.activeStyle, classNameProp = _ref.className, exact = _ref.exact, isActiveProp = _ref.isActive, locationProp = _ref.location, sensitive = _ref.sensitive, strict = _ref.strict, styleProp = _ref.style, to = _ref.to, innerRef = _ref.innerRef, rest = _objectWithoutPropertiesLooseDefault.default(_ref, [
+        "aria-current",
+        "activeClassName",
+        "activeStyle",
+        "className",
+        "exact",
+        "isActive",
+        "location",
+        "sensitive",
+        "strict",
+        "style",
+        "to",
+        "innerRef"
+    ]);
+    return(/*#__PURE__*/ _reactDefault.default.createElement(_reactRouter.__RouterContext.Consumer, null, function(context) {
+        !context && _tinyInvariantDefault.default(false, "You should not use <NavLink> outside a <Router>");
+        var currentLocation = locationProp || context.location;
+        var toLocation = normalizeToLocation(resolveToLocation(to, currentLocation), currentLocation);
+        var path = toLocation.pathname; // Regex taken from: https://github.com/pillarjs/path-to-regexp/blob/master/index.js#L202
+        var escapedPath = path && path.replace(/([.+*?=^!:${}()[\]|/\\])/g, "\\$1");
+        var match = escapedPath ? _reactRouter.matchPath(currentLocation.pathname, {
+            path: escapedPath,
+            exact: exact,
+            sensitive: sensitive,
+            strict: strict
+        }) : null;
+        var isActive = !!(isActiveProp ? isActiveProp(match, currentLocation) : match);
+        var className = typeof classNameProp === "function" ? classNameProp(isActive) : classNameProp;
+        var style = typeof styleProp === "function" ? styleProp(isActive) : styleProp;
+        if (isActive) {
+            className = joinClassnames(className, activeClassName);
+            style = _extendsDefault.default({
+            }, style, activeStyle);
+        }
+        var props = _extendsDefault.default({
+            "aria-current": isActive && ariaCurrent || null,
+            className: className,
+            style: style,
+            to: toLocation
+        }, rest); // React 15 compat
+        if (forwardRefShim$1 !== forwardRef$1) props.ref = forwardedRef || innerRef;
+        else props.innerRef = innerRef;
+        return(/*#__PURE__*/ _reactDefault.default.createElement(Link, props));
+    }));
+});
+NavLink.displayName = "NavLink";
+var ariaCurrentType = _propTypesDefault.default.oneOf([
+    "page",
+    "step",
+    "location",
+    "date",
+    "time",
+    "true",
+    "false"
+]);
+NavLink.propTypes = _extendsDefault.default({
+}, Link.propTypes, {
+    "aria-current": ariaCurrentType,
+    activeClassName: _propTypesDefault.default.string,
+    activeStyle: _propTypesDefault.default.object,
+    className: _propTypesDefault.default.oneOfType([
+        _propTypesDefault.default.string,
+        _propTypesDefault.default.func
+    ]),
+    exact: _propTypesDefault.default.bool,
+    isActive: _propTypesDefault.default.func,
+    location: _propTypesDefault.default.object,
+    sensitive: _propTypesDefault.default.bool,
+    strict: _propTypesDefault.default.bool,
+    style: _propTypesDefault.default.oneOfType([
+        _propTypesDefault.default.object,
+        _propTypesDefault.default.func
+    ])
+});
+
+},{"react-router":"az1m7","@babel/runtime/helpers/esm/inheritsLoose":"6cZja","react":"4mchR","history":"7Kc8n","prop-types":"2bysO","tiny-warning":"eDUdC","@babel/runtime/helpers/esm/extends":"5inYT","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"9unNO","tiny-invariant":"9t1GA","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"az1m7":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "MemoryRouter", ()=>MemoryRouter1
+);
+parcelHelpers.export(exports, "Prompt", ()=>Prompt
+);
+parcelHelpers.export(exports, "Redirect", ()=>Redirect
+);
+parcelHelpers.export(exports, "Route", ()=>Route1
+);
+parcelHelpers.export(exports, "Router", ()=>Router1
+);
+parcelHelpers.export(exports, "StaticRouter", ()=>StaticRouter1
+);
+parcelHelpers.export(exports, "Switch", ()=>Switch1
+);
+parcelHelpers.export(exports, "__HistoryContext", ()=>historyContext
+);
+parcelHelpers.export(exports, "__RouterContext", ()=>context1
+);
+parcelHelpers.export(exports, "generatePath", ()=>generatePath
+);
+parcelHelpers.export(exports, "matchPath", ()=>matchPath
+);
+parcelHelpers.export(exports, "useHistory", ()=>useHistory
+);
+parcelHelpers.export(exports, "useLocation", ()=>useLocation
+);
+parcelHelpers.export(exports, "useParams", ()=>useParams
+);
+parcelHelpers.export(exports, "useRouteMatch", ()=>useRouteMatch
+);
+parcelHelpers.export(exports, "withRouter", ()=>withRouter
+);
+var _inheritsLoose = require("@babel/runtime/helpers/esm/inheritsLoose");
+var _inheritsLooseDefault = parcelHelpers.interopDefault(_inheritsLoose);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _history = require("history");
+var _tinyWarning = require("tiny-warning");
+var _tinyWarningDefault = parcelHelpers.interopDefault(_tinyWarning);
+var _miniCreateReactContext = require("mini-create-react-context");
+var _miniCreateReactContextDefault = parcelHelpers.interopDefault(_miniCreateReactContext);
+var _tinyInvariant = require("tiny-invariant");
+var _tinyInvariantDefault = parcelHelpers.interopDefault(_tinyInvariant);
+var _extends = require("@babel/runtime/helpers/esm/extends");
+var _extendsDefault = parcelHelpers.interopDefault(_extends);
+var _pathToRegexp = require("path-to-regexp");
+var _pathToRegexpDefault = parcelHelpers.interopDefault(_pathToRegexp);
+var _reactIs = require("react-is");
+var _objectWithoutPropertiesLoose = require("@babel/runtime/helpers/esm/objectWithoutPropertiesLoose");
+var _objectWithoutPropertiesLooseDefault = parcelHelpers.interopDefault(_objectWithoutPropertiesLoose);
+var _hoistNonReactStatics = require("hoist-non-react-statics");
+var _hoistNonReactStaticsDefault = parcelHelpers.interopDefault(_hoistNonReactStatics);
+// TODO: Replace with React.createContext once we can assume React 16+
+var createNamedContext = function createNamedContext(name) {
+    var context = _miniCreateReactContextDefault.default();
+    context.displayName = name;
+    return context;
+};
+var historyContext = /*#__PURE__*/ createNamedContext("Router-History");
+var context1 = /*#__PURE__*/ createNamedContext("Router");
+/**
+ * The public API for putting history on context.
+ */ var Router1 = /*#__PURE__*/ function(_React$Component) {
+    _inheritsLooseDefault.default(Router, _React$Component);
+    Router.computeRootMatch = function computeRootMatch(pathname) {
+        return {
+            path: "/",
+            url: "/",
+            params: {
+            },
+            isExact: pathname === "/"
+        };
+    };
+    function Router(props) {
+        var _this;
+        _this = _React$Component.call(this, props) || this;
+        _this.state = {
+            location: props.history.location
+        }; // This is a bit of a hack. We have to start listening for location
+        // changes here in the constructor in case there are any <Redirect>s
+        // on the initial render. If there are, they will replace/push when
+        // they mount and since cDM fires in children before parents, we may
+        // get a new location before the <Router> is mounted.
+        _this._isMounted = false;
+        _this._pendingLocation = null;
+        if (!props.staticContext) _this.unlisten = props.history.listen(function(location) {
+            if (_this._isMounted) _this.setState({
+                location: location
+            });
+            else _this._pendingLocation = location;
+        });
+        return _this;
+    }
+    var _proto = Router.prototype;
+    _proto.componentDidMount = function componentDidMount() {
+        this._isMounted = true;
+        if (this._pendingLocation) this.setState({
+            location: this._pendingLocation
+        });
+    };
+    _proto.componentWillUnmount = function componentWillUnmount() {
+        if (this.unlisten) {
+            this.unlisten();
+            this._isMounted = false;
+            this._pendingLocation = null;
+        }
+    };
+    _proto.render = function render() {
+        return(/*#__PURE__*/ _reactDefault.default.createElement(context1.Provider, {
+            value: {
+                history: this.props.history,
+                location: this.state.location,
+                match: Router.computeRootMatch(this.state.location.pathname),
+                staticContext: this.props.staticContext
+            }
+        }, /*#__PURE__*/ _reactDefault.default.createElement(historyContext.Provider, {
+            children: this.props.children || null,
+            value: this.props.history
+        })));
+    };
+    return Router;
+}(_reactDefault.default.Component);
+Router1.propTypes = {
+    children: _propTypesDefault.default.node,
+    history: _propTypesDefault.default.object.isRequired,
+    staticContext: _propTypesDefault.default.object
+};
+Router1.prototype.componentDidUpdate = function(prevProps) {
+    _tinyWarningDefault.default(prevProps.history === this.props.history, "You cannot change <Router history>");
+};
+/**
+ * The public API for a <Router> that stores location in memory.
+ */ var MemoryRouter1 = /*#__PURE__*/ function(_React$Component) {
+    _inheritsLooseDefault.default(MemoryRouter, _React$Component);
+    function MemoryRouter() {
+        var _this;
+        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++)args[_key] = arguments[_key];
+        _this = _React$Component.call.apply(_React$Component, [
+            this
+        ].concat(args)) || this;
+        _this.history = _history.createMemoryHistory(_this.props);
+        return _this;
+    }
+    var _proto = MemoryRouter.prototype;
+    _proto.render = function render() {
+        return(/*#__PURE__*/ _reactDefault.default.createElement(Router1, {
+            history: this.history,
+            children: this.props.children
+        }));
+    };
+    return MemoryRouter;
+}(_reactDefault.default.Component);
+MemoryRouter1.propTypes = {
+    initialEntries: _propTypesDefault.default.array,
+    initialIndex: _propTypesDefault.default.number,
+    getUserConfirmation: _propTypesDefault.default.func,
+    keyLength: _propTypesDefault.default.number,
+    children: _propTypesDefault.default.node
+};
+MemoryRouter1.prototype.componentDidMount = function() {
+    _tinyWarningDefault.default(!this.props.history, "<MemoryRouter> ignores the history prop. To use a custom history, use `import { Router }` instead of `import { MemoryRouter as Router }`.");
+};
+var Lifecycle1 = /*#__PURE__*/ function(_React$Component) {
+    _inheritsLooseDefault.default(Lifecycle, _React$Component);
+    function Lifecycle() {
+        return _React$Component.apply(this, arguments) || this;
+    }
+    var _proto = Lifecycle.prototype;
+    _proto.componentDidMount = function componentDidMount() {
+        if (this.props.onMount) this.props.onMount.call(this, this);
+    };
+    _proto.componentDidUpdate = function componentDidUpdate(prevProps) {
+        if (this.props.onUpdate) this.props.onUpdate.call(this, this, prevProps);
+    };
+    _proto.componentWillUnmount = function componentWillUnmount() {
+        if (this.props.onUnmount) this.props.onUnmount.call(this, this);
+    };
+    _proto.render = function render() {
+        return null;
+    };
+    return Lifecycle;
+}(_reactDefault.default.Component);
+/**
+ * The public API for prompting the user before navigating away from a screen.
+ */ function Prompt(_ref) {
+    var message = _ref.message, _ref$when = _ref.when, when = _ref$when === void 0 ? true : _ref$when;
+    return(/*#__PURE__*/ _reactDefault.default.createElement(context1.Consumer, null, function(context) {
+        !context && _tinyInvariantDefault.default(false, "You should not use <Prompt> outside a <Router>");
+        if (!when || context.staticContext) return null;
+        var method = context.history.block;
+        return(/*#__PURE__*/ _reactDefault.default.createElement(Lifecycle1, {
+            onMount: function onMount(self) {
+                self.release = method(message);
+            },
+            onUpdate: function onUpdate(self, prevProps) {
+                if (prevProps.message !== message) {
+                    self.release();
+                    self.release = method(message);
+                }
+            },
+            onUnmount: function onUnmount(self) {
+                self.release();
+            },
+            message: message
+        }));
+    }));
+}
+var messageType = _propTypesDefault.default.oneOfType([
+    _propTypesDefault.default.func,
+    _propTypesDefault.default.string
+]);
+Prompt.propTypes = {
+    when: _propTypesDefault.default.bool,
+    message: messageType.isRequired
+};
+var cache = {
+};
+var cacheLimit = 10000;
+var cacheCount = 0;
+function compilePath(path) {
+    if (cache[path]) return cache[path];
+    var generator = _pathToRegexpDefault.default.compile(path);
+    if (cacheCount < cacheLimit) {
+        cache[path] = generator;
+        cacheCount++;
+    }
+    return generator;
+}
+/**
+ * Public API for generating a URL pathname from a path and parameters.
+ */ function generatePath(path, params) {
+    if (path === void 0) path = "/";
+    if (params === void 0) params = {
+    };
+    return path === "/" ? path : compilePath(path)(params, {
+        pretty: true
+    });
+}
+/**
+ * The public API for navigating programmatically with a component.
+ */ function Redirect(_ref) {
+    var computedMatch = _ref.computedMatch, to = _ref.to, _ref$push = _ref.push, push = _ref$push === void 0 ? false : _ref$push;
+    return(/*#__PURE__*/ _reactDefault.default.createElement(context1.Consumer, null, function(context) {
+        !context && _tinyInvariantDefault.default(false, "You should not use <Redirect> outside a <Router>");
+        var history = context.history, staticContext = context.staticContext;
+        var method = push ? history.push : history.replace;
+        var location = _history.createLocation(computedMatch ? typeof to === "string" ? generatePath(to, computedMatch.params) : _extendsDefault.default({
+        }, to, {
+            pathname: generatePath(to.pathname, computedMatch.params)
+        }) : to); // When rendering in a static context,
+        // set the new location immediately.
+        if (staticContext) {
+            method(location);
+            return null;
+        }
+        return(/*#__PURE__*/ _reactDefault.default.createElement(Lifecycle1, {
+            onMount: function onMount() {
+                method(location);
+            },
+            onUpdate: function onUpdate(self, prevProps) {
+                var prevLocation = _history.createLocation(prevProps.to);
+                if (!_history.locationsAreEqual(prevLocation, _extendsDefault.default({
+                }, location, {
+                    key: prevLocation.key
+                }))) method(location);
+            },
+            to: to
+        }));
+    }));
+}
+Redirect.propTypes = {
+    push: _propTypesDefault.default.bool,
+    from: _propTypesDefault.default.string,
+    to: _propTypesDefault.default.oneOfType([
+        _propTypesDefault.default.string,
+        _propTypesDefault.default.object
+    ]).isRequired
+};
+var cache$1 = {
+};
+var cacheLimit$1 = 10000;
+var cacheCount$1 = 0;
+function compilePath$1(path, options) {
+    var cacheKey = "" + options.end + options.strict + options.sensitive;
+    var pathCache = cache$1[cacheKey] || (cache$1[cacheKey] = {
+    });
+    if (pathCache[path]) return pathCache[path];
+    var keys = [];
+    var regexp = _pathToRegexpDefault.default(path, keys, options);
+    var result = {
+        regexp: regexp,
+        keys: keys
+    };
+    if (cacheCount$1 < cacheLimit$1) {
+        pathCache[path] = result;
+        cacheCount$1++;
+    }
+    return result;
+}
+/**
+ * Public API for matching a URL pathname to a path.
+ */ function matchPath(pathname, options) {
+    if (options === void 0) options = {
+    };
+    if (typeof options === "string" || Array.isArray(options)) options = {
+        path: options
+    };
+    var _options = options, path1 = _options.path, _options$exact = _options.exact, exact = _options$exact === void 0 ? false : _options$exact, _options$strict = _options.strict, strict = _options$strict === void 0 ? false : _options$strict, _options$sensitive = _options.sensitive, sensitive = _options$sensitive === void 0 ? false : _options$sensitive;
+    var paths = [].concat(path1);
+    return paths.reduce(function(matched, path) {
+        if (!path && path !== "") return null;
+        if (matched) return matched;
+        var _compilePath = compilePath$1(path, {
+            end: exact,
+            strict: strict,
+            sensitive: sensitive
+        }), regexp = _compilePath.regexp, keys = _compilePath.keys;
+        var match = regexp.exec(pathname);
+        if (!match) return null;
+        var url = match[0], values = match.slice(1);
+        var isExact = pathname === url;
+        if (exact && !isExact) return null;
+        return {
+            path: path,
+            // the path used to match
+            url: path === "/" && url === "" ? "/" : url,
+            // the matched portion of the URL
+            isExact: isExact,
+            // whether or not we matched exactly
+            params: keys.reduce(function(memo, key, index) {
+                memo[key.name] = values[index];
+                return memo;
+            }, {
+            })
+        };
+    }, null);
+}
+function isEmptyChildren(children) {
+    return _reactDefault.default.Children.count(children) === 0;
+}
+function evalChildrenDev(children, props, path) {
+    var value = children(props);
+    _tinyWarningDefault.default(value !== undefined, "You returned `undefined` from the `children` function of " + ("<Route" + (path ? " path=\"" + path + "\"" : "") + ">, but you ") + "should have returned a React element or `null`");
+    return value || null;
+}
+/**
+ * The public API for matching a single path and rendering.
+ */ var Route1 = /*#__PURE__*/ function(_React$Component) {
+    _inheritsLooseDefault.default(Route, _React$Component);
+    function Route() {
+        return _React$Component.apply(this, arguments) || this;
+    }
+    var _proto = Route.prototype;
+    _proto.render = function render1() {
+        var _this = this;
+        return(/*#__PURE__*/ _reactDefault.default.createElement(context1.Consumer, null, function(context$1) {
+            !context$1 && _tinyInvariantDefault.default(false, "You should not use <Route> outside a <Router>");
+            var location = _this.props.location || context$1.location;
+            var match = _this.props.computedMatch ? _this.props.computedMatch // <Switch> already computed the match for us
+             : _this.props.path ? matchPath(location.pathname, _this.props) : context$1.match;
+            var props = _extendsDefault.default({
+            }, context$1, {
+                location: location,
+                match: match
+            });
+            var _this$props = _this.props, children = _this$props.children, component = _this$props.component, render = _this$props.render; // Preact uses an empty array as children by
+            // default, so use null if that's the case.
+            if (Array.isArray(children) && isEmptyChildren(children)) children = null;
+            return(/*#__PURE__*/ _reactDefault.default.createElement(context1.Provider, {
+                value: props
+            }, props.match ? children ? typeof children === "function" ? evalChildrenDev(children, props, _this.props.path) : children : component ? /*#__PURE__*/ _reactDefault.default.createElement(component, props) : render ? render(props) : null : typeof children === "function" ? evalChildrenDev(children, props, _this.props.path) : null));
+        }));
+    };
+    return Route;
+}(_reactDefault.default.Component);
+Route1.propTypes = {
+    children: _propTypesDefault.default.oneOfType([
+        _propTypesDefault.default.func,
+        _propTypesDefault.default.node
+    ]),
+    component: function component(props, propName) {
+        if (props[propName] && !_reactIs.isValidElementType(props[propName])) return new Error("Invalid prop 'component' supplied to 'Route': the prop is not a valid React component");
+    },
+    exact: _propTypesDefault.default.bool,
+    location: _propTypesDefault.default.object,
+    path: _propTypesDefault.default.oneOfType([
+        _propTypesDefault.default.string,
+        _propTypesDefault.default.arrayOf(_propTypesDefault.default.string)
+    ]),
+    render: _propTypesDefault.default.func,
+    sensitive: _propTypesDefault.default.bool,
+    strict: _propTypesDefault.default.bool
+};
+Route1.prototype.componentDidMount = function() {
+    _tinyWarningDefault.default(!(this.props.children && !isEmptyChildren(this.props.children) && this.props.component), "You should not use <Route component> and <Route children> in the same route; <Route component> will be ignored");
+    _tinyWarningDefault.default(!(this.props.children && !isEmptyChildren(this.props.children) && this.props.render), "You should not use <Route render> and <Route children> in the same route; <Route render> will be ignored");
+    _tinyWarningDefault.default(!(this.props.component && this.props.render), "You should not use <Route component> and <Route render> in the same route; <Route render> will be ignored");
+};
+Route1.prototype.componentDidUpdate = function(prevProps) {
+    _tinyWarningDefault.default(!(this.props.location && !prevProps.location), '<Route> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
+    _tinyWarningDefault.default(!(!this.props.location && prevProps.location), '<Route> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
+};
+function addLeadingSlash(path) {
+    return path.charAt(0) === "/" ? path : "/" + path;
+}
+function addBasename(basename, location) {
+    if (!basename) return location;
+    return _extendsDefault.default({
+    }, location, {
+        pathname: addLeadingSlash(basename) + location.pathname
+    });
+}
+function stripBasename(basename, location) {
+    if (!basename) return location;
+    var base = addLeadingSlash(basename);
+    if (location.pathname.indexOf(base) !== 0) return location;
+    return _extendsDefault.default({
+    }, location, {
+        pathname: location.pathname.substr(base.length)
+    });
+}
+function createURL(location) {
+    return typeof location === "string" ? location : _history.createPath(location);
+}
+function staticHandler(methodName) {
+    return function() {
+        _tinyInvariantDefault.default(false, "You cannot %s with <StaticRouter>", methodName);
+    };
+}
+function noop() {
+}
+/**
+ * The public top-level API for a "static" <Router>, so-called because it
+ * can't actually change the current location. Instead, it just records
+ * location changes in a context object. Useful mainly in testing and
+ * server-rendering scenarios.
+ */ var StaticRouter1 = /*#__PURE__*/ function(_React$Component) {
+    _inheritsLooseDefault.default(StaticRouter, _React$Component);
+    function StaticRouter() {
+        var _this;
+        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++)args[_key] = arguments[_key];
+        _this = _React$Component.call.apply(_React$Component, [
+            this
+        ].concat(args)) || this;
+        _this.handlePush = function(location) {
+            return _this.navigateTo(location, "PUSH");
+        };
+        _this.handleReplace = function(location) {
+            return _this.navigateTo(location, "REPLACE");
+        };
+        _this.handleListen = function() {
+            return noop;
+        };
+        _this.handleBlock = function() {
+            return noop;
+        };
+        return _this;
+    }
+    var _proto = StaticRouter.prototype;
+    _proto.navigateTo = function navigateTo(location, action) {
+        var _this$props = this.props, _this$props$basename = _this$props.basename, basename = _this$props$basename === void 0 ? "" : _this$props$basename, _this$props$context = _this$props.context, context = _this$props$context === void 0 ? {
+        } : _this$props$context;
+        context.action = action;
+        context.location = addBasename(basename, _history.createLocation(location));
+        context.url = createURL(context.location);
+    };
+    _proto.render = function render() {
+        var _this$props2 = this.props, _this$props2$basename = _this$props2.basename, basename = _this$props2$basename === void 0 ? "" : _this$props2$basename, _this$props2$context = _this$props2.context, context = _this$props2$context === void 0 ? {
+        } : _this$props2$context, _this$props2$location = _this$props2.location, location = _this$props2$location === void 0 ? "/" : _this$props2$location, rest = _objectWithoutPropertiesLooseDefault.default(_this$props2, [
+            "basename",
+            "context",
+            "location"
+        ]);
+        var history = {
+            createHref: function createHref(path) {
+                return addLeadingSlash(basename + createURL(path));
+            },
+            action: "POP",
+            location: stripBasename(basename, _history.createLocation(location)),
+            push: this.handlePush,
+            replace: this.handleReplace,
+            go: staticHandler("go"),
+            goBack: staticHandler("goBack"),
+            goForward: staticHandler("goForward"),
+            listen: this.handleListen,
+            block: this.handleBlock
+        };
+        return(/*#__PURE__*/ _reactDefault.default.createElement(Router1, _extendsDefault.default({
+        }, rest, {
+            history: history,
+            staticContext: context
+        })));
+    };
+    return StaticRouter;
+}(_reactDefault.default.Component);
+StaticRouter1.propTypes = {
+    basename: _propTypesDefault.default.string,
+    context: _propTypesDefault.default.object,
+    location: _propTypesDefault.default.oneOfType([
+        _propTypesDefault.default.string,
+        _propTypesDefault.default.object
+    ])
+};
+StaticRouter1.prototype.componentDidMount = function() {
+    _tinyWarningDefault.default(!this.props.history, "<StaticRouter> ignores the history prop. To use a custom history, use `import { Router }` instead of `import { StaticRouter as Router }`.");
+};
+/**
+ * The public API for rendering the first <Route> that matches.
+ */ var Switch1 = /*#__PURE__*/ function(_React$Component) {
+    _inheritsLooseDefault.default(Switch, _React$Component);
+    function Switch() {
+        return _React$Component.apply(this, arguments) || this;
+    }
+    var _proto = Switch.prototype;
+    _proto.render = function render() {
+        var _this = this;
+        return(/*#__PURE__*/ _reactDefault.default.createElement(context1.Consumer, null, function(context) {
+            !context && _tinyInvariantDefault.default(false, "You should not use <Switch> outside a <Router>");
+            var location = _this.props.location || context.location;
+            var element, match; // We use React.Children.forEach instead of React.Children.toArray().find()
+            // here because toArray adds keys to all child elements and we do not want
+            // to trigger an unmount/remount for two <Route>s that render the same
+            // component at different URLs.
+            _reactDefault.default.Children.forEach(_this.props.children, function(child) {
+                if (match == null && /*#__PURE__*/ _reactDefault.default.isValidElement(child)) {
+                    element = child;
+                    var path = child.props.path || child.props.from;
+                    match = path ? matchPath(location.pathname, _extendsDefault.default({
+                    }, child.props, {
+                        path: path
+                    })) : context.match;
+                }
+            });
+            return match ? /*#__PURE__*/ _reactDefault.default.cloneElement(element, {
+                location: location,
+                computedMatch: match
+            }) : null;
+        }));
+    };
+    return Switch;
+}(_reactDefault.default.Component);
+Switch1.propTypes = {
+    children: _propTypesDefault.default.node,
+    location: _propTypesDefault.default.object
+};
+Switch1.prototype.componentDidUpdate = function(prevProps) {
+    _tinyWarningDefault.default(!(this.props.location && !prevProps.location), '<Switch> elements should not change from uncontrolled to controlled (or vice versa). You initially used no "location" prop and then provided one on a subsequent render.');
+    _tinyWarningDefault.default(!(!this.props.location && prevProps.location), '<Switch> elements should not change from controlled to uncontrolled (or vice versa). You provided a "location" prop initially but omitted it on a subsequent render.');
+};
+/**
+ * A public higher-order component to access the imperative API
+ */ function withRouter(Component) {
+    var displayName = "withRouter(" + (Component.displayName || Component.name) + ")";
+    var C = function C(props) {
+        var wrappedComponentRef = props.wrappedComponentRef, remainingProps = _objectWithoutPropertiesLooseDefault.default(props, [
+            "wrappedComponentRef"
+        ]);
+        return(/*#__PURE__*/ _reactDefault.default.createElement(context1.Consumer, null, function(context) {
+            !context && _tinyInvariantDefault.default(false, "You should not use <" + displayName + " /> outside a <Router>");
+            return(/*#__PURE__*/ _reactDefault.default.createElement(Component, _extendsDefault.default({
+            }, remainingProps, context, {
+                ref: wrappedComponentRef
+            })));
+        }));
+    };
+    C.displayName = displayName;
+    C.WrappedComponent = Component;
+    C.propTypes = {
+        wrappedComponentRef: _propTypesDefault.default.oneOfType([
+            _propTypesDefault.default.string,
+            _propTypesDefault.default.func,
+            _propTypesDefault.default.object
+        ])
+    };
+    return _hoistNonReactStaticsDefault.default(C, Component);
+}
+var useContext = _reactDefault.default.useContext;
+function useHistory() {
+    !(typeof useContext === "function") && _tinyInvariantDefault.default(false, "You must use React >= 16.8 in order to use useHistory()");
+    return useContext(historyContext);
+}
+function useLocation() {
+    !(typeof useContext === "function") && _tinyInvariantDefault.default(false, "You must use React >= 16.8 in order to use useLocation()");
+    return useContext(context1).location;
+}
+function useParams() {
+    !(typeof useContext === "function") && _tinyInvariantDefault.default(false, "You must use React >= 16.8 in order to use useParams()");
+    var match = useContext(context1).match;
+    return match ? match.params : {
+    };
+}
+function useRouteMatch(path) {
+    !(typeof useContext === "function") && _tinyInvariantDefault.default(false, "You must use React >= 16.8 in order to use useRouteMatch()");
+    var location = useLocation();
+    var match = useContext(context1).match;
+    return path ? matchPath(location.pathname, path) : match;
+}
+if (typeof window !== "undefined") {
+    var global = window;
+    var key = "__react_router_build__";
+    var buildNames = {
+        cjs: "CommonJS",
+        esm: "ES modules",
+        umd: "UMD"
+    };
+    if (global[key] && global[key] !== "esm") {
+        var initialBuildName = buildNames[global[key]];
+        var secondaryBuildName = buildNames["esm"]; // TODO: Add link to article that explains in detail how to avoid
+        // loading 2 different builds.
+        throw new Error("You are loading the " + secondaryBuildName + " build of React Router " + ("on a page that is already running the " + initialBuildName + " ") + "build, so things won't work right.");
+    }
+    global[key] = "esm";
+}
+
+},{"@babel/runtime/helpers/esm/inheritsLoose":"6cZja","react":"4mchR","prop-types":"2bysO","history":"7Kc8n","tiny-warning":"eDUdC","mini-create-react-context":"dGlTt","tiny-invariant":"9t1GA","@babel/runtime/helpers/esm/extends":"5inYT","path-to-regexp":"5Ehp7","react-is":"5KyfE","@babel/runtime/helpers/esm/objectWithoutPropertiesLoose":"9unNO","hoist-non-react-statics":"6NILB","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"7Kc8n":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "createBrowserHistory", ()=>createBrowserHistory
+);
+parcelHelpers.export(exports, "createHashHistory", ()=>createHashHistory
+);
+parcelHelpers.export(exports, "createMemoryHistory", ()=>createMemoryHistory
+);
+parcelHelpers.export(exports, "createLocation", ()=>createLocation
+);
+parcelHelpers.export(exports, "locationsAreEqual", ()=>locationsAreEqual
+);
+parcelHelpers.export(exports, "parsePath", ()=>parsePath
+);
+parcelHelpers.export(exports, "createPath", ()=>createPath
+);
+var _extends = require("@babel/runtime/helpers/esm/extends");
+var _extendsDefault = parcelHelpers.interopDefault(_extends);
+var _resolvePathname = require("resolve-pathname");
+var _resolvePathnameDefault = parcelHelpers.interopDefault(_resolvePathname);
+var _valueEqual = require("value-equal");
+var _valueEqualDefault = parcelHelpers.interopDefault(_valueEqual);
+var _tinyWarning = require("tiny-warning");
+var _tinyWarningDefault = parcelHelpers.interopDefault(_tinyWarning);
+var _tinyInvariant = require("tiny-invariant");
+var _tinyInvariantDefault = parcelHelpers.interopDefault(_tinyInvariant);
+function addLeadingSlash(path) {
+    return path.charAt(0) === '/' ? path : '/' + path;
+}
+function stripLeadingSlash(path) {
+    return path.charAt(0) === '/' ? path.substr(1) : path;
+}
+function hasBasename(path, prefix) {
+    return path.toLowerCase().indexOf(prefix.toLowerCase()) === 0 && '/?#'.indexOf(path.charAt(prefix.length)) !== -1;
+}
+function stripBasename(path, prefix) {
+    return hasBasename(path, prefix) ? path.substr(prefix.length) : path;
+}
+function stripTrailingSlash(path) {
+    return path.charAt(path.length - 1) === '/' ? path.slice(0, -1) : path;
+}
+function parsePath(path) {
+    var pathname = path || '/';
+    var search = '';
+    var hash = '';
+    var hashIndex = pathname.indexOf('#');
+    if (hashIndex !== -1) {
+        hash = pathname.substr(hashIndex);
+        pathname = pathname.substr(0, hashIndex);
+    }
+    var searchIndex = pathname.indexOf('?');
+    if (searchIndex !== -1) {
+        search = pathname.substr(searchIndex);
+        pathname = pathname.substr(0, searchIndex);
+    }
+    return {
+        pathname: pathname,
+        search: search === '?' ? '' : search,
+        hash: hash === '#' ? '' : hash
+    };
+}
+function createPath(location) {
+    var pathname = location.pathname, search = location.search, hash = location.hash;
+    var path = pathname || '/';
+    if (search && search !== '?') path += search.charAt(0) === '?' ? search : "?" + search;
+    if (hash && hash !== '#') path += hash.charAt(0) === '#' ? hash : "#" + hash;
+    return path;
+}
+function createLocation(path, state, key, currentLocation) {
+    var location;
+    if (typeof path === 'string') {
+        // Two-arg form: push(path, state)
+        location = parsePath(path);
+        location.state = state;
+    } else {
+        // One-arg form: push(location)
+        location = _extendsDefault.default({
+        }, path);
+        if (location.pathname === undefined) location.pathname = '';
+        if (location.search) {
+            if (location.search.charAt(0) !== '?') location.search = '?' + location.search;
+        } else location.search = '';
+        if (location.hash) {
+            if (location.hash.charAt(0) !== '#') location.hash = '#' + location.hash;
+        } else location.hash = '';
+        if (state !== undefined && location.state === undefined) location.state = state;
+    }
+    try {
+        location.pathname = decodeURI(location.pathname);
+    } catch (e) {
+        if (e instanceof URIError) throw new URIError('Pathname "' + location.pathname + '" could not be decoded. ' + 'This is likely caused by an invalid percent-encoding.');
+        else throw e;
+    }
+    if (key) location.key = key;
+    if (currentLocation) {
+        // Resolve incomplete/relative pathname relative to current location.
+        if (!location.pathname) location.pathname = currentLocation.pathname;
+        else if (location.pathname.charAt(0) !== '/') location.pathname = _resolvePathnameDefault.default(location.pathname, currentLocation.pathname);
+    } else // When there is no prior location and pathname is empty, set it to /
+    if (!location.pathname) location.pathname = '/';
+    return location;
+}
+function locationsAreEqual(a, b) {
+    return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash && a.key === b.key && _valueEqualDefault.default(a.state, b.state);
+}
+function createTransitionManager() {
+    var prompt = null;
+    function setPrompt(nextPrompt) {
+        _tinyWarningDefault.default(prompt == null, 'A history supports only one prompt at a time');
+        prompt = nextPrompt;
+        return function() {
+            if (prompt === nextPrompt) prompt = null;
+        };
+    }
+    function confirmTransitionTo(location, action, getUserConfirmation, callback) {
+        // TODO: If another transition starts while we're still confirming
+        // the previous one, we may end up in a weird state. Figure out the
+        // best way to handle this.
+        if (prompt != null) {
+            var result = typeof prompt === 'function' ? prompt(location, action) : prompt;
+            if (typeof result === 'string') {
+                if (typeof getUserConfirmation === 'function') getUserConfirmation(result, callback);
+                else {
+                    _tinyWarningDefault.default(false, 'A history needs a getUserConfirmation function in order to use a prompt message');
+                    callback(true);
+                }
+            } else // Return false from a transition hook to cancel the transition.
+            callback(result !== false);
+        } else callback(true);
+    }
+    var listeners = [];
+    function appendListener(fn) {
+        var isActive = true;
+        function listener() {
+            if (isActive) fn.apply(void 0, arguments);
+        }
+        listeners.push(listener);
+        return function() {
+            isActive = false;
+            listeners = listeners.filter(function(item) {
+                return item !== listener;
+            });
+        };
+    }
+    function notifyListeners() {
+        for(var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++)args[_key] = arguments[_key];
+        listeners.forEach(function(listener) {
+            return listener.apply(void 0, args);
+        });
+    }
+    return {
+        setPrompt: setPrompt,
+        confirmTransitionTo: confirmTransitionTo,
+        appendListener: appendListener,
+        notifyListeners: notifyListeners
+    };
+}
+var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+function getConfirmation(message, callback) {
+    callback(window.confirm(message)); // eslint-disable-line no-alert
+}
+/**
+ * Returns true if the HTML5 history API is supported. Taken from Modernizr.
+ *
+ * https://github.com/Modernizr/Modernizr/blob/master/LICENSE
+ * https://github.com/Modernizr/Modernizr/blob/master/feature-detects/history.js
+ * changed to avoid false negatives for Windows Phones: https://github.com/reactjs/react-router/issues/586
+ */ function supportsHistory() {
+    var ua = window.navigator.userAgent;
+    if ((ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) && ua.indexOf('Mobile Safari') !== -1 && ua.indexOf('Chrome') === -1 && ua.indexOf('Windows Phone') === -1) return false;
+    return window.history && 'pushState' in window.history;
+}
+/**
+ * Returns true if browser fires popstate on hash change.
+ * IE10 and IE11 do not.
+ */ function supportsPopStateOnHashChange() {
+    return window.navigator.userAgent.indexOf('Trident') === -1;
+}
+/**
+ * Returns false if using go(n) with hash history causes a full page reload.
+ */ function supportsGoWithoutReloadUsingHash() {
+    return window.navigator.userAgent.indexOf('Firefox') === -1;
+}
+/**
+ * Returns true if a given popstate event is an extraneous WebKit event.
+ * Accounts for the fact that Chrome on iOS fires real popstate events
+ * containing undefined state when pressing the back button.
+ */ function isExtraneousPopstateEvent(event) {
+    return event.state === undefined && navigator.userAgent.indexOf('CriOS') === -1;
+}
+var PopStateEvent = 'popstate';
+var HashChangeEvent = 'hashchange';
+function getHistoryState() {
+    try {
+        return window.history.state || {
+        };
+    } catch (e) {
+        // IE 11 sometimes throws when accessing window.history.state
+        // See https://github.com/ReactTraining/history/pull/289
+        return {
+        };
+    }
+}
+/**
+ * Creates a history object that uses the HTML5 history API including
+ * pushState, replaceState, and the popstate event.
+ */ function createBrowserHistory(props) {
+    if (props === void 0) props = {
+    };
+    !canUseDOM && _tinyInvariantDefault.default(false, 'Browser history needs a DOM');
+    var globalHistory = window.history;
+    var canUseHistory = supportsHistory();
+    var needsHashChangeListener = !supportsPopStateOnHashChange();
+    var _props = props, _props$forceRefresh = _props.forceRefresh, forceRefresh = _props$forceRefresh === void 0 ? false : _props$forceRefresh, _props$getUserConfirm = _props.getUserConfirmation, getUserConfirmation = _props$getUserConfirm === void 0 ? getConfirmation : _props$getUserConfirm, _props$keyLength = _props.keyLength, keyLength = _props$keyLength === void 0 ? 6 : _props$keyLength;
+    var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : '';
+    function getDOMLocation(historyState) {
+        var _ref = historyState || {
+        }, key = _ref.key, state = _ref.state;
+        var _window$location = window.location, pathname = _window$location.pathname, search = _window$location.search, hash = _window$location.hash;
+        var path = pathname + search + hash;
+        _tinyWarningDefault.default(!basename || hasBasename(path, basename), "You are attempting to use a basename on a page whose URL path does not begin with the basename. Expected path \"" + path + '" to begin with "' + basename + '".');
+        if (basename) path = stripBasename(path, basename);
+        return createLocation(path, state, key);
+    }
+    function createKey() {
+        return Math.random().toString(36).substr(2, keyLength);
+    }
+    var transitionManager = createTransitionManager();
+    function setState(nextState) {
+        _extendsDefault.default(history, nextState);
+        history.length = globalHistory.length;
+        transitionManager.notifyListeners(history.location, history.action);
+    }
+    function handlePopState(event) {
+        // Ignore extraneous popstate events in WebKit.
+        if (isExtraneousPopstateEvent(event)) return;
+        handlePop(getDOMLocation(event.state));
+    }
+    function handleHashChange() {
+        handlePop(getDOMLocation(getHistoryState()));
+    }
+    var forceNextPop = false;
+    function handlePop(location) {
+        if (forceNextPop) {
+            forceNextPop = false;
+            setState();
+        } else {
+            var action = 'POP';
+            transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+                if (ok) setState({
+                    action: action,
+                    location: location
+                });
+                else revertPop(location);
+            });
+        }
+    }
+    function revertPop(fromLocation) {
+        var toLocation = history.location; // TODO: We could probably make this more reliable by
+        // keeping a list of keys we've seen in sessionStorage.
+        // Instead, we just default to 0 for keys we don't know.
+        var toIndex = allKeys.indexOf(toLocation.key);
+        if (toIndex === -1) toIndex = 0;
+        var fromIndex = allKeys.indexOf(fromLocation.key);
+        if (fromIndex === -1) fromIndex = 0;
+        var delta = toIndex - fromIndex;
+        if (delta) {
+            forceNextPop = true;
+            go(delta);
+        }
+    }
+    var initialLocation = getDOMLocation(getHistoryState());
+    var allKeys = [
+        initialLocation.key
+    ]; // Public interface
+    function createHref(location) {
+        return basename + createPath(location);
+    }
+    function push(path, state1) {
+        _tinyWarningDefault.default(!(typeof path === 'object' && path.state !== undefined && state1 !== undefined), "You should avoid providing a 2nd state argument to push when the 1st argument is a location-like object that already has state; it is ignored");
+        var action = 'PUSH';
+        var location = createLocation(path, state1, createKey(), history.location);
+        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+            if (!ok) return;
+            var href = createHref(location);
+            var key = location.key, state = location.state;
+            if (canUseHistory) {
+                globalHistory.pushState({
+                    key: key,
+                    state: state
+                }, null, href);
+                if (forceRefresh) window.location.href = href;
+                else {
+                    var prevIndex = allKeys.indexOf(history.location.key);
+                    var nextKeys = allKeys.slice(0, prevIndex + 1);
+                    nextKeys.push(location.key);
+                    allKeys = nextKeys;
+                    setState({
+                        action: action,
+                        location: location
+                    });
+                }
+            } else {
+                _tinyWarningDefault.default(state === undefined, 'Browser history cannot push state in browsers that do not support HTML5 history');
+                window.location.href = href;
+            }
+        });
+    }
+    function replace(path, state2) {
+        _tinyWarningDefault.default(!(typeof path === 'object' && path.state !== undefined && state2 !== undefined), "You should avoid providing a 2nd state argument to replace when the 1st argument is a location-like object that already has state; it is ignored");
+        var action = 'REPLACE';
+        var location = createLocation(path, state2, createKey(), history.location);
+        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+            if (!ok) return;
+            var href = createHref(location);
+            var key = location.key, state = location.state;
+            if (canUseHistory) {
+                globalHistory.replaceState({
+                    key: key,
+                    state: state
+                }, null, href);
+                if (forceRefresh) window.location.replace(href);
+                else {
+                    var prevIndex = allKeys.indexOf(history.location.key);
+                    if (prevIndex !== -1) allKeys[prevIndex] = location.key;
+                    setState({
+                        action: action,
+                        location: location
+                    });
+                }
+            } else {
+                _tinyWarningDefault.default(state === undefined, 'Browser history cannot replace state in browsers that do not support HTML5 history');
+                window.location.replace(href);
+            }
+        });
+    }
+    function go(n) {
+        globalHistory.go(n);
+    }
+    function goBack() {
+        go(-1);
+    }
+    function goForward() {
+        go(1);
+    }
+    var listenerCount = 0;
+    function checkDOMListeners(delta) {
+        listenerCount += delta;
+        if (listenerCount === 1 && delta === 1) {
+            window.addEventListener(PopStateEvent, handlePopState);
+            if (needsHashChangeListener) window.addEventListener(HashChangeEvent, handleHashChange);
+        } else if (listenerCount === 0) {
+            window.removeEventListener(PopStateEvent, handlePopState);
+            if (needsHashChangeListener) window.removeEventListener(HashChangeEvent, handleHashChange);
+        }
+    }
+    var isBlocked = false;
+    function block(prompt) {
+        if (prompt === void 0) prompt = false;
+        var unblock = transitionManager.setPrompt(prompt);
+        if (!isBlocked) {
+            checkDOMListeners(1);
+            isBlocked = true;
+        }
+        return function() {
+            if (isBlocked) {
+                isBlocked = false;
+                checkDOMListeners(-1);
+            }
+            return unblock();
+        };
+    }
+    function listen(listener) {
+        var unlisten = transitionManager.appendListener(listener);
+        checkDOMListeners(1);
+        return function() {
+            checkDOMListeners(-1);
+            unlisten();
+        };
+    }
+    var history = {
+        length: globalHistory.length,
+        action: 'POP',
+        location: initialLocation,
+        createHref: createHref,
+        push: push,
+        replace: replace,
+        go: go,
+        goBack: goBack,
+        goForward: goForward,
+        block: block,
+        listen: listen
+    };
+    return history;
+}
+var HashChangeEvent$1 = 'hashchange';
+var HashPathCoders = {
+    hashbang: {
+        encodePath: function encodePath(path) {
+            return path.charAt(0) === '!' ? path : '!/' + stripLeadingSlash(path);
+        },
+        decodePath: function decodePath(path) {
+            return path.charAt(0) === '!' ? path.substr(1) : path;
+        }
+    },
+    noslash: {
+        encodePath: stripLeadingSlash,
+        decodePath: addLeadingSlash
+    },
+    slash: {
+        encodePath: addLeadingSlash,
+        decodePath: addLeadingSlash
+    }
+};
+function stripHash(url) {
+    var hashIndex = url.indexOf('#');
+    return hashIndex === -1 ? url : url.slice(0, hashIndex);
+}
+function getHashPath() {
+    // We can't use window.location.hash here because it's not
+    // consistent across browsers - Firefox will pre-decode it!
+    var href = window.location.href;
+    var hashIndex = href.indexOf('#');
+    return hashIndex === -1 ? '' : href.substring(hashIndex + 1);
+}
+function pushHashPath(path) {
+    window.location.hash = path;
+}
+function replaceHashPath(path) {
+    window.location.replace(stripHash(window.location.href) + '#' + path);
+}
+function createHashHistory(props) {
+    if (props === void 0) props = {
+    };
+    !canUseDOM && _tinyInvariantDefault.default(false, 'Hash history needs a DOM');
+    var globalHistory = window.history;
+    var canGoWithoutReload = supportsGoWithoutReloadUsingHash();
+    var _props = props, _props$getUserConfirm = _props.getUserConfirmation, getUserConfirmation = _props$getUserConfirm === void 0 ? getConfirmation : _props$getUserConfirm, _props$hashType = _props.hashType, hashType = _props$hashType === void 0 ? 'slash' : _props$hashType;
+    var basename = props.basename ? stripTrailingSlash(addLeadingSlash(props.basename)) : '';
+    var _HashPathCoders$hashT = HashPathCoders[hashType], encodePath = _HashPathCoders$hashT.encodePath, decodePath = _HashPathCoders$hashT.decodePath;
+    function getDOMLocation() {
+        var path = decodePath(getHashPath());
+        _tinyWarningDefault.default(!basename || hasBasename(path, basename), "You are attempting to use a basename on a page whose URL path does not begin with the basename. Expected path \"" + path + '" to begin with "' + basename + '".');
+        if (basename) path = stripBasename(path, basename);
+        return createLocation(path);
+    }
+    var transitionManager = createTransitionManager();
+    function setState(nextState) {
+        _extendsDefault.default(history, nextState);
+        history.length = globalHistory.length;
+        transitionManager.notifyListeners(history.location, history.action);
+    }
+    var forceNextPop = false;
+    var ignorePath = null;
+    function locationsAreEqual$$1(a, b) {
+        return a.pathname === b.pathname && a.search === b.search && a.hash === b.hash;
+    }
+    function handleHashChange() {
+        var path = getHashPath();
+        var encodedPath = encodePath(path);
+        if (path !== encodedPath) // Ensure we always have a properly-encoded hash.
+        replaceHashPath(encodedPath);
+        else {
+            var location = getDOMLocation();
+            var prevLocation = history.location;
+            if (!forceNextPop && locationsAreEqual$$1(prevLocation, location)) return; // A hashchange doesn't always == location change.
+            if (ignorePath === createPath(location)) return; // Ignore this change; we already setState in push/replace.
+            ignorePath = null;
+            handlePop(location);
+        }
+    }
+    function handlePop(location) {
+        if (forceNextPop) {
+            forceNextPop = false;
+            setState();
+        } else {
+            var action = 'POP';
+            transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+                if (ok) setState({
+                    action: action,
+                    location: location
+                });
+                else revertPop(location);
+            });
+        }
+    }
+    function revertPop(fromLocation) {
+        var toLocation = history.location; // TODO: We could probably make this more reliable by
+        // keeping a list of paths we've seen in sessionStorage.
+        // Instead, we just default to 0 for paths we don't know.
+        var toIndex = allPaths.lastIndexOf(createPath(toLocation));
+        if (toIndex === -1) toIndex = 0;
+        var fromIndex = allPaths.lastIndexOf(createPath(fromLocation));
+        if (fromIndex === -1) fromIndex = 0;
+        var delta = toIndex - fromIndex;
+        if (delta) {
+            forceNextPop = true;
+            go(delta);
+        }
+    } // Ensure the hash is encoded properly before doing anything else.
+    var path1 = getHashPath();
+    var encodedPath1 = encodePath(path1);
+    if (path1 !== encodedPath1) replaceHashPath(encodedPath1);
+    var initialLocation = getDOMLocation();
+    var allPaths = [
+        createPath(initialLocation)
+    ]; // Public interface
+    function createHref(location) {
+        var baseTag = document.querySelector('base');
+        var href = '';
+        if (baseTag && baseTag.getAttribute('href')) href = stripHash(window.location.href);
+        return href + '#' + encodePath(basename + createPath(location));
+    }
+    function push(path2, state) {
+        _tinyWarningDefault.default(state === undefined, 'Hash history cannot push state; it is ignored');
+        var action = 'PUSH';
+        var location = createLocation(path2, undefined, undefined, history.location);
+        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+            if (!ok) return;
+            var path = createPath(location);
+            var encodedPath = encodePath(basename + path);
+            var hashChanged = getHashPath() !== encodedPath;
+            if (hashChanged) {
+                // We cannot tell if a hashchange was caused by a PUSH, so we'd
+                // rather setState here and ignore the hashchange. The caveat here
+                // is that other hash histories in the page will consider it a POP.
+                ignorePath = path;
+                pushHashPath(encodedPath);
+                var prevIndex = allPaths.lastIndexOf(createPath(history.location));
+                var nextPaths = allPaths.slice(0, prevIndex + 1);
+                nextPaths.push(path);
+                allPaths = nextPaths;
+                setState({
+                    action: action,
+                    location: location
+                });
+            } else {
+                _tinyWarningDefault.default(false, 'Hash history cannot PUSH the same path; a new entry will not be added to the history stack');
+                setState();
+            }
+        });
+    }
+    function replace(path3, state) {
+        _tinyWarningDefault.default(state === undefined, 'Hash history cannot replace state; it is ignored');
+        var action = 'REPLACE';
+        var location = createLocation(path3, undefined, undefined, history.location);
+        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+            if (!ok) return;
+            var path = createPath(location);
+            var encodedPath = encodePath(basename + path);
+            var hashChanged = getHashPath() !== encodedPath;
+            if (hashChanged) {
+                // We cannot tell if a hashchange was caused by a REPLACE, so we'd
+                // rather setState here and ignore the hashchange. The caveat here
+                // is that other hash histories in the page will consider it a POP.
+                ignorePath = path;
+                replaceHashPath(encodedPath);
+            }
+            var prevIndex = allPaths.indexOf(createPath(history.location));
+            if (prevIndex !== -1) allPaths[prevIndex] = path;
+            setState({
+                action: action,
+                location: location
+            });
+        });
+    }
+    function go(n) {
+        _tinyWarningDefault.default(canGoWithoutReload, 'Hash history go(n) causes a full page reload in this browser');
+        globalHistory.go(n);
+    }
+    function goBack() {
+        go(-1);
+    }
+    function goForward() {
+        go(1);
+    }
+    var listenerCount = 0;
+    function checkDOMListeners(delta) {
+        listenerCount += delta;
+        if (listenerCount === 1 && delta === 1) window.addEventListener(HashChangeEvent$1, handleHashChange);
+        else if (listenerCount === 0) window.removeEventListener(HashChangeEvent$1, handleHashChange);
+    }
+    var isBlocked = false;
+    function block(prompt) {
+        if (prompt === void 0) prompt = false;
+        var unblock = transitionManager.setPrompt(prompt);
+        if (!isBlocked) {
+            checkDOMListeners(1);
+            isBlocked = true;
+        }
+        return function() {
+            if (isBlocked) {
+                isBlocked = false;
+                checkDOMListeners(-1);
+            }
+            return unblock();
+        };
+    }
+    function listen(listener) {
+        var unlisten = transitionManager.appendListener(listener);
+        checkDOMListeners(1);
+        return function() {
+            checkDOMListeners(-1);
+            unlisten();
+        };
+    }
+    var history = {
+        length: globalHistory.length,
+        action: 'POP',
+        location: initialLocation,
+        createHref: createHref,
+        push: push,
+        replace: replace,
+        go: go,
+        goBack: goBack,
+        goForward: goForward,
+        block: block,
+        listen: listen
+    };
+    return history;
+}
+function clamp(n, lowerBound, upperBound) {
+    return Math.min(Math.max(n, lowerBound), upperBound);
+}
+/**
+ * Creates a history object that stores locations in memory.
+ */ function createMemoryHistory(props) {
+    if (props === void 0) props = {
+    };
+    var _props = props, getUserConfirmation = _props.getUserConfirmation, _props$initialEntries = _props.initialEntries, initialEntries = _props$initialEntries === void 0 ? [
+        '/'
+    ] : _props$initialEntries, _props$initialIndex = _props.initialIndex, initialIndex = _props$initialIndex === void 0 ? 0 : _props$initialIndex, _props$keyLength = _props.keyLength, keyLength = _props$keyLength === void 0 ? 6 : _props$keyLength;
+    var transitionManager = createTransitionManager();
+    function setState(nextState) {
+        _extendsDefault.default(history, nextState);
+        history.length = history.entries.length;
+        transitionManager.notifyListeners(history.location, history.action);
+    }
+    function createKey() {
+        return Math.random().toString(36).substr(2, keyLength);
+    }
+    var index = clamp(initialIndex, 0, initialEntries.length - 1);
+    var entries = initialEntries.map(function(entry) {
+        return typeof entry === 'string' ? createLocation(entry, undefined, createKey()) : createLocation(entry, undefined, entry.key || createKey());
+    }); // Public interface
+    var createHref = createPath;
+    function push(path, state) {
+        _tinyWarningDefault.default(!(typeof path === 'object' && path.state !== undefined && state !== undefined), "You should avoid providing a 2nd state argument to push when the 1st argument is a location-like object that already has state; it is ignored");
+        var action = 'PUSH';
+        var location = createLocation(path, state, createKey(), history.location);
+        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+            if (!ok) return;
+            var prevIndex = history.index;
+            var nextIndex = prevIndex + 1;
+            var nextEntries = history.entries.slice(0);
+            if (nextEntries.length > nextIndex) nextEntries.splice(nextIndex, nextEntries.length - nextIndex, location);
+            else nextEntries.push(location);
+            setState({
+                action: action,
+                location: location,
+                index: nextIndex,
+                entries: nextEntries
+            });
+        });
+    }
+    function replace(path, state) {
+        _tinyWarningDefault.default(!(typeof path === 'object' && path.state !== undefined && state !== undefined), "You should avoid providing a 2nd state argument to replace when the 1st argument is a location-like object that already has state; it is ignored");
+        var action = 'REPLACE';
+        var location = createLocation(path, state, createKey(), history.location);
+        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+            if (!ok) return;
+            history.entries[history.index] = location;
+            setState({
+                action: action,
+                location: location
+            });
+        });
+    }
+    function go(n) {
+        var nextIndex = clamp(history.index + n, 0, history.entries.length - 1);
+        var action = 'POP';
+        var location = history.entries[nextIndex];
+        transitionManager.confirmTransitionTo(location, action, getUserConfirmation, function(ok) {
+            if (ok) setState({
+                action: action,
+                location: location,
+                index: nextIndex
+            });
+            else // Mimic the behavior of DOM histories by
+            // causing a render after a cancelled POP.
+            setState();
+        });
+    }
+    function goBack() {
+        go(-1);
+    }
+    function goForward() {
+        go(1);
+    }
+    function canGo(n) {
+        var nextIndex = history.index + n;
+        return nextIndex >= 0 && nextIndex < history.entries.length;
+    }
+    function block(prompt) {
+        if (prompt === void 0) prompt = false;
+        return transitionManager.setPrompt(prompt);
+    }
+    function listen(listener) {
+        return transitionManager.appendListener(listener);
+    }
+    var history = {
+        length: entries.length,
+        action: 'POP',
+        location: entries[index],
+        index: index,
+        entries: entries,
+        createHref: createHref,
+        push: push,
+        replace: replace,
+        go: go,
+        goBack: goBack,
+        goForward: goForward,
+        canGo: canGo,
+        block: block,
+        listen: listen
+    };
+    return history;
+}
+
+},{"@babel/runtime/helpers/esm/extends":"5inYT","resolve-pathname":"k5Rju","value-equal":"bjuoN","tiny-warning":"eDUdC","tiny-invariant":"9t1GA","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"k5Rju":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function isAbsolute(pathname) {
+    return pathname.charAt(0) === '/';
+}
+// About 1.5x faster than the two-arg version of Array#splice()
+function spliceOne(list, index) {
+    for(var i = index, k = i + 1, n = list.length; k < n; i += 1, k += 1)list[i] = list[k];
+    list.pop();
+}
+// This implementation is based heavily on node's url.parse
+function resolvePathname(to, from) {
+    if (from === undefined) from = '';
+    var toParts = to && to.split('/') || [];
+    var fromParts = from && from.split('/') || [];
+    var isToAbs = to && isAbsolute(to);
+    var isFromAbs = from && isAbsolute(from);
+    var mustEndAbs = isToAbs || isFromAbs;
+    if (to && isAbsolute(to)) // to is absolute
+    fromParts = toParts;
+    else if (toParts.length) {
+        // to is relative, drop the filename
+        fromParts.pop();
+        fromParts = fromParts.concat(toParts);
+    }
+    if (!fromParts.length) return '/';
+    var hasTrailingSlash;
+    if (fromParts.length) {
+        var last = fromParts[fromParts.length - 1];
+        hasTrailingSlash = last === '.' || last === '..' || last === '';
+    } else hasTrailingSlash = false;
+    var up = 0;
+    for(var i = fromParts.length; i >= 0; i--){
+        var part = fromParts[i];
+        if (part === '.') spliceOne(fromParts, i);
+        else if (part === '..') {
+            spliceOne(fromParts, i);
+            up++;
+        } else if (up) {
+            spliceOne(fromParts, i);
+            up--;
+        }
+    }
+    if (!mustEndAbs) for(; up--;)fromParts.unshift('..');
+    if (mustEndAbs && fromParts[0] !== '' && (!fromParts[0] || !isAbsolute(fromParts[0]))) fromParts.unshift('');
+    var result = fromParts.join('/');
+    if (hasTrailingSlash && result.substr(-1) !== '/') result += '/';
+    return result;
+}
+exports.default = resolvePathname;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"bjuoN":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+function valueOf(obj) {
+    return obj.valueOf ? obj.valueOf() : Object.prototype.valueOf.call(obj);
+}
+function valueEqual(a, b) {
+    // Test for strict equality first.
+    if (a === b) return true;
+    // Otherwise, if either of them == null they are not equal.
+    if (a == null || b == null) return false;
+    if (Array.isArray(a)) return Array.isArray(b) && a.length === b.length && a.every(function(item, index) {
+        return valueEqual(item, b[index]);
+    });
+    if (typeof a === 'object' || typeof b === 'object') {
+        var aValue = valueOf(a);
+        var bValue = valueOf(b);
+        if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);
+        return Object.keys(Object.assign({
+        }, a, b)).every(function(key) {
+            return valueEqual(a[key], b[key]);
+        });
+    }
+    return false;
+}
+exports.default = valueEqual;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"eDUdC":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var isProduction = false;
+function warning(condition, message) {
+    if (!isProduction) {
+        if (condition) return;
+        var text = "Warning: " + message;
+        if (typeof console !== 'undefined') console.warn(text);
+        try {
+            throw Error(text);
+        } catch (x) {
+        }
+    }
+}
+exports.default = warning;
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"9t1GA":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "default", ()=>invariant
+);
+var isProduction = false;
+var prefix = 'Invariant failed';
+function invariant(condition, message) {
+    if (condition) return;
+    if (isProduction) throw new Error(prefix);
+    var provided = typeof message === 'function' ? message() : message;
+    var value = provided ? prefix + ": " + provided : prefix;
+    throw new Error(value);
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"dGlTt":[function(require,module,exports) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _inheritsLoose = require("@babel/runtime/helpers/esm/inheritsLoose");
+var _inheritsLooseDefault = parcelHelpers.interopDefault(_inheritsLoose);
+var _propTypes = require("prop-types");
+var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _tinyWarning = require("tiny-warning");
+var _tinyWarningDefault = parcelHelpers.interopDefault(_tinyWarning);
+var global = arguments[3];
+var MAX_SIGNED_31_BIT_INT = 1073741823;
+var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : {
+};
+function getUniqueId() {
+    var key = '__global_unique_id__';
+    return commonjsGlobal[key] = (commonjsGlobal[key] || 0) + 1;
+}
+function objectIs(x, y) {
+    if (x === y) return x !== 0 || 1 / x === 1 / y;
+    else return x !== x && y !== y;
+}
+function createEventEmitter(value) {
+    var handlers = [];
+    return {
+        on: function on(handler) {
+            handlers.push(handler);
+        },
+        off: function off(handler) {
+            handlers = handlers.filter(function(h) {
+                return h !== handler;
+            });
+        },
+        get: function get() {
+            return value;
+        },
+        set: function set(newValue, changedBits) {
+            value = newValue;
+            handlers.forEach(function(handler) {
+                return handler(value, changedBits);
+            });
+        }
+    };
+}
+function onlyChild(children) {
+    return Array.isArray(children) ? children[0] : children;
+}
+function createReactContext(defaultValue, calculateChangedBits) {
+    var _Provider$childContex, _Consumer$contextType;
+    var contextProp = '__create-react-context-' + getUniqueId() + '__';
+    var Provider1 = /*#__PURE__*/ function(_Component) {
+        _inheritsLooseDefault.default(Provider, _Component);
+        function Provider() {
+            var _this;
+            _this = _Component.apply(this, arguments) || this;
+            _this.emitter = createEventEmitter(_this.props.value);
+            return _this;
+        }
+        var _proto = Provider.prototype;
+        _proto.getChildContext = function getChildContext() {
+            var _ref;
+            return _ref = {
+            }, _ref[contextProp] = this.emitter, _ref;
+        };
+        _proto.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+            if (this.props.value !== nextProps.value) {
+                var oldValue = this.props.value;
+                var newValue = nextProps.value;
+                var changedBits;
+                if (objectIs(oldValue, newValue)) changedBits = 0;
+                else {
+                    changedBits = typeof calculateChangedBits === 'function' ? calculateChangedBits(oldValue, newValue) : MAX_SIGNED_31_BIT_INT;
+                    _tinyWarningDefault.default((changedBits & MAX_SIGNED_31_BIT_INT) === changedBits, "calculateChangedBits: Expected the return value to be a 31-bit integer. Instead received: " + changedBits);
+                    changedBits |= 0;
+                    if (changedBits !== 0) this.emitter.set(nextProps.value, changedBits);
+                }
+            }
+        };
+        _proto.render = function render() {
+            return this.props.children;
+        };
+        return Provider;
+    }(_react.Component);
+    Provider1.childContextTypes = (_Provider$childContex = {
+    }, _Provider$childContex[contextProp] = _propTypesDefault.default.object.isRequired, _Provider$childContex);
+    var Consumer1 = /*#__PURE__*/ function(_Component2) {
+        _inheritsLooseDefault.default(Consumer, _Component2);
+        function Consumer() {
+            var _this2;
+            _this2 = _Component2.apply(this, arguments) || this;
+            _this2.state = {
+                value: _this2.getValue()
+            };
+            _this2.onUpdate = function(newValue, changedBits) {
+                var observedBits = _this2.observedBits | 0;
+                if ((observedBits & changedBits) !== 0) _this2.setState({
+                    value: _this2.getValue()
+                });
+            };
+            return _this2;
+        }
+        var _proto2 = Consumer.prototype;
+        _proto2.componentWillReceiveProps = function componentWillReceiveProps(nextProps) {
+            var observedBits = nextProps.observedBits;
+            this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT : observedBits;
+        };
+        _proto2.componentDidMount = function componentDidMount() {
+            if (this.context[contextProp]) this.context[contextProp].on(this.onUpdate);
+            var observedBits = this.props.observedBits;
+            this.observedBits = observedBits === undefined || observedBits === null ? MAX_SIGNED_31_BIT_INT : observedBits;
+        };
+        _proto2.componentWillUnmount = function componentWillUnmount() {
+            if (this.context[contextProp]) this.context[contextProp].off(this.onUpdate);
+        };
+        _proto2.getValue = function getValue() {
+            if (this.context[contextProp]) return this.context[contextProp].get();
+            else return defaultValue;
+        };
+        _proto2.render = function render() {
+            return onlyChild(this.props.children)(this.state.value);
+        };
+        return Consumer;
+    }(_react.Component);
+    Consumer1.contextTypes = (_Consumer$contextType = {
+    }, _Consumer$contextType[contextProp] = _propTypesDefault.default.object, _Consumer$contextType);
+    return {
+        Provider: Provider1,
+        Consumer: Consumer1
+    };
+}
+var index = _reactDefault.default.createContext || createReactContext;
+exports.default = index;
+
+},{"react":"4mchR","@babel/runtime/helpers/esm/inheritsLoose":"6cZja","prop-types":"2bysO","tiny-warning":"eDUdC","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"5Ehp7":[function(require,module,exports) {
+var isarray = require('isarray');
+/**
+ * Expose `pathToRegexp`.
+ */ module.exports = pathToRegexp;
+module.exports.parse = parse;
+module.exports.compile = compile;
+module.exports.tokensToFunction = tokensToFunction;
+module.exports.tokensToRegExp = tokensToRegExp;
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */ var PATH_REGEXP = new RegExp([
+    // Match escaped characters that would otherwise appear in future matches.
+    // This allows the user to escape special characters that won't transform.
+    '(\\\\.)',
+    // Match Express-style parameters and un-named parameters with a prefix
+    // and optional suffixes. Matches appear as:
+    //
+    // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+    // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+    // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+    '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g');
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */ function parse(str, options) {
+    var tokens = [];
+    var key = 0;
+    var index = 0;
+    var path = '';
+    var defaultDelimiter = options && options.delimiter || '/';
+    var res;
+    while((res = PATH_REGEXP.exec(str)) != null){
+        var m = res[0];
+        var escaped = res[1];
+        var offset = res.index;
+        path += str.slice(index, offset);
+        index = offset + m.length;
+        // Ignore already escaped sequences.
+        if (escaped) {
+            path += escaped[1];
+            continue;
+        }
+        var next = str[index];
+        var prefix = res[2];
+        var name = res[3];
+        var capture = res[4];
+        var group = res[5];
+        var modifier = res[6];
+        var asterisk = res[7];
+        // Push the current path onto the tokens.
+        if (path) {
+            tokens.push(path);
+            path = '';
+        }
+        var partial = prefix != null && next != null && next !== prefix;
+        var repeat = modifier === '+' || modifier === '*';
+        var optional = modifier === '?' || modifier === '*';
+        var delimiter = res[2] || defaultDelimiter;
+        var pattern = capture || group;
+        tokens.push({
+            name: name || key++,
+            prefix: prefix || '',
+            delimiter: delimiter,
+            optional: optional,
+            repeat: repeat,
+            partial: partial,
+            asterisk: !!asterisk,
+            pattern: pattern ? escapeGroup(pattern) : asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?'
+        });
+    }
+    // Match any characters still remaining.
+    if (index < str.length) path += str.substr(index);
+    // If the path exists, push it onto the end.
+    if (path) tokens.push(path);
+    return tokens;
+}
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */ function compile(str, options) {
+    return tokensToFunction(parse(str, options), options);
+}
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */ function encodeURIComponentPretty(str) {
+    return encodeURI(str).replace(/[\/?#]/g, function(c) {
+        return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+    });
+}
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */ function encodeAsterisk(str) {
+    return encodeURI(str).replace(/[?#]/g, function(c) {
+        return '%' + c.charCodeAt(0).toString(16).toUpperCase();
+    });
+}
+/**
+ * Expose a method for transforming tokens into the path function.
+ */ function tokensToFunction(tokens, options1) {
+    // Compile all the tokens into regexps.
+    var matches = new Array(tokens.length);
+    // Compile all the patterns before compilation.
+    for(var i1 = 0; i1 < tokens.length; i1++)if (typeof tokens[i1] === 'object') matches[i1] = new RegExp('^(?:' + tokens[i1].pattern + ')$', flags(options1));
+    return function(obj, opts) {
+        var path = '';
+        var data = obj || {
+        };
+        var options = opts || {
+        };
+        var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent;
+        for(var i = 0; i < tokens.length; i++){
+            var token = tokens[i];
+            if (typeof token === 'string') {
+                path += token;
+                continue;
+            }
+            var value = data[token.name];
+            var segment;
+            if (value == null) {
+                if (token.optional) {
+                    // Prepend partial segment prefixes.
+                    if (token.partial) path += token.prefix;
+                    continue;
+                } else throw new TypeError('Expected "' + token.name + '" to be defined');
+            }
+            if (isarray(value)) {
+                if (!token.repeat) throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`');
+                if (value.length === 0) {
+                    if (token.optional) continue;
+                    else throw new TypeError('Expected "' + token.name + '" to not be empty');
+                }
+                for(var j = 0; j < value.length; j++){
+                    segment = encode(value[j]);
+                    if (!matches[i].test(segment)) throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`');
+                    path += (j === 0 ? token.prefix : token.delimiter) + segment;
+                }
+                continue;
+            }
+            segment = token.asterisk ? encodeAsterisk(value) : encode(value);
+            if (!matches[i].test(segment)) throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"');
+            path += token.prefix + segment;
+        }
+        return path;
+    };
+}
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */ function escapeString(str) {
+    return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1');
+}
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */ function escapeGroup(group) {
+    return group.replace(/([=!:$\/()])/g, '\\$1');
+}
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */ function attachKeys(re, keys) {
+    re.keys = keys;
+    return re;
+}
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */ function flags(options) {
+    return options && options.sensitive ? '' : 'i';
+}
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */ function regexpToRegexp(path, keys) {
+    // Use a negative lookahead to match only capturing groups.
+    var groups = path.source.match(/\((?!\?)/g);
+    if (groups) for(var i = 0; i < groups.length; i++)keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+    });
+    return attachKeys(path, keys);
+}
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */ function arrayToRegexp(path, keys, options) {
+    var parts = [];
+    for(var i = 0; i < path.length; i++)parts.push(pathToRegexp(path[i], keys, options).source);
+    var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options));
+    return attachKeys(regexp, keys);
+}
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */ function stringToRegexp(path, keys, options) {
+    return tokensToRegExp(parse(path, options), keys, options);
+}
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */ function tokensToRegExp(tokens, keys, options) {
+    if (!isarray(keys)) {
+        options = keys || options;
+        keys = [];
+    }
+    options = options || {
+    };
+    var strict = options.strict;
+    var end = options.end !== false;
+    var route = '';
+    // Iterate over the tokens and create our regexp string.
+    for(var i = 0; i < tokens.length; i++){
+        var token = tokens[i];
+        if (typeof token === 'string') route += escapeString(token);
+        else {
+            var prefix = escapeString(token.prefix);
+            var capture = '(?:' + token.pattern + ')';
+            keys.push(token);
+            if (token.repeat) capture += '(?:' + prefix + capture + ')*';
+            if (token.optional) {
+                if (!token.partial) capture = '(?:' + prefix + '(' + capture + '))?';
+                else capture = prefix + '(' + capture + ')?';
+            } else capture = prefix + '(' + capture + ')';
+            route += capture;
+        }
+    }
+    var delimiter = escapeString(options.delimiter || '/');
+    var endsWithDelimiter = route.slice(-delimiter.length) === delimiter;
+    // In non-strict mode we allow a slash at the end of match. If the path to
+    // match already ends with a slash, we remove it for consistency. The slash
+    // is valid at the end of a path match, not in the middle. This is important
+    // in non-ending mode, where "/test/" shouldn't match "/test//route".
+    if (!strict) route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?';
+    if (end) route += '$';
+    else // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)';
+    return attachKeys(new RegExp('^' + route, flags(options)), keys);
+}
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */ function pathToRegexp(path, keys, options) {
+    if (!isarray(keys)) {
+        options = keys || options;
+        keys = [];
+    }
+    options = options || {
+    };
+    if (path instanceof RegExp) return regexpToRegexp(path, keys);
+    if (isarray(path)) return arrayToRegexp(path, keys, options);
+    return stringToRegexp(path, keys, options);
+}
+
+},{"isarray":"6YIK7"}],"6YIK7":[function(require,module,exports) {
+module.exports = Array.isArray || function(arr) {
+    return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+},{}],"6NILB":[function(require,module,exports) {
+'use strict';
+var reactIs = require('react-is');
+/**
+ * Copyright 2015, Yahoo! Inc.
+ * Copyrights licensed under the New BSD License. See the accompanying LICENSE file for terms.
+ */ var REACT_STATICS = {
+    childContextTypes: true,
+    contextType: true,
+    contextTypes: true,
+    defaultProps: true,
+    displayName: true,
+    getDefaultProps: true,
+    getDerivedStateFromError: true,
+    getDerivedStateFromProps: true,
+    mixins: true,
+    propTypes: true,
+    type: true
+};
+var KNOWN_STATICS = {
+    name: true,
+    length: true,
+    prototype: true,
+    caller: true,
+    callee: true,
+    arguments: true,
+    arity: true
+};
+var FORWARD_REF_STATICS = {
+    '$$typeof': true,
+    render: true,
+    defaultProps: true,
+    displayName: true,
+    propTypes: true
+};
+var MEMO_STATICS = {
+    '$$typeof': true,
+    compare: true,
+    defaultProps: true,
+    displayName: true,
+    propTypes: true,
+    type: true
+};
+var TYPE_STATICS = {
+};
+TYPE_STATICS[reactIs.ForwardRef] = FORWARD_REF_STATICS;
+TYPE_STATICS[reactIs.Memo] = MEMO_STATICS;
+function getStatics(component) {
+    // React v16.11 and below
+    if (reactIs.isMemo(component)) return MEMO_STATICS;
+     // React v16.12 and above
+    return TYPE_STATICS[component['$$typeof']] || REACT_STATICS;
+}
+var defineProperty = Object.defineProperty;
+var getOwnPropertyNames = Object.getOwnPropertyNames;
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+var getPrototypeOf = Object.getPrototypeOf;
+var objectPrototype = Object.prototype;
+function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
+    if (typeof sourceComponent !== 'string') {
+        // don't hoist over string (html) components
+        if (objectPrototype) {
+            var inheritedComponent = getPrototypeOf(sourceComponent);
+            if (inheritedComponent && inheritedComponent !== objectPrototype) hoistNonReactStatics(targetComponent, inheritedComponent, blacklist);
+        }
+        var keys = getOwnPropertyNames(sourceComponent);
+        if (getOwnPropertySymbols) keys = keys.concat(getOwnPropertySymbols(sourceComponent));
+        var targetStatics = getStatics(targetComponent);
+        var sourceStatics = getStatics(sourceComponent);
+        for(var i = 0; i < keys.length; ++i){
+            var key = keys[i];
+            if (!KNOWN_STATICS[key] && !(blacklist && blacklist[key]) && !(sourceStatics && sourceStatics[key]) && !(targetStatics && targetStatics[key])) {
+                var descriptor = getOwnPropertyDescriptor(sourceComponent, key);
+                try {
+                    // Avoid failures from read-only properties
+                    defineProperty(targetComponent, key, descriptor);
+                } catch (e) {
+                }
+            }
+        }
+    }
+    return targetComponent;
+}
+module.exports = hoistNonReactStatics;
+
+},{"react-is":"5KyfE"}],"04zIX":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$6989 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38600,6 +39660,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
 var _movieCardScss = require("./movie-card.scss");
 class MovieCard extends _reactDefault.default.Component {
     render() {
@@ -38615,7 +39676,7 @@ class MovieCard extends _reactDefault.default.Component {
             className: "text-center",
             __source: {
                 fileName: "src/components/movie-card/movie-card.jsx",
-                lineNumber: 18,
+                lineNumber: 19,
                 columnNumber: 4
             },
             __self: this,
@@ -38624,7 +39685,7 @@ class MovieCard extends _reactDefault.default.Component {
                     as: "h5",
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 19,
+                        lineNumber: 20,
                         columnNumber: 5
                     },
                     __self: this,
@@ -38637,7 +39698,7 @@ class MovieCard extends _reactDefault.default.Component {
                     crossOrigin: "anonymous",
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 20,
+                        lineNumber: 21,
                         columnNumber: 5
                     },
                     __self: this
@@ -38645,7 +39706,7 @@ class MovieCard extends _reactDefault.default.Component {
                 /*#__PURE__*/ _jsxRuntime.jsxs(Body, {
                     __source: {
                         fileName: "src/components/movie-card/movie-card.jsx",
-                        lineNumber: 26,
+                        lineNumber: 27,
                         columnNumber: 5
                     },
                     __self: this,
@@ -38653,23 +39714,30 @@ class MovieCard extends _reactDefault.default.Component {
                         /*#__PURE__*/ _jsxRuntime.jsx(Text, {
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 27,
+                                lineNumber: 28,
                                 columnNumber: 6
                             },
                             __self: this,
                             children: Description
                         }),
-                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                            onClick: ()=>onMovieClick(movie)
-                            ,
-                            variant: "primary",
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                            to: `/movies/${movie._id}`,
                             __source: {
                                 fileName: "src/components/movie-card/movie-card.jsx",
-                                lineNumber: 28,
-                                columnNumber: 6
+                                lineNumber: 29,
+                                columnNumber: 11
                             },
                             __self: this,
-                            children: "Open"
+                            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                variant: "primary",
+                                __source: {
+                                    fileName: "src/components/movie-card/movie-card.jsx",
+                                    lineNumber: 30,
+                                    columnNumber: 6
+                                },
+                                __self: this,
+                                children: "Open"
+                            })
                         })
                     ]
                 })
@@ -38705,7 +39773,7 @@ exports.default = MovieCard;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","prop-types":"2bysO","react-bootstrap":"9qMdX","./movie-card.scss":"8rKa8","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"8rKa8":[function() {},{}],"8S478":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","prop-types":"2bysO","react-bootstrap":"9qMdX","react-router-dom":"etVME","./movie-card.scss":"8rKa8","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"8rKa8":[function() {},{}],"8S478":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$4e70 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38720,6 +39788,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
+var _reactRouterDom = require("react-router-dom");
 var _movieViewScss = require("./movie-view.scss");
 class MovieView extends _reactDefault.default.Component {
     render() {
@@ -38732,7 +39801,7 @@ class MovieView extends _reactDefault.default.Component {
             },
             __source: {
                 fileName: "src/components/movie-view/movie-view.jsx",
-                lineNumber: 12,
+                lineNumber: 13,
                 columnNumber: 4
             },
             __self: this,
@@ -38744,7 +39813,7 @@ class MovieView extends _reactDefault.default.Component {
                     crossOrigin: "anonymous",
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 15,
+                        lineNumber: 16,
                         columnNumber: 5
                     },
                     __self: this
@@ -38752,7 +39821,7 @@ class MovieView extends _reactDefault.default.Component {
                 /*#__PURE__*/ _jsxRuntime.jsxs(Body, {
                     __source: {
                         fileName: "src/components/movie-view/movie-view.jsx",
-                        lineNumber: 21,
+                        lineNumber: 22,
                         columnNumber: 5
                     },
                     __self: this,
@@ -38760,7 +39829,7 @@ class MovieView extends _reactDefault.default.Component {
                         /*#__PURE__*/ _jsxRuntime.jsx(Title, {
                             __source: {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 22,
+                                lineNumber: 23,
                                 columnNumber: 6
                             },
                             __self: this,
@@ -38769,7 +39838,7 @@ class MovieView extends _reactDefault.default.Component {
                         /*#__PURE__*/ _jsxRuntime.jsx(Text, {
                             __source: {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 23,
+                                lineNumber: 24,
                                 columnNumber: 6
                             },
                             __self: this,
@@ -38777,15 +39846,53 @@ class MovieView extends _reactDefault.default.Component {
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                             className: "btn",
-                            onClick: ()=>onBackClick(null)
+                            onClick: ()=>onBackClick()
                             ,
                             __source: {
                                 fileName: "src/components/movie-view/movie-view.jsx",
-                                lineNumber: 24,
+                                lineNumber: 25,
                                 columnNumber: 6
                             },
                             __self: this,
                             children: "Back"
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                            to: `directors/${movie.Director.Name}`,
+                            __source: {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 28,
+                                columnNumber: 11
+                            },
+                            __self: this,
+                            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                variant: "primary",
+                                __source: {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 29,
+                                    columnNumber: 13
+                                },
+                                __self: this,
+                                children: "Director"
+                            })
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                            to: `genres/${movie.Genre.Name}`,
+                            __source: {
+                                fileName: "src/components/movie-view/movie-view.jsx",
+                                lineNumber: 31,
+                                columnNumber: 11
+                            },
+                            __self: this,
+                            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                variant: "primary",
+                                __source: {
+                                    fileName: "src/components/movie-view/movie-view.jsx",
+                                    lineNumber: 32,
+                                    columnNumber: 13
+                                },
+                                __self: this,
+                                children: "Genre"
+                            })
                         })
                     ]
                 })
@@ -38821,7 +39928,7 @@ exports.default = MovieView;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","prop-types":"2bysO","./movie-view.scss":"lHyjt","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"lHyjt":[function() {},{}],"7IGV8":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","prop-types":"2bysO","./movie-view.scss":"lHyjt","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","react-router-dom":"etVME"}],"lHyjt":[function() {},{}],"7IGV8":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8f6c = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38835,6 +39942,7 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _axios = require("axios");
 var _axiosDefault = parcelHelpers.interopDefault(_axios);
+var _reactRouterDom = require("react-router-dom");
 var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
@@ -38849,8 +39957,10 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
         _axiosDefault.default.post('https://film-fever-api.herokuapp.com/login', {
             Username: username,
             Password: password
-        }).then((res)=>onLoggedIn(res.data)
-        ).catch((err)=>console.log(err)
+        }).then((res)=>{
+            onLoggedIn(res.data);
+            onRouteChange('login');
+        }).catch((err)=>console.log(err)
         );
     };
     const switchToSignup = ()=>{
@@ -38861,7 +39971,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
         className: "mt-2",
         __source: {
             fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 31,
+            lineNumber: 35,
             columnNumber: 3
         },
         __self: this,
@@ -38870,7 +39980,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
                 controlId: "formUsername",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 32,
+                    lineNumber: 36,
                     columnNumber: 4
                 },
                 __self: this,
@@ -38878,7 +39988,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
                     /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 33,
+                            lineNumber: 37,
                             columnNumber: 5
                         },
                         __self: this,
@@ -38893,7 +40003,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 34,
+                            lineNumber: 38,
                             columnNumber: 5
                         },
                         __self: this
@@ -38904,7 +40014,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
                 controlId: "formPassword",
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 42,
+                    lineNumber: 46,
                     columnNumber: 4
                 },
                 __self: this,
@@ -38912,7 +40022,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
                     /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 43,
+                            lineNumber: 47,
                             columnNumber: 5
                         },
                         __self: this,
@@ -38927,7 +40037,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
                         ,
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 44,
+                            lineNumber: 48,
                             columnNumber: 5
                         },
                         __self: this
@@ -38938,7 +40048,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
                         className: "m-2",
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 51,
+                            lineNumber: 55,
                             columnNumber: 5
                         },
                         __self: this,
@@ -38949,22 +40059,30 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
             /*#__PURE__*/ _jsxRuntime.jsxs("p", {
                 __source: {
                     fileName: "src/components/login-view/login-view.jsx",
-                    lineNumber: 55,
+                    lineNumber: 59,
                     columnNumber: 4
                 },
                 __self: this,
                 children: [
                     "Don't have an account?",
-                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                        type: "button",
-                        onClick: switchToSignup,
+                    /*#__PURE__*/ _jsxRuntime.jsx(_reactRouterDom.Link, {
+                        to: "/register",
                         __source: {
                             fileName: "src/components/login-view/login-view.jsx",
-                            lineNumber: 57,
-                            columnNumber: 5
+                            lineNumber: 61,
+                            columnNumber: 9
                         },
                         __self: this,
-                        children: "Sign Up"
+                        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                            variant: "primary",
+                            __source: {
+                                fileName: "src/components/login-view/login-view.jsx",
+                                lineNumber: 62,
+                                columnNumber: 5
+                            },
+                            __self: this,
+                            children: "Sign Up"
+                        })
                     })
                 ]
             })
@@ -38974,7 +40092,7 @@ function LoginView({ onRouteChange , onLoggedIn  }) {
 _s(LoginView, "wuQOK7xaXdVz4RMrZQhWbI751Oc=");
 _c = LoginView;
 LoginView.propTypes = {
-    onRouteChange: _propTypesDefault.default.func.isRequired,
+    onRouteChange: _propTypesDefault.default.func,
     onLoggedIn: _propTypesDefault.default.func.isRequired
 };
 exports.default = LoginView;
@@ -38986,7 +40104,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","axios":"1IeuP","react-bootstrap":"9qMdX","prop-types":"2bysO","./login-view.scss":"hONex","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"hONex":[function() {},{}],"lGbHG":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","axios":"1IeuP","react-bootstrap":"9qMdX","prop-types":"2bysO","./login-view.scss":"hONex","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","react-router-dom":"etVME"}],"hONex":[function() {},{}],"hRkrD":[function() {},{}],"lGbHG":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$00e7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -38996,6 +40114,8 @@ try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 var _jsxRuntime = require("react/jsx-runtime");
+var _axios = require("axios");
+var _axiosDefault = parcelHelpers.interopDefault(_axios);
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
@@ -39013,18 +40133,23 @@ function RegistrationView({ onRouteChange  }) {
     const { Group , Label , Control  } = _reactBootstrap.Form;
     const handleRegister = (e)=>{
         e.preventDefault();
-    // if (password !== confirmPassword) {
-    //   alert('Passwords do not match')
-    // } else {
-    // 	onRouteChange('login')
-    // }
+        _axiosDefault.default.post('https://film-fever-api.herokuapp.com/signup', {
+            Username: username,
+            Password: password,
+            Email: email,
+            Birthday: birthday
+        }).then((res)=>{
+            const data = res.data;
+            console.log(data);
+            window.open('/', '_self');
+        }).catch((err)=>console.log('error registering the user')
+        );
     };
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form, {
         className: "mt-2",
-        noValidate: true,
         __source: {
             fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 26,
+            lineNumber: 34,
             columnNumber: 3
         },
         __self: this,
@@ -39032,7 +40157,7 @@ function RegistrationView({ onRouteChange  }) {
             /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 27,
+                    lineNumber: 35,
                     columnNumber: 4
                 },
                 __self: this,
@@ -39040,7 +40165,7 @@ function RegistrationView({ onRouteChange  }) {
                     /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 28,
+                            lineNumber: 36,
                             columnNumber: 5
                         },
                         __self: this,
@@ -39056,7 +40181,7 @@ function RegistrationView({ onRouteChange  }) {
                         required: true,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 29,
+                            lineNumber: 37,
                             columnNumber: 5
                         },
                         __self: this
@@ -39066,7 +40191,7 @@ function RegistrationView({ onRouteChange  }) {
             /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 39,
+                    lineNumber: 47,
                     columnNumber: 4
                 },
                 __self: this,
@@ -39074,7 +40199,7 @@ function RegistrationView({ onRouteChange  }) {
                     /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 40,
+                            lineNumber: 48,
                             columnNumber: 5
                         },
                         __self: this,
@@ -39090,7 +40215,7 @@ function RegistrationView({ onRouteChange  }) {
                         required: true,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 41,
+                            lineNumber: 49,
                             columnNumber: 5
                         },
                         __self: this
@@ -39100,7 +40225,7 @@ function RegistrationView({ onRouteChange  }) {
             /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 51,
+                    lineNumber: 59,
                     columnNumber: 4
                 },
                 __self: this,
@@ -39109,7 +40234,7 @@ function RegistrationView({ onRouteChange  }) {
                         htmlFor: "birthday",
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 52,
+                            lineNumber: 60,
                             columnNumber: 5
                         },
                         __self: this,
@@ -39124,7 +40249,7 @@ function RegistrationView({ onRouteChange  }) {
                         ,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 53,
+                            lineNumber: 61,
                             columnNumber: 5
                         },
                         __self: this
@@ -39134,7 +40259,7 @@ function RegistrationView({ onRouteChange  }) {
             /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 62,
+                    lineNumber: 70,
                     columnNumber: 4
                 },
                 __self: this,
@@ -39143,7 +40268,7 @@ function RegistrationView({ onRouteChange  }) {
                         htmlFor: "password",
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 63,
+                            lineNumber: 71,
                             columnNumber: 5
                         },
                         __self: this,
@@ -39161,7 +40286,7 @@ function RegistrationView({ onRouteChange  }) {
                         required: true,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 64,
+                            lineNumber: 72,
                             columnNumber: 5
                         },
                         __self: this
@@ -39171,7 +40296,7 @@ function RegistrationView({ onRouteChange  }) {
             /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 76,
+                    lineNumber: 84,
                     columnNumber: 4
                 },
                 __self: this,
@@ -39180,7 +40305,7 @@ function RegistrationView({ onRouteChange  }) {
                         htmlFor: "confirm-password",
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 77,
+                            lineNumber: 85,
                             columnNumber: 5
                         },
                         __self: this,
@@ -39196,7 +40321,7 @@ function RegistrationView({ onRouteChange  }) {
                         ,
                         __source: {
                             fileName: "src/components/registration-view/registration-view.jsx",
-                            lineNumber: 78,
+                            lineNumber: 86,
                             columnNumber: 5
                         },
                         __self: this
@@ -39209,7 +40334,7 @@ function RegistrationView({ onRouteChange  }) {
                 onClick: handleRegister,
                 __source: {
                     fileName: "src/components/registration-view/registration-view.jsx",
-                    lineNumber: 87,
+                    lineNumber: 95,
                     columnNumber: 4
                 },
                 __self: this,
@@ -39221,7 +40346,7 @@ function RegistrationView({ onRouteChange  }) {
 _s(RegistrationView, "xcapgbGsiRAwl+TqHi5DzQR3zm8=");
 _c = RegistrationView;
 RegistrationView.propTypes = {
-    onRouteChange: _propTypesDefault.default.func.isRequired
+    onRouteChange: _propTypesDefault.default.func
 };
 exports.default = RegistrationView;
 var _c;
@@ -39232,6 +40357,6 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","prop-types":"2bysO","./registration-view.scss":"74YgT","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"74YgT":[function() {},{}],"hRkrD":[function() {},{}],"5dhe6":[function() {},{}],"hRkrD":[function() {},{}]},["cyvyO","aRw7j","dB8et"], "dB8et", "parcelRequire17c3")
+},{"react/jsx-runtime":"6Ds2u","axios":"1IeuP","react":"4mchR","react-bootstrap":"9qMdX","prop-types":"2bysO","./registration-view.scss":"74YgT","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"74YgT":[function() {},{}],"5dhe6":[function() {},{}],"hRkrD":[function() {},{}]},["cyvyO","aRw7j","dB8et"], "dB8et", "parcelRequire17c3")
 
 //# sourceMappingURL=index.e1b27ffe.js.map
