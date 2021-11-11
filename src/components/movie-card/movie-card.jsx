@@ -7,8 +7,8 @@ import './movie-card.scss';
 
 class MovieCard extends React.Component {
 	render() {
-		const { movie, onMovieClick } = this.props;
-		const { Title, ImagePath, Description } = movie;
+		const { movie } = this.props;
+		const { Title, ImagePath, Description, _id } = movie;
 		const { Img, Body, Text, Header } = Card;
 		const cardStyling = {
 			margin: '5px',
@@ -26,16 +26,17 @@ class MovieCard extends React.Component {
 				/>
 				<Body>
 					<Text>{Description}</Text>
-          <Link to={`/movies/${movie._id}`}>
-					<Button variant='primary'>Open</Button>
+          <Link to={`/movies/${_id}`}>
+					<Button variant='primary' className="m-2">Open</Button>
           </Link>
+          <Button>Add to Favorites</Button>
 				</Body>
 			</Card>
 		);
 	}
 }
 
-const { shape, string, func, bool } = PropTypes;
+const { shape, string, bool } = PropTypes;
 
 MovieCard.propTypes = {
 	_id: string,
@@ -55,7 +56,6 @@ MovieCard.propTypes = {
 		ImagePath: string.isRequired,
 		Featured: bool,
 	}).isRequired,
-	onMovieClick: func.isRequired,
 };
 
 export default MovieCard;

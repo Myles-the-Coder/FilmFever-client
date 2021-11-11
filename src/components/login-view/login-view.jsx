@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 
 import './login-view.scss';
 
-function LoginView({ onRouteChange, onLoggedIn}) {
+function LoginView({onLoggedIn}) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 
@@ -20,13 +20,9 @@ function LoginView({ onRouteChange, onLoggedIn}) {
 			})
 			.then(res => {
         onLoggedIn(res.data)
-        onRouteChange('login')
+        console.log(res.data)
       })
 			.catch(err => console.log(err));
-	};
-
-	const switchToSignup = () => {
-		onRouteChange('register');
 	};
 
 	const { Group, Label, Control } = Form;
@@ -59,7 +55,7 @@ function LoginView({ onRouteChange, onLoggedIn}) {
 			<p>
 				Don't have an account?
         <Link to='/register'>
-				<Button variant='primary'>
+				<Button variant='link'>
 					Sign Up
 				</Button>
         </Link>
@@ -69,7 +65,6 @@ function LoginView({ onRouteChange, onLoggedIn}) {
 }
 
 LoginView.propTypes = {
-	onRouteChange: PropTypes.func,
 	onLoggedIn: PropTypes.func.isRequired,
 };
 

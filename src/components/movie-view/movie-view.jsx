@@ -7,6 +7,7 @@ import './movie-view.scss';
 class MovieView extends React.Component {
 	render() {
 		const { movie, onBackClick } = this.props;
+    const {ImagePath, Description, Director, Genre} = movie
 		const { Img, Body, Title, Text } = Card;
 
 		return (
@@ -14,23 +15,23 @@ class MovieView extends React.Component {
 				className='text-center mt-1'
 				style={{ backgroundColor: 'lightgray' }}>
 				<Img
-					src={movie.ImagePath}
+					src={ImagePath}
 					alt={movie.Title}
 					className='w-25 m-auto pt-2'
 					crossOrigin='anonymous'
 				/>
 				<Body>
 					<Title>{movie.Title}</Title>
-					<Text>{movie.Description}</Text>
+					<Text>{Description}</Text>
+          <Link to={`/directors/${Director.Name}`}>
+            <Button variant='primary'>Director</Button>
+          </Link>
+          <Link to={`/genres/${Genre.Name}`}>
+            <Button variant='primary' className='m-2'>Genre</Button>
+          </Link>
 					<Button className='btn' onClick={() => onBackClick()}>
 						Back
 					</Button>
-          <Link to={`directors/${movie.Director.Name}`}>
-            <Button variant='primary'>Director</Button>
-          </Link>
-          <Link to={`genres/${movie.Genre.Name}`}>
-            <Button variant='primary'>Genre</Button>
-          </Link>
 				</Body>
 			</Card>
 		);

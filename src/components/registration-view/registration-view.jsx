@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import './registration-view.scss';
 
-function RegistrationView({ onRouteChange }) {
+function RegistrationView({ onBackClick }) {
 	const [username, setUsername] = useState('');
 	const [password, setPassword] = useState('');
 	const [email, setEmail] = useState('');
@@ -95,6 +95,7 @@ function RegistrationView({ onRouteChange }) {
 			<Button type='submit' className='m-2' onClick={handleRegister}>
 				Register
 			</Button>
+      <Button type='button' onClick={onBackClick}>Return to Login</Button>
 		</Form>
 	);
 }

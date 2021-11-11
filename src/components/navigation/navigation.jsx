@@ -5,10 +5,10 @@ import PropTypes from "prop-types"
 import './navigation.scss'
 import logo from '../../img/FilmFever.png'
 
-const Navigation = ({ onLoggedOut, route }) => {
-  const {Brand} = Navbar
+const Navigation = ({ onLoggedOut, user }) => {
+  const {Brand, Toggle, Collapse} = Navbar
 
-  if (route === 'login') {
+  if (!user) {
   return (
       <Navbar bg="light">
       <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
@@ -16,16 +16,20 @@ const Navigation = ({ onLoggedOut, route }) => {
 		);
   } else {
     return (
-      <>
-    <Navbar bg="light">
+    <Navbar collapseOnSelect expand='lg' bg="light">
     <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
+    <Toggle aria-controls="responsive-navbar-nav"/>
+    <Collapse id='responsive-navbar-nav' className='justify-content-end'>
 				<Link to='/'>
-        <Button className='btn' onClick={onLoggedOut}>
+        <Button className='btn' onClick={onLoggedOut} className='m-2'>
           Sign Out
 				</Button>
         </Link>
+        <Link to={`/users/${user}`}>
+        <Button>Profile</Button>
+        </Link>
+    </Collapse>
 			</Navbar>
-      </>
     )
   }
 };
