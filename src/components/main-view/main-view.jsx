@@ -14,7 +14,6 @@ import DirectorView from '../director-view/director-view';
 import LoginView from '../login-view/login-view';
 import RegistrationView from '../registration-view/registration-view';
 import ProfileView from '../profile-view/profile-view';
-import UserUpdateForm from '../profile-view/user-update-form';
 import { Row, Col, Container } from 'react-bootstrap';
 
 import './main-view.scss';
@@ -34,10 +33,7 @@ class MainView extends React.Component {
 			this.setState({ user: localStorage.getItem('user') });
 			this.getMovies(accessToken);
 		}
-	};
-
-	setSelectedMovie = newSelectedMovie => {
-		this.setState({ selectedMovie: newSelectedMovie });
+    console.log(this.state.user)
 	};
 
 	onLoggedIn = authData => {
@@ -62,6 +58,19 @@ class MainView extends React.Component {
 			.then(res => this.setState({ movies: res.data }))
 			.catch(err => console.log(err));
 	};
+
+  addMovieToFavorites = (movieId) => {
+    const user = localStorage.getItem('user')
+    const token = localStorage.getItem('token')
+    axios.post(`https://film-fever-api.herokuapp.com/users/${user}/movies/${movieId}`, {
+      FavoriteMovies: movieId
+    } , {
+      headers: { Authorization: `Bearer ${token}` },
+    }).then(res => {
+      console.log(res)
+      alert('Added to Favorites List')
+    }).catch(err => console.log(err))
+  }
 
 	render() {
 		let { movies, user } = this.state;
@@ -91,7 +100,7 @@ class MainView extends React.Component {
 
 										return movies.map(movie => (
 											<Col xs={10} sm={6} md={4} lg={3} key={movie._id}>
-												<MovieCard movie={movie} />
+												<MovieCard movie={movie} addMovieToFavorites={this.addMovieToFavorites}/>
 											</Col>
 										));
 									}}
@@ -133,6 +142,7 @@ class MainView extends React.Component {
 														movie => movie._id === match.params.movieId
 													)}
 													onBackClick={() => history.goBack()}
+                          addMovieToFavorites={this.addMovieToFavorites}
 												/>
 											</Col>
 										);
@@ -200,7 +210,7 @@ class MainView extends React.Component {
 								<Route
 									exact
 									path='/users/:Username'
-									render={history => {
+									render={({history}) => {
 										if (!user)
 											return (
 												<LoginView onLoggedIn={user => this.onLoggedIn(user)} />
@@ -212,12 +222,13 @@ class MainView extends React.Component {
 												history={history}
 												movies={movies}
 												user={user}
+                        onBackClick={() => history.goBack()}
 											/>
 										);
 									}}
 								/>
 
-								<Route
+								{/* <Route
 									exact
 									path='/users/update/:Username'
 									render={() => {
@@ -237,7 +248,7 @@ class MainView extends React.Component {
 											</Col>
 										);
 									}}
-								/>
+								/> */}
 							</Switch>
 						</Row>
 					</Container>

@@ -7,7 +7,7 @@ import './movie-card.scss';
 
 class MovieCard extends React.Component {
 	render() {
-		const { movie } = this.props;
+		const { movie, addMovieToFavorites } = this.props;
 		const { Title, ImagePath, Description, _id } = movie;
 		const { Img, Body, Text, Header } = Card;
 		const cardStyling = {
@@ -29,7 +29,7 @@ class MovieCard extends React.Component {
           <Link to={`/movies/${_id}`}>
 					<Button variant='primary' className="m-2">Open</Button>
           </Link>
-          <Button>Add to Favorites</Button>
+          <Button onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
 				</Body>
 			</Card>
 		);

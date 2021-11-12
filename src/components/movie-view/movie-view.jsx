@@ -6,8 +6,8 @@ import './movie-view.scss';
 
 class MovieView extends React.Component {
 	render() {
-		const { movie, onBackClick } = this.props;
-    const {ImagePath, Description, Director, Genre} = movie
+		const { movie, onBackClick, addMovieToFavorites } = this.props;
+    const {ImagePath, Description, Director, Genre, _id} = movie
 		const { Img, Body, Title, Text } = Card;
 
 		return (
@@ -27,9 +27,10 @@ class MovieView extends React.Component {
             <Button variant='primary'>Director</Button>
           </Link>
           <Link to={`/genres/${Genre.Name}`}>
-            <Button variant='primary' className='m-2'>Genre</Button>
+            <Button variant='primary'className='m-2'>Genre</Button>
           </Link>
-					<Button className='btn' onClick={() => onBackClick()}>
+          <Button onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
+					<Button className='btn m-2' onClick={() => onBackClick()}>
 						Back
 					</Button>
 				</Body>
