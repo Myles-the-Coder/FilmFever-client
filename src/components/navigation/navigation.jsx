@@ -11,14 +11,14 @@ const Navigation = ({ onLoggedOut, user }) => {
 
   if (!user) {
   return (
-      <Navbar bg="light">
-      <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
+      <Navbar className='navbar-styling' >
+      <Brand><img src={logo} alt="FilmFever logo" width='70px'/></Brand>
     </Navbar>
 		);
   } else {
     return (
-    <Navbar collapseOnSelect expand='lg' bg="light">
-    <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
+    <Navbar collapseOnSelect expand='lg' className='navbar-styling'>
+    <Brand><img src={logo} alt="FilmFever logo" width='70px'/></Brand>
     <Toggle aria-controls="responsive-navbar-nav"/>
     <Collapse id='responsive-navbar-nav' className='justify-content-end'>
 				<Link to='/'>

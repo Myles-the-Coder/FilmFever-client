@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import MainView  from './components/main-view/main-view';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles/main-view.scss'
+import '../css/main-view.css'
 
 class App extends React.Component {
 	render() {
