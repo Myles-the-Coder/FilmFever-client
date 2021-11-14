@@ -3,28 +3,25 @@ import PropTypes from 'prop-types';
 import { Card, Button } from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
-import './movie-card.scss';
+import '../../styles/_movie-card.scss';
 
 class MovieCard extends React.Component {
 	render() {
 		const { movie, addMovieToFavorites } = this.props;
 		const { Title, ImagePath, Description, _id } = movie;
 		const { Img, Body, Text, Header } = Card;
-		const cardStyling = {
-			margin: '5px',
-			backgroundColor: 'lightgray',
-		};
 
 		return (
-			<Card style={cardStyling} className='text-center'>
+			<Card className='text-center'>
 				<Header as='h5'>{Title}</Header>
 				<Img
 					variant='top'
 					src={ImagePath}
 					alt={Title}
 					crossOrigin='anonymous'
+          className='p-1'
 				/>
-				<Body>
+				<Body className='card-styling'>
 					<Text>{Description}</Text>
           <Link to={`/movies/${_id}`}>
 					<Button variant='primary' className="m-2">Open</Button>

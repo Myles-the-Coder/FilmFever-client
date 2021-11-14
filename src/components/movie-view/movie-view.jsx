@@ -2,7 +2,8 @@ import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import './movie-view.scss';
+
+import '../../styles/_movie-view.scss';
 
 class MovieView extends React.Component {
 	render() {
@@ -17,7 +18,7 @@ class MovieView extends React.Component {
 				<Img
 					src={ImagePath}
 					alt={movie.Title}
-					className='w-25 m-auto pt-2'
+					className='card-image m-auto pt-2'
 					crossOrigin='anonymous'
 				/>
 				<Body>

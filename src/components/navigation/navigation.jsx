@@ -2,8 +2,9 @@ import React from "react";
 import {Button, Navbar} from "react-bootstrap";
 import {Link} from 'react-router-dom'
 import PropTypes from "prop-types"
-import './navigation.scss'
 import logo from '../../img/FilmFever.png'
+
+import '../../styles/_navigation.scss'
 
 const Navigation = ({ onLoggedOut, user }) => {
   const {Brand, Toggle, Collapse} = Navbar

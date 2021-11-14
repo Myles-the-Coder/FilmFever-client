@@ -16,7 +16,7 @@ import RegistrationView from '../registration-view/registration-view';
 import ProfileView from '../profile-view/profile-view';
 import { Row, Col, Container } from 'react-bootstrap';
 
-import './main-view.scss';
+import '../../styles/main-view.scss';
 
 class MainView extends React.Component {
 	constructor() {
@@ -33,7 +33,6 @@ class MainView extends React.Component {
 			this.setState({ user: localStorage.getItem('user') });
 			this.getMovies(accessToken);
 		}
-    console.log(this.state.user)
 	};
 
 	onLoggedIn = authData => {
@@ -76,7 +75,7 @@ class MainView extends React.Component {
 			<>
 				<Router>
 					<Navigation onLoggedOut={this.onLoggedOut} user={user} />
-					<Container>
+					<Container className='container'>
 						<Row className='main-view justify-content-md-center'>
 							<Switch>
 								<Route

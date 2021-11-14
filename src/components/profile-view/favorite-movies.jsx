@@ -1,5 +1,4 @@
 import React from 'react'
-import MovieView from '../movie-view/movie-view'
 import {Row, Col, Button, Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 const FavoriteMovies = ({favoriteMoviesList, removeFromFavorites}) => {
@@ -10,8 +9,8 @@ const FavoriteMovies = ({favoriteMoviesList, removeFromFavorites}) => {
     {favoriteMoviesList.map(movie => {
       const {_id, Title, ImagePath} = movie
       return (
-        <Col xs={10} md={3} key={_id}>
-          <Card className='p-2 text-center m-1' style={{backgroundColor: 'lightgray'}}>
+        <Col xs={10} md={4}  key={_id}>
+          <Card className='p-3 text-center m-1 justify-content-center' style={{backgroundColor: 'lightgray'}}>
           <h4>{Title}</h4>
           <img src={ImagePath} alt={Title} crossOrigin='anonymous'/>
           <Link to={`/movies/${_id}`}>

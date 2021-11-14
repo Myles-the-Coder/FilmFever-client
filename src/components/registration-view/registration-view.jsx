@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import InfoForm from '../form/info-form'
 
-import './registration-view.scss';
+import '../../styles/_registration-view.scss';
 
 function RegistrationView({ onBackClick }) {
 	const handleRegister = ({ username, password, email, birthday }) => {

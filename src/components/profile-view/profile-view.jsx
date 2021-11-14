@@ -6,6 +6,8 @@ import InfoForm from '../form/info-form';
 import FavoriteMovies from './favorite-movies';
 import DeleteModal from './delete-modal';
 
+import '../../styles/_profile-view.scss'
+
 const ProfileView = ({ movies, onBackClick }) => {
 	const [username, setUsername] = useState('');
 	const [email, setEmail] = useState('');
@@ -65,7 +67,7 @@ const ProfileView = ({ movies, onBackClick }) => {
 			)
 			.then(res => {
 				localStorage.setItem('user', username);
-				alert(username + ' has been updated!');
+				alert(`${usernme} has been updated!`);
 			})
 			.catch(err => console.log(err));
 	};
