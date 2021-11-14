@@ -5,10 +5,8 @@ import PropTypes from 'prop-types'
 class DirectorView extends React.Component{
   render() {
     const {director, onBackClick} = this.props
-    const {Img, Body, Title, Text} = Card
+    const {Body, Title, Text} = Card
     const {Name, Bio} = director
-
-    console.log(director)
 
     return (
       <Card

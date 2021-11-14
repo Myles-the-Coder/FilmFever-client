@@ -40,7 +40,6 @@ class MainView extends React.Component {
 		this.setState({ user: authData.user.Username });
 		localStorage.setItem('token', authData.token);
 		localStorage.setItem('user', authData.user.Username);
-
 		this.getMovies(authData.token);
 	};
 
@@ -66,10 +65,8 @@ class MainView extends React.Component {
       FavoriteMovies: movieId
     } , {
       headers: { Authorization: `Bearer ${token}` },
-    }).then(res => {
-      console.log(res)
-      alert('Added to Favorites List')
-    }).catch(err => console.log(err))
+    }).then(res => alert('Added to Favorites List'))
+      .catch(err => console.log(err))
   }
 
 	render() {
@@ -227,28 +224,6 @@ class MainView extends React.Component {
 										);
 									}}
 								/>
-
-								{/* <Route
-									exact
-									path='/users/update/:Username'
-									render={() => {
-										if (!user)
-											return (
-												<Col>
-													<LoginView
-														onLoggedIn={user => this.onLoggedIn(user)}
-													/>
-												</Col>
-											);
-										if (movies.length === 0)
-											return <div className='main-view'>Loading...</div>;
-										return (
-											<Col md={8}>
-												<UserUpdateForm />
-											</Col>
-										);
-									}}
-								/> */}
 							</Switch>
 						</Row>
 					</Container>

@@ -14,11 +14,7 @@ function RegistrationView({ onBackClick }) {
 				Email: email,
 				Birthday: birthday,
 			})
-			.then(res => {
-				const data = res.data;
-				console.log(data);
-				window.open('/', '_self');
-			})
+			.then(res => window.open('/', '_self'))
 			.catch(err => console.log('error registering the user'));
 	};
 

@@ -11,8 +11,8 @@ import './login-view.scss';
 
 function LoginView({ onLoggedIn }) {
 	const loginSchema = Yup.object({
-		username: Yup.string().required('Valid username is required'),
-		password: Yup.string().required('Valid password is required'),
+		username: Yup.string().required('Enter username'),
+		password: Yup.string().required('Enter password'),
 	});
 
 	const handleLogin = ({ username, password }) => {
@@ -38,10 +38,7 @@ function LoginView({ onLoggedIn }) {
 			{({
 				handleSubmit,
 				handleChange,
-				handleBlur,
 				values,
-				touched,
-				isValid,
 				errors,
 			}) => (
 				<Form noValidate onSubmit={handleSubmit}>

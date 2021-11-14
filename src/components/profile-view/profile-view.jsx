@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserInfo from './user-info';
-import { Container, Row, Col, Modal} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import InfoForm from '../form/info-form';
 import FavoriteMovies from './favorite-movies';
 import DeleteModal from './delete-modal';
@@ -17,15 +17,14 @@ const ProfileView = ({ movies, onBackClick }) => {
 	const token = localStorage.getItem('token');
 	const user = localStorage.getItem('user');
 
-  const favoriteMoviesList = movies.filter(movie => favoriteMovies.includes(movie._id))
-
-  console.log(favoriteMoviesList)
+	const favoriteMoviesList = movies.filter(movie =>
+		favoriteMovies.includes(movie._id)
+	);
 
 	useEffect(() => {
 		let isMounted = true;
 		let accessToken = localStorage.getItem('token');
 		if (isMounted) {
-			console.log('is Mounted');
 			getUser(accessToken);
 		}
 		return () => {
@@ -39,7 +38,6 @@ const ProfileView = ({ movies, onBackClick }) => {
 				headers: { Authorization: `Bearer ${token}` },
 			})
 			.then(res => {
-				console.log(res.data);
 				const { Username, Password, Email, Birthday, FavoriteMovies } =
 					res.data;
 				setUsername(Username);
@@ -51,7 +49,7 @@ const ProfileView = ({ movies, onBackClick }) => {
 			.catch(err => console.log(err));
 	};
 
-	editUser = ({username, password, email, birthday}) => {
+	editUser = ({ username, password, email, birthday }) => {
 		axios
 			.put(
 				`https://film-fever-api.herokuapp.com/users/update/${user}`,
@@ -67,7 +65,6 @@ const ProfileView = ({ movies, onBackClick }) => {
 			)
 			.then(res => {
 				localStorage.setItem('user', username);
-				console.log('this.state.Username', username);
 				alert(username + ' has been updated!');
 			})
 			.catch(err => console.log(err));
@@ -75,12 +72,13 @@ const ProfileView = ({ movies, onBackClick }) => {
 
 	removeFromFavorites = id => {
 		axios
-			.delete(`https://film-fever-api.herokuapp.com/users/${user}/movies/${id}`, {
-				headers: { Authorization: `Bearer ${token}` },
-			})
-			.then(res => {
-				setFavoriteMovies(res.data.FavoriteMovies)
-			})
+			.delete(
+				`https://film-fever-api.herokuapp.com/users/${user}/movies/${id}`,
+				{
+					headers: { Authorization: `Bearer ${token}` },
+				}
+			)
+			.then(res => setFavoriteMovies(res.data.FavoriteMovies))
 			.catch(err => console.log(err));
 	};
 
@@ -95,20 +93,20 @@ const ProfileView = ({ movies, onBackClick }) => {
 				localStorage.removeItem('token');
 				window.open('/', '_self');
 			});
-      setShow('')
+		setShow('');
 	};
 
 	if (show === 'update') {
 		return (
 			<Container>
 				<Row className='justify-content-center'>
-					<Col xs={10} >
-						<InfoForm editUser={editUser} onBackClick={onBackClick}/>
+					<Col xs={10}>
+						<InfoForm editUser={editUser} onBackClick={onBackClick} />
 					</Col>
 				</Row>
 			</Container>
 		);
-	} 
+	}
 
 	return (
 		<Container>
@@ -118,8 +116,13 @@ const ProfileView = ({ movies, onBackClick }) => {
 				birthday={birthday.slice(0, 10)}
 				setShow={setShow}
 			/>
-      <DeleteModal show={show} setShow={setShow} deleteUser={deleteUser}/>
-      {favoriteMovies.length > 0 && <FavoriteMovies favoriteMoviesList={favoriteMoviesList} removeFromFavorites={removeFromFavorites}/>}
+			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />
+			{favoriteMovies.length > 0 && (
+				<FavoriteMovies
+					favoriteMoviesList={favoriteMoviesList}
+					removeFromFavorites={removeFromFavorites}
+				/>
+			)}
 		</Container>
 	);
 };
