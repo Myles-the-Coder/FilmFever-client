@@ -1,13 +1,16 @@
 import React from 'react';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { setMovies } from '../../actions/actions';
 import {
 	BrowserRouter as Router,
 	Route,
 	Switch,
 	Redirect,
 } from 'react-router-dom';
-import axios from 'axios';
 import Navigation from '../navigation/navigation';
-import MovieCard from '../movie-card/movie-card';
+// import MovieCard from '../movie-card/movie-card';
+import MoviesList from '../movie-list/movie-list'
 import MovieView from '../movie-view/movie-view';
 import GenreView from '../genre-view/genre-view';
 import DirectorView from '../director-view/director-view';
@@ -22,7 +25,7 @@ class MainView extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			movies: [],
+			// movies: [],
 			user: null,
 		};
 	}
@@ -53,23 +56,30 @@ class MainView extends React.Component {
 			.get('https://film-fever-api.herokuapp.com/movies', {
 				headers: { Authorization: `Bearer ${token}` },
 			})
-			.then(res => this.setState({ movies: res.data }))
+			.then(res => this.props.setMovies(res.data))
 			.catch(err => console.log(err));
 	};
 
-  addMovieToFavorites = (movieId) => {
-    const user = localStorage.getItem('user')
-    const token = localStorage.getItem('token')
-    axios.post(`https://film-fever-api.herokuapp.com/users/${user}/movies/${movieId}`, {
-      FavoriteMovies: movieId
-    } , {
-      headers: { Authorization: `Bearer ${token}` },
-    }).then(res => alert('Added to Favorites List'))
-      .catch(err => console.log(err))
-  }
+	addMovieToFavorites = movieId => {
+		const user = localStorage.getItem('user');
+		const token = localStorage.getItem('token');
+		axios
+			.post(
+				`https://film-fever-api.herokuapp.com/users/${user}/movies/${movieId}`,
+				{
+					FavoriteMovies: movieId,
+				},
+				{
+					headers: { Authorization: `Bearer ${token}` },
+				}
+			)
+			.then(res => alert('Added to Favorites List'))
+			.catch(err => console.log(err));
+	};
 
 	render() {
-		let { movies, user } = this.state;
+		let { movies } = this.props;
+		let { user } = this.state;
 
 		return (
 			<>
@@ -94,11 +104,15 @@ class MainView extends React.Component {
 										if (movies.length === 0)
 											return <div className='main-view' />;
 
-										return movies.map(movie => (
-											<Col xs={10} sm={6} md={4} lg={3} key={movie._id}>
-												<MovieCard movie={movie} addMovieToFavorites={this.addMovieToFavorites}/>
-											</Col>
-										));
+										// return movies.map(movie => (
+										// 	<Col xs={10} sm={6} md={4} lg={3} key={movie._id}>
+										// 		<MovieCard
+										// 			movie={movie}
+										// 			addMovieToFavorites={this.addMovieToFavorites}
+										// 		/>
+										// 	</Col>
+										// ));
+										return <MoviesList movies={movies} />;
 									}}
 								/>
 
@@ -138,7 +152,7 @@ class MainView extends React.Component {
 														movie => movie._id === match.params.movieId
 													)}
 													onBackClick={() => history.goBack()}
-                          addMovieToFavorites={this.addMovieToFavorites}
+													addMovieToFavorites={this.addMovieToFavorites}
 												/>
 											</Col>
 										);
@@ -206,7 +220,7 @@ class MainView extends React.Component {
 								<Route
 									exact
 									path='/users/:Username'
-									render={({history}) => {
+									render={({ history }) => {
 										if (!user)
 											return (
 												<LoginView onLoggedIn={user => this.onLoggedIn(user)} />
@@ -218,7 +232,7 @@ class MainView extends React.Component {
 												history={history}
 												movies={movies}
 												user={user}
-                        onBackClick={() => history.goBack()}
+												onBackClick={() => history.goBack()}
 											/>
 										);
 									}}
@@ -232,4 +246,8 @@ class MainView extends React.Component {
 	}
 }
 
-export default MainView;
+let mapStateToProps = state => {
+  return {movies: state.movies}
+};
+
+export default connect(mapStateToProps, { setMovies })(MainView);

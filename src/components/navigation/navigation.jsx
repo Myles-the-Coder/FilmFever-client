@@ -3,7 +3,6 @@ import {Button, Navbar} from "react-bootstrap";
 import {Link} from 'react-router-dom'
 import PropTypes from "prop-types"
 import logo from '../../img/FilmFever.png'
-
 import '../../styles/_navigation.scss'
 
 const Navigation = ({ onLoggedOut, user }) => {
@@ -22,7 +21,7 @@ const Navigation = ({ onLoggedOut, user }) => {
     <Toggle aria-controls="responsive-navbar-nav"/>
     <Collapse id='responsive-navbar-nav' className='justify-content-end'>
 				<Link to='/'>
-        <Button className='btn' onClick={onLoggedOut} className='m-2'>
+        <Button onClick={onLoggedOut} className='m-2'>
           Sign Out
 				</Button>
         </Link>
