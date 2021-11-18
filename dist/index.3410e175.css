@@ -8,6 +8,10 @@
   background-color: purple;
   color: white;
 }
+.card-styling {
+  margin: 5px;
+  background-color: lightgray;
+}
 .card-image {
   max-width: 250px;
 }
@@ -31,10 +35,6 @@ body {
 }
 .main-view {
   font-family: "Nunito", sans-serif;
-}
-.card-styling {
-  margin: 5px;
-  background-color: lightgray;
 }
 @charset "UTF-8";/*!
  * Bootstrap v5.1.3 (https://getbootstrap.com/)

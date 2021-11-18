@@ -1,19 +1,17 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import MovieCard from '../movie-card/movie-card';
+import FilterInput from '../filter-input/filter-input';
+import NoMoviesFound from '../no-movies-found/no-movies-found';
 
-const mapStateToProps = state => {
-	const { visibilityFilter } = state;
-	return {visibilityFilter};
-};
-
-function MoviesList ({movies, visibilityFilter}) {
+function MoviesList({ movies, addMovieToFavorites }) {
 	let filteredMovies = movies;
+	const filter = useSelector(state => state.filter.value);
 
-	if (visibilityFilter !== '') {
+	if (filter !== '') {
 		filteredMovies = movies.filter(movie =>
-			movie.Title.toLowerCase().includes(visibilityFilter.toLowerCase())
+			movie.Title.toLowerCase().includes(filter.toLowerCase())
 		);
 	}
 
@@ -21,11 +19,25 @@ function MoviesList ({movies, visibilityFilter}) {
 		return <div className='main-view'></div>;
 	}
 
-	return filteredMovies.map(movie => (
-		<Col md={3} key={movie._id}>
-			<MovieCard movie={movie} />
-		</Col>
-	));
-};
+	return (
+		<>
+			<Col md={12} className='m-2'>
+				<FilterInput filter={filter} />
+			</Col>
+			{filteredMovies.length > 0 ? (
+				filteredMovies.map(movie => (
+					<Col xs={12} sm={6} md={4} lg={3} key={movie._id}>
+						<MovieCard
+							movie={movie}
+							addMovieToFavorites={addMovieToFavorites}
+						/>
+					</Col>
+				))
+			) : (
+				<NoMoviesFound message={'No movie found with that title'}/>
+			)}
+		</>
+	);
+}
 
-export default connect(mapStateToProps)(MoviesList);
+export default MoviesList;

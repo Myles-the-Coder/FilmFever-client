@@ -5,14 +5,17 @@ import { Container, Row, Col } from 'react-bootstrap';
 import InfoForm from '../form/info-form';
 import FavoriteMovies from './favorite-movies';
 import DeleteModal from './delete-modal';
+import { URL } from '../../helpers/helpers';
+import { useSelector, useDispatch } from 'react-redux';
+import { setUser } from '../../redux/features/userSlice';
 
-import '../../styles/_profile-view.scss'
+import '../../styles/_profile-view.scss';
 
 const ProfileView = ({ movies, onBackClick }) => {
-	const [username, setUsername] = useState('');
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [birthday, setBirthday] = useState('');
+	// const [username, setUsername] = useState('');
+	// const [email, setEmail] = useState('');
+	// const [password, setPassword] = useState('');
+	// const [birthday, setBirthday] = useState('');
 	const [favoriteMovies, setFavoriteMovies] = useState([]);
 	const [show, setShow] = useState('');
 
@@ -22,6 +25,11 @@ const ProfileView = ({ movies, onBackClick }) => {
 	const favoriteMoviesList = movies.filter(movie =>
 		favoriteMovies.includes(movie._id)
 	);
+
+	const userValues = useSelector(state => state.user.value);
+	console.log(userValues);
+
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		let isMounted = true;
@@ -36,17 +44,14 @@ const ProfileView = ({ movies, onBackClick }) => {
 
 	getUser = token => {
 		axios
-			.get(`https://film-fever-api.herokuapp.com/users/${user}`, {
+			.get(`${URL}/users/${user}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
 			.then(res => {
 				const { Username, Password, Email, Birthday, FavoriteMovies } =
 					res.data;
-				setUsername(Username);
-				setPassword(Password);
-				setEmail(Email);
-				setBirthday(Birthday);
-				setFavoriteMovies(FavoriteMovies);
+				dispatch(setUser({ Username, Password, Email, Birthday: Birthday.slice(0, 10)}));
+				console.log(userValues.Birthday.slice(0, 10));
 			})
 			.catch(err => console.log(err));
 	};
@@ -54,7 +59,7 @@ const ProfileView = ({ movies, onBackClick }) => {
 	editUser = ({ username, password, email, birthday }) => {
 		axios
 			.put(
-				`https://film-fever-api.herokuapp.com/users/update/${user}`,
+				`${URL}/users/update/${user}`,
 				{
 					Username: username,
 					Password: password,
@@ -67,26 +72,31 @@ const ProfileView = ({ movies, onBackClick }) => {
 			)
 			.then(res => {
 				localStorage.setItem('user', username);
-				alert(`${usernme} has been updated!`);
+				dispatch(
+					setUser({
+						Username: username,
+						Password: password,
+						Email: email,
+						Birthday: birthday,
+					})
+				);
+				alert(`${username} has been updated!`);
 			})
 			.catch(err => console.log(err));
 	};
 
 	removeFromFavorites = id => {
 		axios
-			.delete(
-				`https://film-fever-api.herokuapp.com/users/${user}/movies/${id}`,
-				{
-					headers: { Authorization: `Bearer ${token}` },
-				}
-			)
+			.delete(`${URL}/users/${user}/movies/${id}`, {
+				headers: { Authorization: `Bearer ${token}` },
+			})
 			.then(res => setFavoriteMovies(res.data.FavoriteMovies))
 			.catch(err => console.log(err));
 	};
 
 	deleteUser = () => {
 		axios
-			.delete(`https://film-fever-api.herokuapp.com/users/${user}`, {
+			.delete(`${URL}/users/${user}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
 			.then(res => {
@@ -103,7 +113,7 @@ const ProfileView = ({ movies, onBackClick }) => {
 			<Container>
 				<Row className='justify-content-center'>
 					<Col xs={10}>
-						<InfoForm editUser={editUser} onBackClick={onBackClick} />
+						<InfoForm editUser={editUser} setShow={setShow} />
 					</Col>
 				</Row>
 			</Container>
@@ -113,9 +123,9 @@ const ProfileView = ({ movies, onBackClick }) => {
 	return (
 		<Container>
 			<UserInfo
-				user={username}
-				email={email}
-				birthday={birthday.slice(0, 10)}
+				user={userValues.Username}
+				email={userValues.Email}
+				birthday={userValues.Birthday}
 				setShow={setShow}
 			/>
 			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />

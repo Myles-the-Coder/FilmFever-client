@@ -69,7 +69,7 @@ function LoginForm({ handleLogin }) {
 LoginForm.propTypes = {
 	handleLogin: PropTypes.func,
 	editUser: PropTypes.func,
-	onBackClick: PropTypes.func.isRequired,
+	onBackClick: PropTypes.func,
 };
 
 export default LoginForm;

@@ -1,16 +1,17 @@
 import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { setMovies } from '../../actions/actions';
+import { setMovies } from '../../redux/features/moviesSlice';
+import { setUser, logoutUser } from '../../redux/features/userSlice';
 import {
 	BrowserRouter as Router,
 	Route,
 	Switch,
 	Redirect,
 } from 'react-router-dom';
+import { URL } from '../../helpers/helpers';
 import Navigation from '../navigation/navigation';
-// import MovieCard from '../movie-card/movie-card';
-import MoviesList from '../movie-list/movie-list'
+import MoviesList from '../movie-list/movie-list';
 import MovieView from '../movie-view/movie-view';
 import GenreView from '../genre-view/genre-view';
 import DirectorView from '../director-view/director-view';
@@ -24,39 +25,39 @@ import '../../styles/main-view.scss';
 class MainView extends React.Component {
 	constructor() {
 		super();
-		this.state = {
-			// movies: [],
-			user: null,
-		};
 	}
 
 	componentDidMount = () => {
+		const { setUser } = this.props;
 		let accessToken = localStorage.getItem('token');
 		if (accessToken !== null) {
-			this.setState({ user: localStorage.getItem('user') });
+			setUser({ Username: localStorage.getItem('user')});
 			this.getMovies(accessToken);
 		}
 	};
 
 	onLoggedIn = authData => {
-		this.setState({ user: authData.user.Username });
+		const { setUser } = this.props;
+		setUser({ Username: authData.user.Username });
 		localStorage.setItem('token', authData.token);
 		localStorage.setItem('user', authData.user.Username);
 		this.getMovies(authData.token);
 	};
 
 	onLoggedOut = () => {
+		const { logoutUser } = this.props;
 		localStorage.removeItem('token');
 		localStorage.removeItem('user');
-		this.setState({ user: null });
+		logoutUser();
 	};
 
 	getMovies = token => {
+		const { setMovies } = this.props;
 		axios
-			.get('https://film-fever-api.herokuapp.com/movies', {
+			.get(`${URL}/movies`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
-			.then(res => this.props.setMovies(res.data))
+			.then(res => setMovies(res.data))
 			.catch(err => console.log(err));
 	};
 
@@ -65,7 +66,7 @@ class MainView extends React.Component {
 		const token = localStorage.getItem('token');
 		axios
 			.post(
-				`https://film-fever-api.herokuapp.com/users/${user}/movies/${movieId}`,
+				`${URL}/users/${user}/movies/${movieId}`,
 				{
 					FavoriteMovies: movieId,
 				},
@@ -78,8 +79,8 @@ class MainView extends React.Component {
 	};
 
 	render() {
-		let { movies } = this.props;
-		let { user } = this.state;
+		let { movies, user } = this.props;
+    console.log(user)
 
 		return (
 			<>
@@ -92,7 +93,7 @@ class MainView extends React.Component {
 									exact
 									path='/'
 									render={() => {
-										if (user === null)
+										if (!user)
 											return (
 												<Col>
 													<LoginView
@@ -104,15 +105,12 @@ class MainView extends React.Component {
 										if (movies.length === 0)
 											return <div className='main-view' />;
 
-										// return movies.map(movie => (
-										// 	<Col xs={10} sm={6} md={4} lg={3} key={movie._id}>
-										// 		<MovieCard
-										// 			movie={movie}
-										// 			addMovieToFavorites={this.addMovieToFavorites}
-										// 		/>
-										// 	</Col>
-										// ));
-										return <MoviesList movies={movies} />;
+										return (
+											<MoviesList
+												movies={movies}
+												addMovieToFavorites={this.addMovieToFavorites}
+											/>
+										);
 									}}
 								/>
 
@@ -247,7 +245,16 @@ class MainView extends React.Component {
 }
 
 let mapStateToProps = state => {
-  return {movies: state.movies}
+	return {
+		movies: state.movies.value,
+		user: state.user.value.Username
+	};
 };
 
-export default connect(mapStateToProps, { setMovies })(MainView);
+let mapDispatchToProps = {
+	setMovies,
+	setUser,
+	logoutUser,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainView);

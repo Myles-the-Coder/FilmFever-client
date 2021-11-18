@@ -19,12 +19,12 @@ class MovieCard extends React.Component {
 					src={ImagePath}
 					alt={Title}
 					crossOrigin='anonymous'
-          className='p-1'
+          className='p-1 w-75 m-auto'
 				/>
 				<Body className='card-styling'>
 					<Text>{Description}</Text>
           <Link to={`/movies/${_id}`}>
-					<Button variant='primary' className="m-2">Open</Button>
+					<Button variant='primary' className="m-2">See Details</Button>
           </Link>
           <Button onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
 				</Body>

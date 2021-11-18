@@ -4,7 +4,7 @@ import {Form, Button} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 import * as Yup from 'yup'
 
-const InfoForm = ({handleRegister, editUser, onBackClick}) => {
+const InfoForm = ({handleRegister, editUser, setShow}) => {
   const schema = Yup.object({
 		username: Yup.string()
       .min(3, 'Username must be at least 3 characters in length')
@@ -120,7 +120,7 @@ const InfoForm = ({handleRegister, editUser, onBackClick}) => {
           </Control.Feedback>
         </Group>
         <Button type='submit' className='m-1'>{handleRegister ? 'Register' : 'Update'}</Button>
-        <Button type='button' onClick={onBackClick}>Back</Button>
+        <Button type='button' onClick={() => setShow('')}>Back</Button>
       </Form>
     )}
   </Formik>
@@ -128,7 +128,7 @@ const InfoForm = ({handleRegister, editUser, onBackClick}) => {
 }
 
 Form.propTypes = {
-  handleRegister: PropTypes.func.isRequired
+  handleRegister: PropTypes.func
 }
 
 export default InfoForm
