@@ -7,28 +7,18 @@ import FavoriteMovies from './favorite-movies';
 import DeleteModal from './delete-modal';
 import { URL } from '../../helpers/helpers';
 import { useSelector, useDispatch } from 'react-redux';
-import { setUser } from '../../redux/features/userSlice';
+import { setUser, removeFromFavs } from '../../redux/features/userSlice';
+import { useDispatch } from 'react-redux';
 
 import '../../styles/_profile-view.scss';
 
 const ProfileView = ({ movies, onBackClick }) => {
-	// const [username, setUsername] = useState('');
-	// const [email, setEmail] = useState('');
-	// const [password, setPassword] = useState('');
-	// const [birthday, setBirthday] = useState('');
-	const [favoriteMovies, setFavoriteMovies] = useState([]);
+	const favoriteMovies = useSelector(state => state.user.value.FavoriteMovies);
 	const [show, setShow] = useState('');
 
 	const token = localStorage.getItem('token');
 	const user = localStorage.getItem('user');
-
-	const favoriteMoviesList = movies.filter(movie =>
-		favoriteMovies.includes(movie._id)
-	);
-
 	const userValues = useSelector(state => state.user.value);
-	console.log(userValues);
-
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -50,8 +40,17 @@ const ProfileView = ({ movies, onBackClick }) => {
 			.then(res => {
 				const { Username, Password, Email, Birthday, FavoriteMovies } =
 					res.data;
-				dispatch(setUser({ Username, Password, Email, Birthday: Birthday.slice(0, 10)}));
-				console.log(userValues.Birthday.slice(0, 10));
+				dispatch(
+					setUser({
+						Username,
+						Password,
+						Email,
+						Birthday: Birthday.slice(0, 10),
+						FavoriteMovies: movies.filter(movie =>
+							FavoriteMovies.includes(movie._id)
+						),
+					})
+				);
 			})
 			.catch(err => console.log(err));
 	};
@@ -90,7 +89,7 @@ const ProfileView = ({ movies, onBackClick }) => {
 			.delete(`${URL}/users/${user}/movies/${id}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
-			.then(res => setFavoriteMovies(res.data.FavoriteMovies))
+			.then(res => dispatch(removeFromFavs(favoriteMovies.indexOf(id))))
 			.catch(err => console.log(err));
 	};
 
@@ -112,7 +111,7 @@ const ProfileView = ({ movies, onBackClick }) => {
 		return (
 			<Container>
 				<Row className='justify-content-center'>
-					<Col xs={10}>
+					<Col xs={12}>
 						<InfoForm editUser={editUser} setShow={setShow} />
 					</Col>
 				</Row>
@@ -129,9 +128,9 @@ const ProfileView = ({ movies, onBackClick }) => {
 				setShow={setShow}
 			/>
 			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />
-			{favoriteMovies.length > 0 && (
+			{favoriteMovies && (
 				<FavoriteMovies
-					favoriteMoviesList={favoriteMoviesList}
+					favoriteMovies={favoriteMovies}
 					removeFromFavorites={removeFromFavorites}
 				/>
 			)}

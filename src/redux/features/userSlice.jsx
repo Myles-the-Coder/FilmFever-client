@@ -6,7 +6,7 @@ const initialState = {
     Password: '',
     Email: '',
     Birthday: '',
-    FavoriteMovie: []
+    FavoriteMovies: [],
   }
 };
 
@@ -22,12 +22,16 @@ export const userSlice = createSlice({
 			state.value = initialState.value;
 		},
 
-		updateUser: (state, action) => {
-			state.value = action.payload;
-		},
+		addToFavorites: (state, action) => {
+      state.value.FavoriteMovies.push(action.payload)
+    },
+
+    removeFromFavs: (state, index) => {
+      state.value.FavoriteMovies.splice(index, 1)
+    }
 	},
 });
 
-export const { setUser, logoutUser, updateUser } = userSlice.actions;
+export const { setUser, logoutUser, updateUser, addToFavorites, removeFromFavs } = userSlice.actions;
 
 export default userSlice.reducer;

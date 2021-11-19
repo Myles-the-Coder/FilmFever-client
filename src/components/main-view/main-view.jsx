@@ -2,7 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { setMovies } from '../../redux/features/moviesSlice';
-import { setUser, logoutUser } from '../../redux/features/userSlice';
+import {
+	setUser,
+	logoutUser,
+	addToFavorites,
+} from '../../redux/features/userSlice';
 import {
 	BrowserRouter as Router,
 	Route,
@@ -19,19 +23,23 @@ import LoginView from '../login-view/login-view';
 import RegistrationView from '../registration-view/registration-view';
 import ProfileView from '../profile-view/profile-view';
 import { Row, Col, Container } from 'react-bootstrap';
+import ToastNotification from '../toast-notification/toast-notification';
 
 import '../../styles/main-view.scss';
 
 class MainView extends React.Component {
 	constructor() {
 		super();
+		this.state = {
+			show: false,
+		};
 	}
 
 	componentDidMount = () => {
 		const { setUser } = this.props;
 		let accessToken = localStorage.getItem('token');
 		if (accessToken !== null) {
-			setUser({ Username: localStorage.getItem('user')});
+			setUser({ Username: localStorage.getItem('user') });
 			this.getMovies(accessToken);
 		}
 	};
@@ -64,6 +72,7 @@ class MainView extends React.Component {
 	addMovieToFavorites = movieId => {
 		const user = localStorage.getItem('user');
 		const token = localStorage.getItem('token');
+		const { addToFavorites } = this.props;
 		axios
 			.post(
 				`${URL}/users/${user}/movies/${movieId}`,
@@ -74,13 +83,18 @@ class MainView extends React.Component {
 					headers: { Authorization: `Bearer ${token}` },
 				}
 			)
-			.then(res => alert('Added to Favorites List'))
+			.then(res => {
+				addToFavorites(movieId);
+				alert('Added to Favorites List');
+				this.setState({ show: true });
+			})
 			.catch(err => console.log(err));
 	};
 
+  setShow = () => this.setState({show: true})
+
 	render() {
 		let { movies, user } = this.props;
-    console.log(user)
 
 		return (
 			<>
@@ -106,10 +120,17 @@ class MainView extends React.Component {
 											return <div className='main-view' />;
 
 										return (
+                      <>
+                      	{this.state.show === true ? (
+													<ToastNotification setShow={this.setShow} show={this.state.show}/>
+												) : (
+													<div></div>
+												)}
 											<MoviesList
 												movies={movies}
 												addMovieToFavorites={this.addMovieToFavorites}
 											/>
+                      </>
 										);
 									}}
 								/>
@@ -247,7 +268,7 @@ class MainView extends React.Component {
 let mapStateToProps = state => {
 	return {
 		movies: state.movies.value,
-		user: state.user.value.Username
+		user: state.user.value.Username,
 	};
 };
 
@@ -255,6 +276,7 @@ let mapDispatchToProps = {
 	setMovies,
 	setUser,
 	logoutUser,
+	addToFavorites,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainView);

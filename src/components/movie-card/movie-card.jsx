@@ -24,9 +24,9 @@ class MovieCard extends React.Component {
 				<Body className='card-styling'>
 					<Text>{Description}</Text>
           <Link to={`/movies/${_id}`}>
-					<Button variant='primary' className="m-2">See Details</Button>
+					<Button className="m-2 card-button">See Details</Button>
           </Link>
-          <Button onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
+          <Button className='card-button' onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
 				</Body>
 			</Card>
 		);

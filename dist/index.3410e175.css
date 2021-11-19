@@ -9,8 +9,23 @@
   color: white;
 }
 .card-styling {
-  margin: 5px;
+  margin: 1px;
   background-color: lightgray;
+}
+
+.card-button {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #4066E0;
+  color: whitesmoke;
+  cursor: pointer;
+}
+.card-button:hover {
+  filter: brightness(110%);
+}
+.card-button:active {
+  transform: scale(0.98);
 }
 .card-image {
   max-width: 250px;
