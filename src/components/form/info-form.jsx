@@ -35,7 +35,7 @@ const InfoForm = ({ handleRegister, editUser, setShow, onBackClick }) => {
 				confirmPassword: '',
 			}}>
 			{({ handleSubmit, handleChange, values, touched, errors }) => (
-				<Form noValidate onSubmit={handleSubmit}>
+				<Form noValidate onSubmit={handleSubmit} className='m-auto' style={{minWidth: '65%', maxWidth: '350px'}}>
 					{handleRegister ? <h1>Register Account</h1> : <h1>Update Info</h1>}
 					<Group controlId='validationFormik01'>
 						<Label>Username</Label>

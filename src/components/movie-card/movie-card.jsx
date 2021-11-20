@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
 import '../../styles/_movie-card.scss';
@@ -12,7 +12,7 @@ class MovieCard extends React.Component {
 		const { Img, Body, Text, Header } = Card;
 
 		return (
-			<Card className='text-center'>
+			<Card className='text-center m-1 p-1'>
 				<Header as='h5'>{Title}</Header>
 				<Img
 					variant='top'
@@ -21,8 +21,8 @@ class MovieCard extends React.Component {
 					crossOrigin='anonymous'
           className='p-1 w-75 m-auto'
 				/>
-				<Body className='card-styling'>
-					<Text>{Description}</Text>
+				<Body className='card-body'>
+					<Text className='h6'>{Description}</Text>
           <Link to={`/movies/${_id}`}>
 					<Button className="m-2 card-button">See Details</Button>
           </Link>

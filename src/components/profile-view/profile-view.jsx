@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserInfo from './user-info';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col} from 'react-bootstrap';
+import MovieReelSpinner from '../MovieReelSpinner/MovieReelSpinner';
 import InfoForm from '../form/info-form';
 import FavoriteMovies from './favorite-movies';
 import DeleteModal from './delete-modal';
@@ -120,7 +121,7 @@ const ProfileView = ({ movies, onBackClick }) => {
 	}
 
 	return (
-		<Container>
+		<>
 			<UserInfo
 				user={userValues.Username}
 				email={userValues.Email}
@@ -128,13 +129,13 @@ const ProfileView = ({ movies, onBackClick }) => {
 				setShow={setShow}
 			/>
 			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />
-			{favoriteMovies && (
+			{favoriteMovies ? (
 				<FavoriteMovies
 					favoriteMovies={favoriteMovies}
 					removeFromFavorites={removeFromFavorites}
 				/>
-			)}
-		</Container>
+      ) : (<MovieReelSpinner />)}
+		</>
 	);
 };
 

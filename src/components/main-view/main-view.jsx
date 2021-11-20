@@ -22,8 +22,10 @@ import DirectorView from '../director-view/director-view';
 import LoginView from '../login-view/login-view';
 import RegistrationView from '../registration-view/registration-view';
 import ProfileView from '../profile-view/profile-view';
+import HomeView from '../home-view/home-view';
 import { Row, Col, Container } from 'react-bootstrap';
 import ToastNotification from '../toast-notification/toast-notification';
+import MovieReelSpinner from '../MovieReelSpinner/MovieReelSpinner';
 
 import '../../styles/main-view.scss';
 
@@ -32,23 +34,43 @@ class MainView extends React.Component {
 		super();
 		this.state = {
 			show: false,
+			isLoading: true,
 		};
 	}
 
 	componentDidMount = () => {
-		const { setUser } = this.props;
-		let accessToken = localStorage.getItem('token');
-		if (accessToken !== null) {
-			setUser({ Username: localStorage.getItem('user') });
+		const accessUser = localStorage.getItem('user');
+		const accessToken = localStorage.getItem('token');
+		if (accessToken !== null && accessUser !== null) {
+			this.getUser(accessUser, accessToken);
 			this.getMovies(accessToken);
 		}
 	};
 
+	getUser = (user, token) => {
+		axios
+			.get(`${URL}/users/${user}`, {
+				headers: { Authorization: `Bearer ${token}` },
+			})
+			.then(res => {
+				const { setUser } = this.props;
+				const { Username, Password, Email, Birthday, FavoriteMovies } =
+					res.data;
+				setUser({
+					Username,
+					Password,
+					Email,
+					Birthday: Birthday.slice(0, 10),
+					FavoriteMovies,
+				});
+			})
+			.catch(err => console.log(err));
+	};
+
 	onLoggedIn = authData => {
-		const { setUser } = this.props;
-		setUser({ Username: authData.user.Username });
 		localStorage.setItem('token', authData.token);
 		localStorage.setItem('user', authData.user.Username);
+		this.getUser(localStorage.getItem('user'), localStorage.getItem('token'));
 		this.getMovies(authData.token);
 	};
 
@@ -65,23 +87,22 @@ class MainView extends React.Component {
 			.get(`${URL}/movies`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
-			.then(res => setMovies(res.data))
+			.then(res => {
+				this.setState({ isLoading: false });
+				setMovies(res.data);
+			})
 			.catch(err => console.log(err));
 	};
 
 	addMovieToFavorites = movieId => {
+		const { addToFavorites } = this.props;
 		const user = localStorage.getItem('user');
 		const token = localStorage.getItem('token');
-		const { addToFavorites } = this.props;
 		axios
 			.post(
 				`${URL}/users/${user}/movies/${movieId}`,
-				{
-					FavoriteMovies: movieId,
-				},
-				{
-					headers: { Authorization: `Bearer ${token}` },
-				}
+				{ FavoriteMovies: movieId },
+				{ headers: { Authorization: `Bearer ${token}` } }
 			)
 			.then(res => {
 				addToFavorites(movieId);
@@ -91,23 +112,68 @@ class MainView extends React.Component {
 			.catch(err => console.log(err));
 	};
 
-  setShow = () => this.setState({show: true})
+	setShow = () => this.setState({ show: true });
 
 	render() {
 		let { movies, user } = this.props;
-
+		let { show, isLoading } = this.state;
 		return (
 			<>
 				<Router>
 					<Navigation onLoggedOut={this.onLoggedOut} user={user} />
-					<Container className='container'>
+					<Container>
 						<Row className='main-view justify-content-md-center'>
 							<Switch>
 								<Route
 									exact
 									path='/'
 									render={() => {
-										if (!user)
+										if (user.Username) return <Redirect to='/movies' />;
+
+										return <HomeView />;
+									}}
+								/>
+
+								<Route
+									exact
+									path='/movies'
+									render={() => {
+										if (!user.Username)
+											return (
+												<Col>
+													<LoginView
+														onLoggedIn={user => this.onLoggedIn(user)}
+													/>
+												</Col>
+											);
+										if (movies.length === 0)
+											return <div className='main-view' />;
+
+										return (
+											<>
+												{show === true ? (
+													<ToastNotification
+														setShow={this.setShow}
+														show={this.state.show}
+													/>
+												) : (
+													<div></div>
+												)}
+												{isLoading === true ? <MovieLoadingSpinner /> : <></>}
+												<MoviesList
+													movies={movies}
+													addMovieToFavorites={this.addMovieToFavorites}
+												/>
+											</>
+										);
+									}}
+								/>
+
+								<Route
+									exact
+									path='/login'
+									render={() => {
+										if (!user.Username)
 											return (
 												<Col>
 													<LoginView
@@ -116,21 +182,15 @@ class MainView extends React.Component {
 												</Col>
 											);
 
+										if (user.Username) return <Redirect to='/movies' />;
+
 										if (movies.length === 0)
 											return <div className='main-view' />;
 
 										return (
-                      <>
-                      	{this.state.show === true ? (
-													<ToastNotification setShow={this.setShow} show={this.state.show}/>
-												) : (
-													<div></div>
-												)}
-											<MoviesList
-												movies={movies}
-												addMovieToFavorites={this.addMovieToFavorites}
-											/>
-                      </>
+											<Col>
+												<LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+											</Col>
 										);
 									}}
 								/>
@@ -139,7 +199,7 @@ class MainView extends React.Component {
 									exact
 									path='/register'
 									render={({ history }) => {
-										if (user) return <Redirect to='/' />;
+										if (user.Username) return <Redirect to='/' />;
 										return (
 											<Col>
 												<RegistrationView
@@ -154,7 +214,7 @@ class MainView extends React.Component {
 									exact
 									path='/movies/:movieId'
 									render={({ match, history }) => {
-										if (!user)
+										if (!user.Username)
 											return (
 												<Col>
 													<LoginView
@@ -182,7 +242,7 @@ class MainView extends React.Component {
 									exact
 									path='/genres/:Name'
 									render={({ match, history }) => {
-										if (!user)
+										if (!user.Username)
 											return (
 												<Col>
 													<LoginView
@@ -211,7 +271,7 @@ class MainView extends React.Component {
 									exact
 									path='/directors/:Name'
 									render={({ match, history }) => {
-										if (!user)
+										if (!user.Username)
 											return (
 												<Col>
 													<LoginView
@@ -240,7 +300,7 @@ class MainView extends React.Component {
 									exact
 									path='/users/:Username'
 									render={({ history }) => {
-										if (!user)
+										if (!user.Username)
 											return (
 												<LoginView onLoggedIn={user => this.onLoggedIn(user)} />
 											);
@@ -250,7 +310,6 @@ class MainView extends React.Component {
 											<ProfileView
 												history={history}
 												movies={movies}
-												user={user}
 												onBackClick={() => history.goBack()}
 											/>
 										);
@@ -268,7 +327,7 @@ class MainView extends React.Component {
 let mapStateToProps = state => {
 	return {
 		movies: state.movies.value,
-		user: state.user.value.Username,
+		user: state.user.value,
 	};
 };
 

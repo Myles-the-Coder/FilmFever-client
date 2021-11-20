@@ -7,26 +7,34 @@ import '../../styles/_navigation.scss'
 
 const Navigation = ({ onLoggedOut, user }) => {
   const {Brand, Toggle, Collapse} = Navbar
+  const buttonStyling = {
+    backgroundColor: 'transparent',
+    border: 'none',
+    color: '#000'
+  }
 
-  if (!user) {
+  if (!user.Username) {
   return (
-      <Navbar className='navbar-styling' >
+      <Navbar>
       <Brand><img src={logo} alt="FilmFever logo" width='70px'/></Brand>
     </Navbar>
 		);
   } else {
     return (
-    <Navbar collapseOnSelect expand='lg' className='navbar-styling'>
+    <Navbar collapseOnSelect expand='lg' sticky='top' className='navbar-styling'>
     <Brand><img src={logo} alt="FilmFever logo" width='70px'/></Brand>
     <Toggle aria-controls="responsive-navbar-nav"/>
     <Collapse id='responsive-navbar-nav' className='justify-content-end'>
 				<Link to='/'>
-        <Button onClick={onLoggedOut} className='m-2'>
+        <Button bg='custom-button' onClick={onLoggedOut}>
           Sign Out
 				</Button>
         </Link>
-        <Link to={`/users/${user}`}>
-        <Button>Profile</Button>
+        <Link to={`/users/${user.Username}`}>
+        <Button className='m-2' style={buttonStyling}>Profile</Button>
+        </Link>
+        <Link to='/movies'>
+        <Button style={buttonStyling}>Movies</Button>
         </Link>
     </Collapse>
 			</Navbar>

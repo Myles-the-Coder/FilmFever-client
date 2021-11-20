@@ -21,7 +21,7 @@
     "react-redux": "^7.2.6",
     "react-router-dom": "^5.3.0",
     "redux": "^4.1.2",
-    "redux-devtools-extension": "^2.13.9",
+    "save": "^2.4.0",
     "yup": "^0.32.11"
   },
   "devDependencies": {

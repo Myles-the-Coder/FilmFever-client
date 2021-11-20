@@ -26,8 +26,8 @@ function MoviesList({ movies, addMovieToFavorites }) {
 			</Col>
 			{filteredMovies.length > 0 ? (
 				filteredMovies.map(movie => (
-					<Col xs={12} sm={6} md={4} lg={3} key={movie._id}>
-						<MovieCard
+					<Col xs={10} sm={6} md={4} lg={3} key={movie._id} className='m-auto'>
+          	<MovieCard
 							movie={movie}
 							addMovieToFavorites={addMovieToFavorites}
 						/>
