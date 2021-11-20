@@ -7,11 +7,6 @@ import '../../styles/_navigation.scss'
 
 const Navigation = ({ onLoggedOut, user }) => {
   const {Brand, Toggle, Collapse} = Navbar
-  const buttonStyling = {
-    backgroundColor: 'transparent',
-    border: 'none',
-    color: '#000'
-  }
 
   if (!user.Username) {
   return (
@@ -26,15 +21,15 @@ const Navigation = ({ onLoggedOut, user }) => {
     <Toggle aria-controls="responsive-navbar-nav"/>
     <Collapse id='responsive-navbar-nav' className='justify-content-end'>
 				<Link to='/'>
-        <Button bg='custom-button' onClick={onLoggedOut}>
+        <Button bsPrefix='nav-button' onClick={onLoggedOut}>
           Sign Out
 				</Button>
         </Link>
         <Link to={`/users/${user.Username}`}>
-        <Button className='m-2' style={buttonStyling}>Profile</Button>
+        <Button className='m-2' bsPrefix='nav-button'>Profile</Button>
         </Link>
         <Link to='/movies'>
-        <Button style={buttonStyling}>Movies</Button>
+        <Button bsPrefix='nav-button'>Movies</Button>
         </Link>
     </Collapse>
 			</Navbar>

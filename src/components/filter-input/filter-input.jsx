@@ -5,7 +5,6 @@ import { setFilter } from '../../redux/features/filterSlice';
 
 function FilterInput({ filter }) {
 	const dispatch = useDispatch();
-
 	return (
 		<Form.Control
 			className='w-75 m-auto'

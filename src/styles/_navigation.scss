@@ -2,6 +2,18 @@
   background-color: rgba(255, 255, 255, 0.5);
 }
 
-.bg-custom-button {
-  background-color: green;
+.nav-button {
+  background-color: transparent;
+  color: #8860d0;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  &:hover {
+    text-decoration: underline;
+    transform: scale(1.1);
+  }
 }

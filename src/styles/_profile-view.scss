@@ -1,0 +1,11 @@
+@import "_movie-card.scss";
+
+.warning-button {
+  @include button-styling();
+  background-color: #cc3300;
+  color: whitesmoke;
+
+  &:hover {
+    filter: brightness(110%)
+  }
+}

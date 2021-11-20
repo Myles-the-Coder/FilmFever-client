@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import FilterInput from '../filter-input/filter-input'
 import NoMoviesFound from '../no-movies-found/no-movies-found'
 
+import '../../styles/_profile-view.scss'
+
 const FavoriteMovies = ({favoriteMovies, removeFromFavorites}) => {
   let filteredFavs = favoriteMovies;
   const filter = useSelector((state) => state.filter.value)
@@ -30,9 +32,9 @@ const FavoriteMovies = ({favoriteMovies, removeFromFavorites}) => {
           <h4>{Title}</h4>
           <img src={ImagePath} alt={Title} crossOrigin='anonymous'/>
           <Link to={`/movies/${_id}`}>
-            <Button className='m-1'>See Details</Button>
+            <Button bsPrefix='card-button' className='m-1'>See Details</Button>
           </Link>
-          <Button onClick={() => removeFromFavorites(_id)} className='w-75 m-auto'>Remove from Favorites</Button>
+          <Button bsPrefix='card-button' onClick={() => removeFromFavorites(_id)} className='w-75 m-auto'>Remove from Favorites</Button>
           </Card>
           </Col>
       )

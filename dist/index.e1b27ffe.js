@@ -984,7 +984,7 @@ _reactDomDefault.default.render(/*#__PURE__*/ _reactDefault.default.createElemen
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-dom":"afyCw","./components/main-view/main-view":"rCT5r","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","react-redux":"lT3ms","../css/main-view.css":"bl1Wp","./redux/app/store":"a8GzU","bootstrap/dist/css/bootstrap.min.css":"5dhe6"}],"6Ds2u":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-dom":"afyCw","./components/main-view/main-view":"rCT5r","bootstrap/dist/css/bootstrap.min.css":"5dhe6","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","react-redux":"lT3ms","../css/main-view.css":"bl1Wp","./redux/app/store":"a8GzU"}],"6Ds2u":[function(require,module,exports) {
 'use strict';
 module.exports = require('./cjs/react-jsx-runtime.development.js');
 
@@ -32478,22 +32478,17 @@ var _filmFeverPngDefault = parcelHelpers.interopDefault(_filmFeverPng);
 var _navigationScss = require("../../styles/_navigation.scss");
 const Navigation = ({ onLoggedOut , user  })=>{
     const { Brand , Toggle , Collapse  } = _reactBootstrap.Navbar;
-    const buttonStyling = {
-        backgroundColor: 'transparent',
-        border: 'none',
-        color: '#000'
-    };
     if (!user.Username) return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Navbar, {
         __source: {
             fileName: "src/components/navigation/navigation.jsx",
-            lineNumber: 18,
+            lineNumber: 13,
             columnNumber: 7
         },
         __self: undefined,
         children: /*#__PURE__*/ _jsxRuntime.jsx(Brand, {
             __source: {
                 fileName: "src/components/navigation/navigation.jsx",
-                lineNumber: 19,
+                lineNumber: 14,
                 columnNumber: 7
             },
             __self: undefined,
@@ -32503,7 +32498,7 @@ const Navigation = ({ onLoggedOut , user  })=>{
                 width: "70px",
                 __source: {
                     fileName: "src/components/navigation/navigation.jsx",
-                    lineNumber: 19,
+                    lineNumber: 14,
                     columnNumber: 14
                 },
                 __self: undefined
@@ -32517,7 +32512,7 @@ const Navigation = ({ onLoggedOut , user  })=>{
         className: "navbar-styling",
         __source: {
             fileName: "src/components/navigation/navigation.jsx",
-            lineNumber: 24,
+            lineNumber: 19,
             columnNumber: 5
         },
         __self: undefined,
@@ -32525,7 +32520,7 @@ const Navigation = ({ onLoggedOut , user  })=>{
             /*#__PURE__*/ _jsxRuntime.jsx(Brand, {
                 __source: {
                     fileName: "src/components/navigation/navigation.jsx",
-                    lineNumber: 25,
+                    lineNumber: 20,
                     columnNumber: 5
                 },
                 __self: undefined,
@@ -32535,7 +32530,7 @@ const Navigation = ({ onLoggedOut , user  })=>{
                     width: "70px",
                     __source: {
                         fileName: "src/components/navigation/navigation.jsx",
-                        lineNumber: 25,
+                        lineNumber: 20,
                         columnNumber: 12
                     },
                     __self: undefined
@@ -32545,7 +32540,7 @@ const Navigation = ({ onLoggedOut , user  })=>{
                 "aria-controls": "responsive-navbar-nav",
                 __source: {
                     fileName: "src/components/navigation/navigation.jsx",
-                    lineNumber: 26,
+                    lineNumber: 21,
                     columnNumber: 5
                 },
                 __self: undefined
@@ -32555,7 +32550,7 @@ const Navigation = ({ onLoggedOut , user  })=>{
                 className: "justify-content-end",
                 __source: {
                     fileName: "src/components/navigation/navigation.jsx",
-                    lineNumber: 27,
+                    lineNumber: 22,
                     columnNumber: 5
                 },
                 __self: undefined,
@@ -32564,16 +32559,16 @@ const Navigation = ({ onLoggedOut , user  })=>{
                         to: "/",
                         __source: {
                             fileName: "src/components/navigation/navigation.jsx",
-                            lineNumber: 28,
+                            lineNumber: 23,
                             columnNumber: 5
                         },
                         __self: undefined,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                            bg: "custom-button",
+                            bsPrefix: "nav-button",
                             onClick: onLoggedOut,
                             __source: {
                                 fileName: "src/components/navigation/navigation.jsx",
-                                lineNumber: 29,
+                                lineNumber: 24,
                                 columnNumber: 9
                             },
                             __self: undefined,
@@ -32584,16 +32579,16 @@ const Navigation = ({ onLoggedOut , user  })=>{
                         to: `/users/${user.Username}`,
                         __source: {
                             fileName: "src/components/navigation/navigation.jsx",
-                            lineNumber: 33,
+                            lineNumber: 28,
                             columnNumber: 9
                         },
                         __self: undefined,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                             className: "m-2",
-                            style: buttonStyling,
+                            bsPrefix: "nav-button",
                             __source: {
                                 fileName: "src/components/navigation/navigation.jsx",
-                                lineNumber: 34,
+                                lineNumber: 29,
                                 columnNumber: 9
                             },
                             __self: undefined,
@@ -32604,15 +32599,15 @@ const Navigation = ({ onLoggedOut , user  })=>{
                         to: "/movies",
                         __source: {
                             fileName: "src/components/navigation/navigation.jsx",
-                            lineNumber: 36,
+                            lineNumber: 31,
                             columnNumber: 9
                         },
                         __self: undefined,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                            style: buttonStyling,
+                            bsPrefix: "nav-button",
                             __source: {
                                 fileName: "src/components/navigation/navigation.jsx",
-                                lineNumber: 37,
+                                lineNumber: 32,
                                 columnNumber: 9
                             },
                             __self: undefined,
@@ -44748,7 +44743,8 @@ class MovieCard extends _reactDefault.default.Component {
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                className: "m-2 card-button",
+                                className: "m-2",
+                                bsPrefix: "card-button",
                                 __source: {
                                     fileName: "src/components/movie-card/movie-card.jsx",
                                     lineNumber: 27,
@@ -44759,7 +44755,7 @@ class MovieCard extends _reactDefault.default.Component {
                             })
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                            className: "card-button",
+                            bsPrefix: "card-button",
                             onClick: ()=>addMovieToFavorites(_id)
                             ,
                             __source: {
@@ -44830,7 +44826,7 @@ function FilterInput({ filter  }) {
         placeholder: "Filter Movies...",
         __source: {
             fileName: "src/components/filter-input/filter-input.jsx",
-            lineNumber: 10,
+            lineNumber: 9,
             columnNumber: 3
         },
         __self: this
@@ -45004,7 +45000,7 @@ class MovieView extends _reactDefault.default.Component {
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                variant: "primary",
+                                bsPrefix: "card-button",
                                 __source: {
                                     fileName: "src/components/movie-view/movie-view.jsx",
                                     lineNumber: 28,
@@ -45023,8 +45019,8 @@ class MovieView extends _reactDefault.default.Component {
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                variant: "primary",
                                 className: "m-2",
+                                bsPrefix: "card-button",
                                 __source: {
                                     fileName: "src/components/movie-view/movie-view.jsx",
                                     lineNumber: 31,
@@ -45035,6 +45031,7 @@ class MovieView extends _reactDefault.default.Component {
                             })
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                            bsPrefix: "card-button",
                             onClick: ()=>addMovieToFavorites(_id)
                             ,
                             __source: {
@@ -45046,7 +45043,8 @@ class MovieView extends _reactDefault.default.Component {
                             children: "Add to Favorites"
                         }),
                         /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                            className: "btn m-2",
+                            className: "m-2",
+                            bsPrefix: "card-button",
                             onClick: ()=>onBackClick()
                             ,
                             __source: {
@@ -55935,6 +55933,7 @@ var _reactBootstrap = require("react-bootstrap");
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _yup = require("yup");
+var _profileViewScss = require("../../styles/_profile-view.scss");
 const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
     const schema = _yup.object({
         username: _yup.string().min(3, 'Username must be at least 3 characters in length').max(15, 'Username cannot be more than 15 characters long').required('Valid username is required'),
@@ -55959,7 +55958,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
         },
         __source: {
             fileName: "src/components/form/info-form.jsx",
-            lineNumber: 27,
+            lineNumber: 29,
             columnNumber: 3
         },
         __self: undefined,
@@ -55973,7 +55972,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                 },
                 __source: {
                     fileName: "src/components/form/info-form.jsx",
-                    lineNumber: 38,
+                    lineNumber: 40,
                     columnNumber: 5
                 },
                 __self: undefined,
@@ -55981,7 +55980,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                     handleRegister ? /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 39,
+                            lineNumber: 41,
                             columnNumber: 24
                         },
                         __self: undefined,
@@ -55989,7 +55988,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                     }) : /*#__PURE__*/ _jsxRuntime.jsx("h1", {
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 39,
+                            lineNumber: 41,
                             columnNumber: 52
                         },
                         __self: undefined,
@@ -55999,7 +55998,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                         controlId: "validationFormik01",
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 40,
+                            lineNumber: 42,
                             columnNumber: 6
                         },
                         __self: undefined,
@@ -56007,7 +56006,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 41,
+                                    lineNumber: 43,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56022,7 +56021,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 isInvalid: errors.username,
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 42,
+                                    lineNumber: 44,
                                     columnNumber: 7
                                 },
                                 __self: undefined
@@ -56031,7 +56030,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 type: "invalid",
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 50,
+                                    lineNumber: 52,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56043,7 +56042,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                         controlId: "validationFormik02",
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 55,
+                            lineNumber: 57,
                             columnNumber: 6
                         },
                         __self: undefined,
@@ -56051,7 +56050,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 56,
+                                    lineNumber: 58,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56066,7 +56065,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 isInvalid: errors.password,
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 57,
+                                    lineNumber: 59,
                                     columnNumber: 7
                                 },
                                 __self: undefined
@@ -56075,7 +56074,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 type: "invalid",
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 65,
+                                    lineNumber: 67,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56087,7 +56086,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                         controlId: "validationFormik03",
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 69,
+                            lineNumber: 71,
                             columnNumber: 6
                         },
                         __self: undefined,
@@ -56095,7 +56094,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 70,
+                                    lineNumber: 72,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56111,7 +56110,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 isInvalid: errors.email,
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 71,
+                                    lineNumber: 73,
                                     columnNumber: 7
                                 },
                                 __self: undefined
@@ -56120,7 +56119,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 type: "invalid",
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 81,
+                                    lineNumber: 83,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56133,7 +56132,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                         controlId: "validationFormik04",
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 84,
+                            lineNumber: 86,
                             columnNumber: 6
                         },
                         __self: undefined,
@@ -56141,7 +56140,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 85,
+                                    lineNumber: 87,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56157,7 +56156,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 isInvalid: errors.birthday,
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 86,
+                                    lineNumber: 88,
                                     columnNumber: 7
                                 },
                                 __self: undefined
@@ -56166,7 +56165,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 type: "invalid",
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 95,
+                                    lineNumber: 97,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56179,7 +56178,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                         controlId: "validationFormik05",
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 100,
+                            lineNumber: 102,
                             columnNumber: 6
                         },
                         __self: undefined,
@@ -56187,7 +56186,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsx(Label, {
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 101,
+                                    lineNumber: 103,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56203,7 +56202,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 isInvalid: errors.confirmPassword,
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 102,
+                                    lineNumber: 104,
                                     columnNumber: 7
                                 },
                                 __self: undefined
@@ -56212,7 +56211,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                                 type: "invalid",
                                 __source: {
                                     fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 112,
+                                    lineNumber: 114,
                                     columnNumber: 7
                                 },
                                 __self: undefined,
@@ -56225,7 +56224,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                         className: "m-1",
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 116,
+                            lineNumber: 118,
                             columnNumber: 6
                         },
                         __self: undefined,
@@ -56233,12 +56232,13 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                         type: "button",
+                        bsPrefix: "card-button",
                         onClick: ()=>{
                             handleRegister ? onBackClick() : setShow('');
                         },
                         __source: {
                             fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 119,
+                            lineNumber: 121,
                             columnNumber: 6
                         },
                         __self: undefined,
@@ -56261,7 +56261,7 @@ $RefreshReg$(_c, "InfoForm");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","formik":"3bYVU","react-bootstrap":"9qMdX","prop-types":"2bysO","yup":"gvf4u","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"lcykR":[function() {},{}],"aZt7f":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","formik":"3bYVU","react-bootstrap":"9qMdX","prop-types":"2bysO","yup":"gvf4u","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../styles/_profile-view.scss":"d1wt9"}],"d1wt9":[function() {},{}],"lcykR":[function() {},{}],"aZt7f":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$80e7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -56482,13 +56482,14 @@ var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
+var _profileViewScss = require("../../styles/_profile-view.scss");
 const UserInfo = ({ user , email , birthday , setShow  })=>{
     const { Body , Text , Header  } = _reactBootstrap.Card;
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
         className: "justify-content-center",
         __source: {
             fileName: "src/components/profile-view/user-info.jsx",
-            lineNumber: 7,
+            lineNumber: 8,
             columnNumber: 5
         },
         __self: undefined,
@@ -56498,7 +56499,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
             md: 8,
             __source: {
                 fileName: "src/components/profile-view/user-info.jsx",
-                lineNumber: 8,
+                lineNumber: 9,
                 columnNumber: 9
             },
             __self: undefined,
@@ -56506,7 +56507,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                 className: "text-center m-1",
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
-                    lineNumber: 9,
+                    lineNumber: 10,
                     columnNumber: 5
                 },
                 __self: undefined,
@@ -56515,7 +56516,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                         className: "h1",
                         __source: {
                             fileName: "src/components/profile-view/user-info.jsx",
-                            lineNumber: 10,
+                            lineNumber: 11,
                             columnNumber: 7
                         },
                         __self: undefined,
@@ -56527,7 +56528,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                         },
                         __source: {
                             fileName: "src/components/profile-view/user-info.jsx",
-                            lineNumber: 11,
+                            lineNumber: 12,
                             columnNumber: 7
                         },
                         __self: undefined,
@@ -56535,7 +56536,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsxs(Text, {
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
-                                    lineNumber: 12,
+                                    lineNumber: 13,
                                     columnNumber: 5
                                 },
                                 __self: undefined,
@@ -56547,7 +56548,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsxs(Text, {
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
-                                    lineNumber: 13,
+                                    lineNumber: 14,
                                     columnNumber: 5
                                 },
                                 __self: undefined,
@@ -56559,7 +56560,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsxs(Text, {
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
-                                    lineNumber: 14,
+                                    lineNumber: 15,
                                     columnNumber: 5
                                 },
                                 __self: undefined,
@@ -56570,11 +56571,12 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                             }),
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                 className: "w-25 m-1",
+                                bsPrefix: "card-button",
                                 onClick: ()=>setShow('update')
                                 ,
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
-                                    lineNumber: 15,
+                                    lineNumber: 16,
                                     columnNumber: 5
                                 },
                                 __self: undefined,
@@ -56582,12 +56584,12 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                             }),
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
                                 className: "w-25 m-1",
-                                variant: "danger",
+                                bsPrefix: "warning-button",
                                 onClick: ()=>setShow('modal')
                                 ,
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
-                                    lineNumber: 16,
+                                    lineNumber: 17,
                                     columnNumber: 4
                                 },
                                 __self: undefined,
@@ -56610,7 +56612,7 @@ $RefreshReg$(_c, "UserInfo");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"f2R8O":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../styles/_profile-view.scss":"d1wt9"}],"d1wt9":[function() {},{}],"f2R8O":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$992b = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -56629,6 +56631,7 @@ var _filterInput = require("../filter-input/filter-input");
 var _filterInputDefault = parcelHelpers.interopDefault(_filterInput);
 var _noMoviesFound = require("../no-movies-found/no-movies-found");
 var _noMoviesFoundDefault = parcelHelpers.interopDefault(_noMoviesFound);
+var _profileViewScss = require("../../styles/_profile-view.scss");
 var _s = $RefreshSig$();
 const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
     _s();
@@ -56642,7 +56645,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
             className: "justify-content-center text-center",
             __source: {
                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                lineNumber: 20,
+                lineNumber: 22,
                 columnNumber: 5
             },
             __self: undefined,
@@ -56651,7 +56654,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                     className: "p-2 m-4 text-light",
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 21,
+                        lineNumber: 23,
                         columnNumber: 5
                     },
                     __self: undefined,
@@ -56662,7 +56665,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                     className: "m-2",
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 22,
+                        lineNumber: 24,
                         columnNumber: 5
                     },
                     __self: undefined,
@@ -56670,14 +56673,14 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                         filter: filter,
                         __source: {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 23,
+                            lineNumber: 25,
                             columnNumber: 32
                         },
                         __self: undefined
                     }) : /*#__PURE__*/ _jsxRuntime.jsx("div", {
                         __source: {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 23,
+                            lineNumber: 25,
                             columnNumber: 65
                         },
                         __self: undefined
@@ -56691,7 +56694,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                         md: 4,
                         __source: {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 28,
+                            lineNumber: 30,
                             columnNumber: 9
                         },
                         __self: undefined,
@@ -56702,7 +56705,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                             },
                             __source: {
                                 fileName: "src/components/profile-view/favorite-movies.jsx",
-                                lineNumber: 29,
+                                lineNumber: 31,
                                 columnNumber: 11
                             },
                             __self: undefined,
@@ -56710,7 +56713,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                                 /*#__PURE__*/ _jsxRuntime.jsx("h4", {
                                     __source: {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 30,
+                                        lineNumber: 32,
                                         columnNumber: 11
                                     },
                                     __self: undefined,
@@ -56722,7 +56725,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                                     crossOrigin: "anonymous",
                                     __source: {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 31,
+                                        lineNumber: 33,
                                         columnNumber: 11
                                     },
                                     __self: undefined
@@ -56731,15 +56734,16 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                                     to: `/movies/${_id}`,
                                     __source: {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 32,
+                                        lineNumber: 34,
                                         columnNumber: 11
                                     },
                                     __self: undefined,
                                     children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                        bsPrefix: "card-button",
                                         className: "m-1",
                                         __source: {
                                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                                            lineNumber: 33,
+                                            lineNumber: 35,
                                             columnNumber: 13
                                         },
                                         __self: undefined,
@@ -56747,12 +56751,13 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                                     })
                                 }),
                                 /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                                    bsPrefix: "card-button",
                                     onClick: ()=>removeFromFavorites(_id)
                                     ,
                                     className: "w-75 m-auto",
                                     __source: {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 35,
+                                        lineNumber: 37,
                                         columnNumber: 11
                                     },
                                     __self: undefined,
@@ -56765,7 +56770,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                     message: 'Movie not found in favorites',
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 39,
+                        lineNumber: 41,
                         columnNumber: 10
                     },
                     __self: undefined
@@ -56789,7 +56794,7 @@ $RefreshReg$(_c, "FavoriteMovies");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","react-redux":"lT3ms","react-router-dom":"etVME","../filter-input/filter-input":"jctYz","../no-movies-found/no-movies-found":"4Lo0h","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"b0Bx8":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","react-bootstrap":"9qMdX","react-redux":"lT3ms","react-router-dom":"etVME","../filter-input/filter-input":"jctYz","../no-movies-found/no-movies-found":"4Lo0h","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../styles/_profile-view.scss":"d1wt9"}],"d1wt9":[function() {},{}],"b0Bx8":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8dc9 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -57131,7 +57136,7 @@ $RefreshReg$(_c, "HomeView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../img/FilmFever.png":"cYrWD","react-bootstrap":"9qMdX","react-router-dom":"etVME"}],"bl1Wp":[function() {},{}],"a8GzU":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../img/FilmFever.png":"cYrWD","react-bootstrap":"9qMdX","react-router-dom":"etVME"}],"5dhe6":[function() {},{}],"bl1Wp":[function() {},{}],"a8GzU":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "store", ()=>store
@@ -57151,6 +57156,6 @@ const store = _toolkit.configureStore({
     }
 });
 
-},{"@reduxjs/toolkit":"boBov","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","../features/moviesSlice":"jy4Te","../features/filterSlice":"ksIPP","../features/userSlice":"dBA40"}],"5dhe6":[function() {},{}]},["cyvyO","aRw7j","dB8et"], "dB8et", "parcelRequire17c3")
+},{"@reduxjs/toolkit":"boBov","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","../features/moviesSlice":"jy4Te","../features/filterSlice":"ksIPP","../features/userSlice":"dBA40"}]},["cyvyO","aRw7j","dB8et"], "dB8et", "parcelRequire17c3")
 
 //# sourceMappingURL=index.e1b27ffe.js.map

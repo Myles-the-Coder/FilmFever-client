@@ -4,6 +4,8 @@ import { Form, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 
+import '../../styles/_profile-view.scss'
+
 const InfoForm = ({ handleRegister, editUser, setShow, onBackClick }) => {
 	const schema = Yup.object({
 		username: Yup.string()
@@ -118,6 +120,7 @@ const InfoForm = ({ handleRegister, editUser, setShow, onBackClick }) => {
 					</Button>
 					<Button
 						type='button'
+            bsPrefix='card-button'
 						onClick={() => {
 							handleRegister ? onBackClick() : setShow('');
 						}}>

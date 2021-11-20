@@ -25,13 +25,13 @@ class MovieView extends React.Component {
 					<Title>{movie.Title}</Title>
 					<Text>{Description}</Text>
           <Link to={`/directors/${Director.Name}`}>
-            <Button variant='primary'>Director</Button>
+            <Button bsPrefix='card-button'>Director</Button>
           </Link>
           <Link to={`/genres/${Genre.Name}`}>
-            <Button variant='primary'className='m-2'>Genre</Button>
+            <Button className='m-2' bsPrefix='card-button'>Genre</Button>
           </Link>
-          <Button onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
-					<Button className='btn m-2' onClick={() => onBackClick()}>
+          <Button bsPrefix='card-button' onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
+					<Button className='m-2' bsPrefix='card-button' onClick={() => onBackClick()}>
 						Back
 					</Button>
 				</Body>

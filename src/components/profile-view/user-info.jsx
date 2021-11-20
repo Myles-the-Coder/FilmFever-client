@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card, Button, Row, Col} from 'react-bootstrap'
+import '../../styles/_profile-view.scss'
 
 const UserInfo = ({user, email, birthday, setShow}) => {
   const { Body, Text, Header } = Card;
@@ -12,8 +13,8 @@ const UserInfo = ({user, email, birthday, setShow}) => {
     <Text>Username: {`${user}`}</Text>
     <Text>Email: {`${email}`}</Text>
     <Text>Birthday: {`${birthday}`}</Text>
-    <Button className='w-25 m-1' onClick={() => setShow('update')}>Update Info</Button>
-			<Button className='w-25 m-1' variant='danger' onClick={() => setShow('modal')}>Delete Account</Button>
+    <Button className='w-25 m-1' bsPrefix='card-button' onClick={() => setShow('update')}>Update Info</Button>
+			<Button className='w-25 m-1' bsPrefix='warning-button'  onClick={() => setShow('modal')}>Delete Account</Button>
     </Body>
     </Card>
     </Col>

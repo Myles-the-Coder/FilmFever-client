@@ -3,13 +3,17 @@
   background-color: lightgray;
 }
 
-.card-button {
+@mixin button-styling {
   border: none;
   padding: 10px;
   border-radius: 5px;
-  background-color: #4066E0;
-  color: whitesmoke;
   cursor: pointer;
+}
+
+.card-button {
+  @include button-styling();
+  background-color: #5680e9;
+  color: whitesmoke;
 
   &:hover {
     filter: brightness(110%)
