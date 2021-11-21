@@ -18,7 +18,6 @@ const FavoriteMovies = ({favoriteMovies, removeFromFavorites}) => {
 	}
 
   return (
-    <>
     <Row className='justify-content-center text-center'>
     <h1 className='p-2 m-4 text-light'>Your Favorite Movies</h1>
     <Col md={12} className='m-2'>
@@ -38,9 +37,8 @@ const FavoriteMovies = ({favoriteMovies, removeFromFavorites}) => {
           </Card>
           </Col>
       )
-    }) : <NoMoviesFound message={'Movie not found in favorites'}/>}
+    }) : <NoMoviesFound message={'Movie not found'}/>}
     </Row>
-    </>
   )
 }
 

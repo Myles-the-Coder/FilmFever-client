@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 import { Link } from 'react-router-dom';
 
+import '../../styles/_button.scss'
+
 function LoginForm({ handleLogin }) {
 	const loginSchema = Yup.object({
 		username: Yup.string().required('Enter username'),
@@ -51,7 +53,7 @@ function LoginForm({ handleLogin }) {
 							{errors.password}
 						</Control.Feedback>
 					</Group>
-					<Button type='submit' className='m-1'>
+					<Button type='submit' className='m-3 w-50' bsPrefix='card-button'>
 						Login
 					</Button>
 					<p>

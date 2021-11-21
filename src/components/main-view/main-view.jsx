@@ -122,7 +122,7 @@ class MainView extends React.Component {
 				<Router>
 					<Navigation onLoggedOut={this.onLoggedOut} user={user} />
 					<Container>
-						<Row className='main-view justify-content-md-center'>
+						<Row className='main-view justify-content-md-center position-relative'>
 							<Switch>
 								<Route
 									exact

@@ -115,7 +115,7 @@ const InfoForm = ({ handleRegister, editUser, setShow, onBackClick }) => {
 							{errors.confirmPassword}
 						</Control.Feedback>
 					</Group>
-					<Button type='submit' className='m-1'>
+					<Button type='submit' className='m-2' bsPrefix='card-button'>
 						{handleRegister ? 'Register' : 'Update'}
 					</Button>
 					<Button

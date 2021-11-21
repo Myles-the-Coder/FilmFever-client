@@ -6,7 +6,6 @@ import InfoForm from '../form/info-form'
 import '../../styles/_registration-view.scss';
 import { setUser } from '../../redux/features/userSlice';
 import { useDispatch } from 'react-redux';
-import { useSelector } from 'react-redux';
 
 function RegistrationView({ onBackClick }) {
   const dispatch = useDispatch()

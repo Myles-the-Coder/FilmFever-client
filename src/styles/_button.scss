@@ -1,0 +1,20 @@
+@mixin button-styling {
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card-button {
+  @include button-styling();
+  background-color: #5680e9;
+  color: whitesmoke;
+
+  &:hover {
+    filter: brightness(110%)
+  }
+
+  &:active {
+    transform: scale(0.98)
+  }
+}

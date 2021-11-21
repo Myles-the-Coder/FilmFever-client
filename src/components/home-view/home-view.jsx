@@ -3,16 +3,17 @@ import logo from '../../img/FilmFever.png'
 import {Col, Button} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
-function HomeView() {
+import '../../styles/_home-view.scss'
+
+const HomeView = () => {
   return (
-      <Col style={{backgroundColor: 'lightgray', borderRadius: '5px'}} className='justify-content-center text-center p-5'>
-        <h1>Welcome to</h1>
-        <img src={logo} alt="FilmFever Logo" />
+      <Col className='home-view-col position-fixed d-flex flex-column text-center p-2 m-1 w-75'>
+        <img src={logo} alt="FilmFever Logo" style={{width: '300px', margin: '-30px auto'}}/>
         <Link to='/register'>
-          <Button>Create Account</Button>
+          <Button bsPrefix='card-button'>Register Account</Button>
         </Link>
         <Link to='/login'>
-          <Button>Sign In</Button>
+          <Button bsPrefix='card-button'>Sign In</Button>
         </Link>
       </Col>
   )

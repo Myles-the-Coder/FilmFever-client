@@ -2,6 +2,8 @@ import React from 'react'
 import {Card, Button} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
+import '../../styles/_button.scss'
+
 class GenreView extends React.Component{
   render() {
     const {genre, onBackClick} = this.props
@@ -11,11 +13,11 @@ class GenreView extends React.Component{
     return (
       <Card
       className='text-center mt-1'
-      style={{ backgroundColor: 'lightgray' }}>
+      style={{ backgroundColor: 'whitesmoke' }}>
       <Body>
         <Title>{Name}</Title>
         <Text>{Description}</Text>
-        <Button className='btn' onClick={() => onBackClick()}>
+        <Button bsPrefix='card-button' onClick={() => onBackClick()}>
           Back
         </Button>
       </Body>

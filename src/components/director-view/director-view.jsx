@@ -2,6 +2,8 @@ import React from 'react'
 import {Card, Button} from 'react-bootstrap'
 import PropTypes from 'prop-types'
 
+import '../../styles/_button.scss'
+
 class DirectorView extends React.Component{
   render() {
     const {director, onBackClick} = this.props
@@ -15,7 +17,7 @@ class DirectorView extends React.Component{
       <Body>
         <Title>{Name}</Title>
         <Text>{Bio}</Text>
-        <Button className='btn' onClick={() => onBackClick()}>
+        <Button bsPrefix='card-button' onClick={() => onBackClick()}>
           Back
         </Button>
       </Body>
