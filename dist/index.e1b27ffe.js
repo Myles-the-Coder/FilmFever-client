@@ -22790,7 +22790,8 @@ class MainView extends _reactDefault.default.Component {
         super();
         this.state = {
             show: false,
-            isLoading: true
+            isLoading: true,
+            currentFilmTitle: ''
         };
     }
     componentDidMount = ()=>{
@@ -22855,27 +22856,35 @@ class MainView extends _reactDefault.default.Component {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).then((res)=>{
+        }).then((res1)=>{
             addToFavorites(movieId);
-            alert('Added to Favorites List');
-            this.setState({
-                show: true
+            _axiosDefault.default.get(`${_helpers.URL}/movies/${movieId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res)=>{
+                this.setState({
+                    show: true
+                });
+                this.setState({
+                    currentFilmTitle: res.data.Title
+                });
             });
         }).catch((err)=>console.log(err)
         );
     };
     setShow = ()=>this.setState({
-            show: true
+            show: false
         })
     ;
     render() {
         let { movies , user: user1  } = this.props;
-        let { show , isLoading  } = this.state;
+        let { show , isLoading , currentFilmTitle  } = this.state;
         return(/*#__PURE__*/ _jsxRuntime.jsx(_jsxRuntime.Fragment, {
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 122,
+                    lineNumber: 129,
                     columnNumber: 5
                 },
                 __self: this,
@@ -22885,7 +22894,7 @@ class MainView extends _reactDefault.default.Component {
                         user: user1,
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 123,
+                            lineNumber: 130,
                             columnNumber: 6
                         },
                         __self: this
@@ -22893,22 +22902,22 @@ class MainView extends _reactDefault.default.Component {
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 124,
+                            lineNumber: 131,
                             columnNumber: 6
                         },
                         __self: this,
                         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-                            className: "main-view justify-content-md-center position-relative",
+                            className: "main-view justify-content-md-center",
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 125,
+                                lineNumber: 132,
                                 columnNumber: 7
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.Switch, {
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 126,
+                                    lineNumber: 133,
                                     columnNumber: 8
                                 },
                                 __self: this,
@@ -22925,7 +22934,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 127,
+                                            lineNumber: 134,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -22946,7 +22955,8 @@ class MainView extends _reactDefault.default.Component {
                                                 children: [
                                                     show === true ? /*#__PURE__*/ _jsxRuntime.jsx(_toastNotificationDefault.default, {
                                                         setShow: this.setShow,
-                                                        show: this.state.show
+                                                        show: show,
+                                                        currentFilmTitle: currentFilmTitle
                                                     }) : /*#__PURE__*/ _jsxRuntime.jsx("div", {
                                                     }),
                                                     isLoading === true ? /*#__PURE__*/ _jsxRuntime.jsx(MovieLoadingSpinner, {
@@ -22961,7 +22971,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 137,
+                                            lineNumber: 143,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -22989,7 +22999,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 172,
+                                            lineNumber: 179,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23009,7 +23019,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 198,
+                                            lineNumber: 205,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23027,20 +23037,28 @@ class MainView extends _reactDefault.default.Component {
                                                 className: "main-view",
                                                 children: "Loading..."
                                             }));
-                                            return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+                                            return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
                                                 md: 8,
-                                                children: /*#__PURE__*/ _jsxRuntime.jsx(_movieViewDefault.default, {
-                                                    movie: movies.find((movie)=>movie._id === match.params.movieId
-                                                    ),
-                                                    onBackClick: ()=>history.goBack()
-                                                    ,
-                                                    addMovieToFavorites: this.addMovieToFavorites
-                                                })
+                                                children: [
+                                                    show === true ? /*#__PURE__*/ _jsxRuntime.jsx(_toastNotificationDefault.default, {
+                                                        setShow: this.setShow,
+                                                        show: show,
+                                                        currentFilmTitle: currentFilmTitle
+                                                    }) : /*#__PURE__*/ _jsxRuntime.jsx("div", {
+                                                    }),
+                                                    /*#__PURE__*/ _jsxRuntime.jsx(_movieViewDefault.default, {
+                                                        movie: movies.find((movie)=>movie._id === match.params.movieId
+                                                        ),
+                                                        onBackClick: ()=>history.goBack()
+                                                        ,
+                                                        addMovieToFavorites: this.addMovieToFavorites
+                                                    })
+                                                ]
                                             }));
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 213,
+                                            lineNumber: 220,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23069,7 +23087,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 241,
+                                            lineNumber: 257,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23098,7 +23116,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 270,
+                                            lineNumber: 286,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23115,13 +23133,12 @@ class MainView extends _reactDefault.default.Component {
                                             }));
                                             return(/*#__PURE__*/ _jsxRuntime.jsx(_profileViewDefault.default, {
                                                 history: history,
-                                                movies: movies,
-                                                onBackClick: ()=>history.goBack()
+                                                movies: movies
                                             }));
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 299,
+                                            lineNumber: 315,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -32531,6 +32548,9 @@ const Navigation = ({ onLoggedOut , user  })=>{
             }),
             /*#__PURE__*/ _jsxRuntime.jsx(Toggle, {
                 "aria-controls": "responsive-navbar-nav",
+                style: {
+                    border: 'none'
+                },
                 __source: {
                     fileName: "src/components/navigation/navigation.jsx",
                     lineNumber: 27,
@@ -32540,7 +32560,7 @@ const Navigation = ({ onLoggedOut , user  })=>{
             }),
             /*#__PURE__*/ _jsxRuntime.jsxs(Collapse, {
                 id: "responsive-navbar-nav",
-                className: "justify-content-end",
+                className: "justify-content-md-end justify-content-sm-center text-center",
                 __source: {
                     fileName: "src/components/navigation/navigation.jsx",
                     lineNumber: 28,
@@ -44878,7 +44898,7 @@ var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
 function NoMoviesFound({ message  }) {
     const messageStyle = {
-        backgroundColor: 'lightgray',
+        backgroundColor: 'whitesmoke',
         borderRadius: '10px',
         padding: '10px'
     };
@@ -45274,26 +45294,51 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _loginForm = require("../form/login-form");
 var _loginFormDefault = parcelHelpers.interopDefault(_loginForm);
+var _helpers = require("../../helpers/helpers");
+var _errorMessage = require("../error-message/error-message");
+var _errorMessageDefault = parcelHelpers.interopDefault(_errorMessage);
 var _loginViewScss = require("../../styles/_login-view.scss");
+var _s = $RefreshSig$();
 function LoginView({ onLoggedIn  }) {
+    _s();
+    const [error, setError] = _react.useState(false);
     const handleLogin = ({ username , password  })=>{
-        _axiosDefault.default.post('https://film-fever-api.herokuapp.com/login', {
+        _axiosDefault.default.post(`${_helpers.URL}/login`, {
             Username: username,
             Password: password
         }).then((res)=>onLoggedIn(res.data)
-        ).catch((err)=>console.log(err)
-        );
+        ).catch((err)=>{
+            setTimeout(()=>{
+                setError(false);
+            }, 5000);
+            setError(true);
+        });
     };
-    return(/*#__PURE__*/ _jsxRuntime.jsx(_loginFormDefault.default, {
-        handleLogin: handleLogin,
-        __source: {
-            fileName: "src/components/login-view/login-view.jsx",
-            lineNumber: 20,
-            columnNumber: 5
-        },
-        __self: this
+    return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxRuntime.jsx(_loginFormDefault.default, {
+                handleLogin: handleLogin,
+                __source: {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 28,
+                    columnNumber: 5
+                },
+                __self: this
+            }),
+            error ? /*#__PURE__*/ _jsxRuntime.jsx(_errorMessageDefault.default, {
+                message: "Incorrect username or password",
+                __source: {
+                    fileName: "src/components/login-view/login-view.jsx",
+                    lineNumber: 29,
+                    columnNumber: 14
+                },
+                __self: this
+            }) : /*#__PURE__*/ _jsxRuntime.jsx(_jsxRuntime.Fragment, {
+            })
+        ]
     }));
 }
+_s(LoginView, "AvrsuJm02Cqlq6/LWpvA21zDecQ=");
 _c = LoginView;
 LoginView.propTypes = {
     onLoggedIn: _propTypesDefault.default.func.isRequired
@@ -45307,7 +45352,7 @@ $RefreshReg$(_c, "LoginView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","axios":"1IeuP","prop-types":"2bysO","../form/login-form":"10tF7","../../styles/_login-view.scss":"ftT88","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"10tF7":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","axios":"1IeuP","prop-types":"2bysO","../form/login-form":"10tF7","../../styles/_login-view.scss":"ftT88","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../helpers/helpers":"ks2Ef","../error-message/error-message":"9uzpp"}],"10tF7":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$68f8 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -55842,7 +55887,50 @@ function setLocale(custom) {
 }
 exports.default = setLocale;
 
-},{"./locale":"8waLz","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"grKX2":[function() {},{}],"ftT88":[function() {},{}],"lGbHG":[function(require,module,exports) {
+},{"./locale":"8waLz","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw"}],"grKX2":[function() {},{}],"ftT88":[function() {},{}],"9uzpp":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$449e = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$449e.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxRuntime = require("react/jsx-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+function ErrorMessage({ message  }) {
+    const errorStyling = {
+        color: '#cc3300',
+        backgroundColor: 'whitesmoke',
+        borderRadius: '5px',
+        padding: '10px',
+        margin: '10px',
+        textAlign: 'center',
+        fontSize: '1.2rem'
+    };
+    return(/*#__PURE__*/ _jsxRuntime.jsx("h1", {
+        style: errorStyling,
+        __source: {
+            fileName: "src/components/error-message/error-message.jsx",
+            lineNumber: 13,
+            columnNumber: 10
+        },
+        __self: this,
+        children: message
+    }));
+}
+_c = ErrorMessage;
+exports.default = ErrorMessage;
+var _c;
+$RefreshReg$(_c, "ErrorMessage");
+
+  $parcel$ReactRefreshHelpers$449e.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"lGbHG":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$00e7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -55860,15 +55948,19 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _infoForm = require("../form/info-form");
 var _infoFormDefault = parcelHelpers.interopDefault(_infoForm);
-var _registrationViewScss = require("../../styles/_registration-view.scss");
 var _userSlice = require("../../redux/features/userSlice");
 var _reactRedux = require("react-redux");
+var _helpers = require("../../helpers/helpers");
+var _registrationViewScss = require("../../styles/_registration-view.scss");
+var _errorMessage = require("../error-message/error-message");
+var _errorMessageDefault = parcelHelpers.interopDefault(_errorMessage);
 var _s = $RefreshSig$();
 function RegistrationView({ onBackClick  }) {
     _s();
+    const [error, setError] = _react.useState('');
     const dispatch = _reactRedux.useDispatch();
     const handleRegister = ({ username , password , email , birthday  })=>{
-        _axiosDefault.default.post('https://film-fever-api.herokuapp.com/signup', {
+        _axiosDefault.default.post(`${_helpers.URL}/signup`, {
             Username: username,
             Password: password,
             Email: email,
@@ -55881,21 +55973,39 @@ function RegistrationView({ onBackClick  }) {
                 Birthday: birthday
             }));
             window.open('/', '_self');
-        }).catch((err)=>console.log('error registering the user')
-        );
+        }).catch((err)=>{
+            setTimeout(()=>{
+                setError(false);
+            }, 5000);
+            setError(true);
+        });
     };
-    return(/*#__PURE__*/ _jsxRuntime.jsx(_infoFormDefault.default, {
-        handleRegister: handleRegister,
-        onBackClick: onBackClick,
-        __source: {
-            fileName: "src/components/registration-view/registration-view.jsx",
-            lineNumber: 29,
-            columnNumber: 5
-        },
-        __self: this
+    return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
+        children: [
+            /*#__PURE__*/ _jsxRuntime.jsx(_infoFormDefault.default, {
+                handleRegister: handleRegister,
+                onBackClick: onBackClick,
+                __source: {
+                    fileName: "src/components/registration-view/registration-view.jsx",
+                    lineNumber: 37,
+                    columnNumber: 5
+                },
+                __self: this
+            }),
+            error ? /*#__PURE__*/ _jsxRuntime.jsx(_errorMessageDefault.default, {
+                message: "Something went wrong. Please try again.",
+                __source: {
+                    fileName: "src/components/registration-view/registration-view.jsx",
+                    lineNumber: 38,
+                    columnNumber: 14
+                },
+                __self: this
+            }) : /*#__PURE__*/ _jsxRuntime.jsx(_jsxRuntime.Fragment, {
+            })
+        ]
     }));
 }
-_s(RegistrationView, "rgTLoBID190wEKCp9+G8W6F7A5M=", false, function() {
+_s(RegistrationView, "lqCgD3SUoe0A7GdMZCbhCgoiS2o=", false, function() {
     return [
         _reactRedux.useDispatch
     ];
@@ -55913,7 +56023,7 @@ $RefreshReg$(_c, "RegistrationView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","axios":"1IeuP","react":"4mchR","prop-types":"2bysO","../form/info-form":"kocsn","../../styles/_registration-view.scss":"lcykR","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../redux/features/userSlice":"dBA40","react-redux":"lT3ms"}],"kocsn":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","axios":"1IeuP","react":"4mchR","prop-types":"2bysO","../form/info-form":"kocsn","../../styles/_registration-view.scss":"lcykR","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../redux/features/userSlice":"dBA40","react-redux":"lT3ms","../../helpers/helpers":"ks2Ef","../error-message/error-message":"9uzpp"}],"kocsn":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$9650 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -55943,307 +56053,312 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
         ], 'Passwords must match')
     });
     const { Group , Label , Control  } = _reactBootstrap.Form;
-    return(/*#__PURE__*/ _jsxRuntime.jsx(_formik.Formik, {
-        validationSchema: schema,
-        onSubmit: handleRegister || editUser,
-        initialValues: {
-            username: '',
-            password: '',
-            email: '',
-            birthday: '',
-            confirmPassword: ''
-        },
+    return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+        className: "m-2",
         __source: {
             fileName: "src/components/form/info-form.jsx",
             lineNumber: 29,
             columnNumber: 3
         },
         __self: undefined,
-        children: ({ handleSubmit , handleChange , values , touched , errors  })=>/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form, {
-                noValidate: true,
-                onSubmit: handleSubmit,
-                className: "m-auto",
-                style: {
-                    minWidth: '65%',
-                    maxWidth: '350px'
-                },
-                __source: {
-                    fileName: "src/components/form/info-form.jsx",
-                    lineNumber: 40,
-                    columnNumber: 5
-                },
-                __self: undefined,
-                children: [
-                    handleRegister ? /*#__PURE__*/ _jsxRuntime.jsx("h1", {
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 41,
-                            columnNumber: 24
-                        },
-                        __self: undefined,
-                        children: "Register Account"
-                    }) : /*#__PURE__*/ _jsxRuntime.jsx("h1", {
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 41,
-                            columnNumber: 52
-                        },
-                        __self: undefined,
-                        children: "Update Info"
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
-                        controlId: "validationFormik01",
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 42,
-                            columnNumber: 6
-                        },
-                        __self: undefined,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx(Label, {
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 43,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: "Username"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control, {
-                                type: "text",
-                                name: "username",
-                                value: values.username,
-                                onChange: handleChange,
-                                isValid: touched.username && !errors.username,
-                                isInvalid: errors.username,
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 44,
-                                    columnNumber: 7
-                                },
-                                __self: undefined
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
-                                type: "invalid",
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 52,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: errors.username
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
-                        controlId: "validationFormik02",
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 57,
-                            columnNumber: 6
-                        },
-                        __self: undefined,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx(Label, {
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 58,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: "Password"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control, {
-                                type: "password",
-                                name: "password",
-                                value: values.password,
-                                onChange: handleChange,
-                                isValid: touched.password && !errors.password,
-                                isInvalid: errors.password,
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 59,
-                                    columnNumber: 7
-                                },
-                                __self: undefined
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
-                                type: "invalid",
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 67,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: errors.password
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
-                        controlId: "validationFormik03",
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 71,
-                            columnNumber: 6
-                        },
-                        __self: undefined,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx(Label, {
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 72,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: "Email Address"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control, {
-                                type: "email",
-                                placeholder: "Enter email...",
-                                name: "email",
-                                value: values.email,
-                                onChange: handleChange,
-                                isValid: touched.email && !errors.email,
-                                isInvalid: errors.email,
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 73,
-                                    columnNumber: 7
-                                },
-                                __self: undefined
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
-                                type: "invalid",
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 83,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: errors.email
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
-                        md: "3",
-                        controlId: "validationFormik04",
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 86,
-                            columnNumber: 6
-                        },
-                        __self: undefined,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx(Label, {
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 87,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: "Birthday"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control, {
-                                type: "date",
-                                placeholder: "Enter birthday...",
-                                name: "birthday",
-                                value: values.birthday,
-                                onChange: handleChange,
-                                isValid: touched.birthday && !errors.birthday,
-                                isInvalid: errors.birthday,
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 88,
-                                    columnNumber: 7
-                                },
-                                __self: undefined
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
-                                type: "invalid",
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 97,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: errors.birthday
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
-                        md: "3",
-                        controlId: "validationFormik05",
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 102,
-                            columnNumber: 6
-                        },
-                        __self: undefined,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx(Label, {
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 103,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: "Confirm Password"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control, {
-                                type: "password",
-                                placeholder: "Confirm password",
-                                name: "confirmPassword",
-                                value: values.confirmPassword,
-                                onChange: handleChange,
-                                isValid: touched.birthday && !errors.birthday,
-                                isInvalid: errors.confirmPassword,
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 104,
-                                    columnNumber: 7
-                                },
-                                __self: undefined
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
-                                type: "invalid",
-                                __source: {
-                                    fileName: "src/components/form/info-form.jsx",
-                                    lineNumber: 114,
-                                    columnNumber: 7
-                                },
-                                __self: undefined,
-                                children: errors.confirmPassword
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                        type: "submit",
-                        className: "m-2",
-                        bsPrefix: "card-button",
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 118,
-                            columnNumber: 6
-                        },
-                        __self: undefined,
-                        children: handleRegister ? 'Register' : 'Update'
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                        type: "button",
-                        bsPrefix: "card-button",
-                        onClick: ()=>{
-                            handleRegister ? onBackClick() : setShow('');
-                        },
-                        __source: {
-                            fileName: "src/components/form/info-form.jsx",
-                            lineNumber: 121,
-                            columnNumber: 6
-                        },
-                        __self: undefined,
-                        children: "Back"
-                    })
-                ]
-            })
+        children: /*#__PURE__*/ _jsxRuntime.jsx(_formik.Formik, {
+            validationSchema: schema,
+            onSubmit: handleRegister || editUser,
+            initialValues: {
+                username: '',
+                password: '',
+                email: '',
+                birthday: '',
+                confirmPassword: ''
+            },
+            __source: {
+                fileName: "src/components/form/info-form.jsx",
+                lineNumber: 30,
+                columnNumber: 4
+            },
+            __self: undefined,
+            children: ({ handleSubmit , handleChange , values , touched , errors  })=>/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Form, {
+                    noValidate: true,
+                    onSubmit: handleSubmit,
+                    className: "form-styling",
+                    __source: {
+                        fileName: "src/components/form/info-form.jsx",
+                        lineNumber: 41,
+                        columnNumber: 6
+                    },
+                    __self: undefined,
+                    children: [
+                        handleRegister ? /*#__PURE__*/ _jsxRuntime.jsx("h1", {
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 42,
+                                columnNumber: 25
+                            },
+                            __self: undefined,
+                            children: "Register Account"
+                        }) : /*#__PURE__*/ _jsxRuntime.jsx("h1", {
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 42,
+                                columnNumber: 53
+                            },
+                            __self: undefined,
+                            children: "Update Info"
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
+                            controlId: "validationFormik01",
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 43,
+                                columnNumber: 7
+                            },
+                            __self: undefined,
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx(Label, {
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 44,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: "Username"
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control, {
+                                    type: "text",
+                                    name: "username",
+                                    value: values.username,
+                                    onChange: handleChange,
+                                    isValid: touched.username && !errors.username,
+                                    isInvalid: errors.username,
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 45,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
+                                    type: "invalid",
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 53,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: errors.username
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
+                            controlId: "validationFormik02",
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 58,
+                                columnNumber: 7
+                            },
+                            __self: undefined,
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx(Label, {
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 59,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: "Password"
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control, {
+                                    type: "password",
+                                    name: "password",
+                                    value: values.password,
+                                    onChange: handleChange,
+                                    isValid: touched.password && !errors.password,
+                                    isInvalid: errors.password,
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 60,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
+                                    type: "invalid",
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 68,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: errors.password
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
+                            controlId: "validationFormik03",
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 72,
+                                columnNumber: 7
+                            },
+                            __self: undefined,
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx(Label, {
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 73,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: "Email Address"
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control, {
+                                    type: "email",
+                                    placeholder: "Enter email...",
+                                    name: "email",
+                                    value: values.email,
+                                    onChange: handleChange,
+                                    isValid: touched.email && !errors.email,
+                                    isInvalid: errors.email,
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 74,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
+                                    type: "invalid",
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 84,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: errors.email
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
+                            md: "3",
+                            controlId: "validationFormik04",
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 87,
+                                columnNumber: 7
+                            },
+                            __self: undefined,
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx(Label, {
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 88,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: "Birthday"
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control, {
+                                    type: "date",
+                                    placeholder: "Enter birthday...",
+                                    name: "birthday",
+                                    value: values.birthday,
+                                    onChange: handleChange,
+                                    isValid: touched.birthday && !errors.birthday,
+                                    isInvalid: errors.birthday,
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 89,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
+                                    type: "invalid",
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 98,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: errors.birthday
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsxs(Group, {
+                            md: "3",
+                            controlId: "validationFormik05",
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 103,
+                                columnNumber: 7
+                            },
+                            __self: undefined,
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx(Label, {
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 104,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: "Confirm Password"
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control, {
+                                    type: "password",
+                                    placeholder: "Confirm password",
+                                    name: "confirmPassword",
+                                    value: values.confirmPassword,
+                                    onChange: handleChange,
+                                    isValid: touched.birthday && !errors.birthday,
+                                    isInvalid: errors.confirmPassword,
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 105,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx(Control.Feedback, {
+                                    type: "invalid",
+                                    __source: {
+                                        fileName: "src/components/form/info-form.jsx",
+                                        lineNumber: 115,
+                                        columnNumber: 8
+                                    },
+                                    __self: undefined,
+                                    children: errors.confirmPassword
+                                })
+                            ]
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                            type: "submit",
+                            className: "m-2",
+                            bsPrefix: "card-button",
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 119,
+                                columnNumber: 7
+                            },
+                            __self: undefined,
+                            children: handleRegister ? 'Register' : 'Update'
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
+                            type: "button",
+                            bsPrefix: "card-button",
+                            onClick: ()=>{
+                                handleRegister ? onBackClick() : setShow('');
+                            },
+                            __source: {
+                                fileName: "src/components/form/info-form.jsx",
+                                lineNumber: 122,
+                                columnNumber: 7
+                            },
+                            __self: undefined,
+                            children: "Back"
+                        })
+                    ]
+                })
+        })
     }));
 };
 _c = InfoForm;
@@ -56259,7 +56374,7 @@ $RefreshReg$(_c, "InfoForm");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"6Ds2u","react":"4mchR","formik":"3bYVU","react-bootstrap":"9qMdX","prop-types":"2bysO","yup":"gvf4u","../../styles/_profile-view.scss":"d1wt9","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN"}],"d1wt9":[function() {},{}],"lcykR":[function() {},{}],"aZt7f":[function(require,module,exports) {
+},{"react/jsx-runtime":"6Ds2u","react":"4mchR","formik":"3bYVU","react-bootstrap":"9qMdX","prop-types":"2bysO","yup":"gvf4u","@parcel/transformer-js/src/esmodule-helpers.js":"kcnWw","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"aEpoN","../../styles/_profile-view.scss":"d1wt9"}],"d1wt9":[function() {},{}],"lcykR":[function() {},{}],"aZt7f":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$80e7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -56289,7 +56404,7 @@ var _reactRedux = require("react-redux");
 var _userSlice = require("../../redux/features/userSlice");
 var _profileViewScss = require("../../styles/_profile-view.scss");
 var _s = $RefreshSig$();
-const ProfileView = ({ movies , onBackClick  })=>{
+const ProfileView = ({ movies  })=>{
     _s();
     const favoriteMovies = _reactRedux.useSelector((state)=>state.user.value.FavoriteMovies
     );
@@ -56369,43 +56484,23 @@ const ProfileView = ({ movies , onBackClick  })=>{
         });
         setShow('');
     };
-    if (show === 'update') return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
+    if (show === 'update') return(/*#__PURE__*/ _jsxRuntime.jsx(_infoFormDefault.default, {
+        editUser: editUser,
+        setShow: setShow,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 113,
-            columnNumber: 4
+            lineNumber: 111,
+            columnNumber: 32
+        },
+        __self: undefined
+    }));
+    return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
+        __source: {
+            fileName: "src/components/profile-view/profile-view.jsx",
+            lineNumber: 114,
+            columnNumber: 3
         },
         __self: undefined,
-        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-            className: "justify-content-center",
-            __source: {
-                fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 114,
-                columnNumber: 5
-            },
-            __self: undefined,
-            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
-                xs: 12,
-                __source: {
-                    fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 115,
-                    columnNumber: 6
-                },
-                __self: undefined,
-                children: /*#__PURE__*/ _jsxRuntime.jsx(_infoFormDefault.default, {
-                    editUser: editUser,
-                    setShow: setShow,
-                    __source: {
-                        fileName: "src/components/profile-view/profile-view.jsx",
-                        lineNumber: 116,
-                        columnNumber: 7
-                    },
-                    __self: undefined
-                })
-            })
-        })
-    }));
-    return(/*#__PURE__*/ _jsxRuntime.jsxs(_jsxRuntime.Fragment, {
         children: [
             /*#__PURE__*/ _jsxRuntime.jsx(_userInfoDefault.default, {
                 user: userValues.Username,
@@ -56414,7 +56509,7 @@ const ProfileView = ({ movies , onBackClick  })=>{
                 setShow: setShow,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 125,
+                    lineNumber: 115,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56425,7 +56520,7 @@ const ProfileView = ({ movies , onBackClick  })=>{
                 deleteUser: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 131,
+                    lineNumber: 121,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56435,15 +56530,15 @@ const ProfileView = ({ movies , onBackClick  })=>{
                 removeFromFavorites: removeFromFavorites,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 133,
+                    lineNumber: 123,
                     columnNumber: 5
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_movieReelSpinnerDefault.default, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 137,
-                    columnNumber: 12
+                    lineNumber: 127,
+                    columnNumber: 10
                 },
                 __self: undefined
             })
@@ -56488,7 +56583,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
         __source: {
             fileName: "src/components/profile-view/user-info.jsx",
             lineNumber: 8,
-            columnNumber: 5
+            columnNumber: 3
         },
         __self: undefined,
         children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
@@ -56498,11 +56593,11 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
             __source: {
                 fileName: "src/components/profile-view/user-info.jsx",
                 lineNumber: 9,
-                columnNumber: 9
+                columnNumber: 4
             },
             __self: undefined,
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
-                className: "text-center m-1",
+                className: "text-center m-2",
                 __source: {
                     fileName: "src/components/profile-view/user-info.jsx",
                     lineNumber: 10,
@@ -56515,19 +56610,19 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                         __source: {
                             fileName: "src/components/profile-view/user-info.jsx",
                             lineNumber: 11,
-                            columnNumber: 7
+                            columnNumber: 6
                         },
                         __self: undefined,
-                        children: "Profile Info"
+                        children: "Your Profile Info"
                     }),
                     /*#__PURE__*/ _jsxRuntime.jsxs(Body, {
                         style: {
-                            backgroundColor: 'lightgray'
+                            backgroundColor: 'whitesmoke'
                         },
                         __source: {
                             fileName: "src/components/profile-view/user-info.jsx",
                             lineNumber: 12,
-                            columnNumber: 7
+                            columnNumber: 6
                         },
                         __self: undefined,
                         children: [
@@ -56535,7 +56630,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
                                     lineNumber: 13,
-                                    columnNumber: 5
+                                    columnNumber: 7
                                 },
                                 __self: undefined,
                                 children: [
@@ -56547,7 +56642,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
                                     lineNumber: 14,
-                                    columnNumber: 5
+                                    columnNumber: 7
                                 },
                                 __self: undefined,
                                 children: [
@@ -56559,7 +56654,7 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
                                     lineNumber: 15,
-                                    columnNumber: 5
+                                    columnNumber: 7
                                 },
                                 __self: undefined,
                                 children: [
@@ -56568,27 +56663,27 @@ const UserInfo = ({ user , email , birthday , setShow  })=>{
                                 ]
                             }),
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                className: "w-25 m-1",
+                                className: "m-1",
                                 bsPrefix: "card-button",
                                 onClick: ()=>setShow('update')
                                 ,
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
                                     lineNumber: 16,
-                                    columnNumber: 5
+                                    columnNumber: 7
                                 },
                                 __self: undefined,
                                 children: "Update Info"
                             }),
                             /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                className: "w-25 m-1",
+                                className: "m-1",
                                 bsPrefix: "warning-button",
                                 onClick: ()=>setShow('modal')
                                 ,
                                 __source: {
                                     fileName: "src/components/profile-view/user-info.jsx",
-                                    lineNumber: 17,
-                                    columnNumber: 4
+                                    lineNumber: 22,
+                                    columnNumber: 7
                                 },
                                 __self: undefined,
                                 children: "Delete Account"
@@ -56666,19 +56761,12 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                     columnNumber: 5
                 },
                 __self: undefined,
-                children: filteredFavs.length > 0 ? /*#__PURE__*/ _jsxRuntime.jsx(_filterInputDefault.default, {
+                children: /*#__PURE__*/ _jsxRuntime.jsx(_filterInputDefault.default, {
                     filter: filter,
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
                         lineNumber: 24,
-                        columnNumber: 32
-                    },
-                    __self: undefined
-                }) : /*#__PURE__*/ _jsxRuntime.jsx("div", {
-                    __source: {
-                        fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 24,
-                        columnNumber: 65
+                        columnNumber: 5
                     },
                     __self: undefined
                 })
@@ -56688,7 +56776,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                 return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                     xs: 9,
                     sm: 6,
-                    md: 4,
+                    md: 3,
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
                         lineNumber: 29,
@@ -56698,7 +56786,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                     children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Card, {
                         className: "p-3 text-center m-1",
                         style: {
-                            backgroundColor: 'lightgray'
+                            backgroundColor: 'whitesmoke'
                         },
                         __source: {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
@@ -56807,6 +56895,7 @@ const DeleteModal = ({ show , setShow , deleteUser  })=>{
     const { Header , Body , Footer , Title  } = _reactBootstrap.Modal;
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Modal, {
         className: "text-center",
+        size: "lg",
         show: show,
         onHide: ()=>setShow('')
         ,
@@ -56951,75 +57040,53 @@ var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
-function ToastNotification({ show , setShow  }) {
-    return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
+function ToastNotification({ show , setShow , currentFilmTitle  }) {
+    const message = `${currentFilmTitle} has been added to Favorites`;
+    return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+        xs: 6,
         __source: {
             fileName: "src/components/toast-notification/toast-notification.jsx",
-            lineNumber: 7,
-            columnNumber: 5
+            lineNumber: 8,
+            columnNumber: 7
         },
         __self: this,
-        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
-            xs: 6,
+        children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.ToastContainer, {
+            style: {
+                zIndex: '100',
+                position: 'fixed',
+                top: '15%',
+                right: '0',
+                textAlign: 'center'
+            },
             __source: {
                 fileName: "src/components/toast-notification/toast-notification.jsx",
-                lineNumber: 8,
-                columnNumber: 7
+                lineNumber: 9,
+                columnNumber: 9
             },
             __self: this,
-            children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Toast, {
-                onClose: ()=>setShow(false)
-                ,
-                position: "top-right",
+            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Toast, {
+                onClose: setShow,
                 show: show,
                 delay: 3000,
                 autohide: true,
+                style: {
+                    backgroundColor: 'whitesmoke'
+                },
                 __source: {
                     fileName: "src/components/toast-notification/toast-notification.jsx",
-                    lineNumber: 9,
+                    lineNumber: 10,
                     columnNumber: 9
                 },
                 __self: this,
-                children: [
-                    /*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Toast.Header, {
-                        __source: {
-                            fileName: "src/components/toast-notification/toast-notification.jsx",
-                            lineNumber: 10,
-                            columnNumber: 11
-                        },
-                        __self: this,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsx("strong", {
-                                className: "me-auto",
-                                __source: {
-                                    fileName: "src/components/toast-notification/toast-notification.jsx",
-                                    lineNumber: 11,
-                                    columnNumber: 13
-                                },
-                                __self: this,
-                                children: "Bootstrap"
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx("small", {
-                                __source: {
-                                    fileName: "src/components/toast-notification/toast-notification.jsx",
-                                    lineNumber: 12,
-                                    columnNumber: 13
-                                },
-                                __self: this,
-                                children: "11 mins ago"
-                            })
-                        ]
-                    }),
-                    /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Toast.Body, {
-                        __source: {
-                            fileName: "src/components/toast-notification/toast-notification.jsx",
-                            lineNumber: 14,
-                            columnNumber: 11
-                        },
-                        __self: this,
-                        children: "Woohoo, you're reading this text in a Toast!"
-                    })
-                ]
+                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Toast.Body, {
+                    __source: {
+                        fileName: "src/components/toast-notification/toast-notification.jsx",
+                        lineNumber: 11,
+                        columnNumber: 11
+                    },
+                    __self: this,
+                    children: message
+                })
             })
         })
     }));
@@ -57053,7 +57120,10 @@ var _reactRouterDom = require("react-router-dom");
 var _homeViewScss = require("../../styles/_home-view.scss");
 const HomeView = ()=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
-        className: "home-view-col position-fixed d-flex flex-column text-center p-2 m-1 w-75",
+        className: "home-view-col d-flex flex-column text-center p-2 m-auto",
+        xs: 10,
+        md: 8,
+        lg: 6,
         __source: {
             fileName: "src/components/home-view/home-view.jsx",
             lineNumber: 10,

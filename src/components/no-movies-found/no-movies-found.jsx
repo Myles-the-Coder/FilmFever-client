@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 
 function NoMoviesFound({ message }) {
 	const messageStyle = {
-		backgroundColor: 'lightgray',
+		backgroundColor: 'whitesmoke',
 		borderRadius: '10px',
 		padding: '10px',
 	};

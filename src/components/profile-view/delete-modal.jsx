@@ -5,7 +5,7 @@ const DeleteModal = ({show, setShow, deleteUser}) =>  {
 
   const {Header, Body, Footer, Title} = Modal
   return (
-    <Modal className='text-center' show={show} onHide={() => setShow('')}>
+    <Modal className='text-center' size='lg' show={show} onHide={() => setShow('')}>
     <Header closeButton>
       <Title>Warning!</Title>
     </Header>

@@ -24,8 +24,8 @@ const Navigation = ({ onLoggedOut, user }) => {
 						<img src={logo} alt='FilmFever logo' className='logo-styling' />
 					</Link>
 				</Brand>
-				<Toggle aria-controls='responsive-navbar-nav' />
-				<Collapse id='responsive-navbar-nav' className='justify-content-end'>
+				<Toggle aria-controls='responsive-navbar-nav' style={{border: 'none'}}/>
+				<Collapse id='responsive-navbar-nav'  className='justify-content-md-end justify-content-sm-center text-center'>
 					<Link to='/'>
 						<Button bsPrefix='nav-button' onClick={onLoggedOut}>
 							Sign Out

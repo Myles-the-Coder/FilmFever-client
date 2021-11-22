@@ -35,6 +35,7 @@ class MainView extends React.Component {
 		this.state = {
 			show: false,
 			isLoading: true,
+      currentFilmTitle: ''
 		};
 	}
 
@@ -106,30 +107,35 @@ class MainView extends React.Component {
 			)
 			.then(res => {
 				addToFavorites(movieId);
-				alert('Added to Favorites List');
-				this.setState({ show: true });
+				axios
+        .get(`${URL}/movies/${movieId}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then(res => {
+            this.setState({ show: true });
+            this.setState({currentFilmTitle: res.data.Title})
+          });
 			})
 			.catch(err => console.log(err));
 	};
 
-	setShow = () => this.setState({ show: true });
+	setShow = () => this.setState({ show: false });
 
 	render() {
 		let { movies, user } = this.props;
-		let { show, isLoading } = this.state;
+		let { show, isLoading, currentFilmTitle } = this.state;
 		return (
 			<>
 				<Router>
 					<Navigation onLoggedOut={this.onLoggedOut} user={user} />
 					<Container>
-						<Row className='main-view justify-content-md-center position-relative'>
+						<Row className='main-view justify-content-md-center'>
 							<Switch>
 								<Route
 									exact
 									path='/'
 									render={() => {
 										if (user.Username) return <Redirect to='/movies' />;
-
 										return <HomeView />;
 									}}
 								/>
@@ -154,7 +160,8 @@ class MainView extends React.Component {
 												{show === true ? (
 													<ToastNotification
 														setShow={this.setShow}
-														show={this.state.show}
+														show={show}
+                            currentFilmTitle={currentFilmTitle}
 													/>
 												) : (
 													<div></div>
@@ -226,6 +233,15 @@ class MainView extends React.Component {
 											return <div className='main-view'>Loading...</div>;
 										return (
 											<Col md={8}>
+                        	{show === true ? (
+													<ToastNotification
+														setShow={this.setShow}
+														show={show}
+                            currentFilmTitle={currentFilmTitle}
+													/>
+												) : (
+													<div></div>
+												)}
 												<MovieView
 													movie={movies.find(
 														movie => movie._id === match.params.movieId
@@ -310,7 +326,6 @@ class MainView extends React.Component {
 											<ProfileView
 												history={history}
 												movies={movies}
-												onBackClick={() => history.goBack()}
 											/>
 										);
 									}}

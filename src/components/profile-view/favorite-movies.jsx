@@ -21,13 +21,13 @@ const FavoriteMovies = ({favoriteMovies, removeFromFavorites}) => {
     <Row className='justify-content-center text-center'>
     <h1 className='p-2 m-4 text-light'>Your Favorite Movies</h1>
     <Col md={12} className='m-2'>
-    {filteredFavs.length > 0 ? <FilterInput filter={filter}/> : <div></div>}
+    <FilterInput filter={filter}/>
     </Col>
     {filteredFavs.length > 0 ? filteredFavs.map(movie => {
       const {_id, Title, ImagePath} = movie
       return (
-        <Col xs={9} sm={6} md={4} key={_id}>
-          <Card className='p-3 text-center m-1' style={{backgroundColor: 'lightgray'}}>
+        <Col xs={9} sm={6} md={3} key={_id}>
+          <Card className='p-3 text-center m-1' style={{backgroundColor: 'whitesmoke'}}>
           <h4>{Title}</h4>
           <img src={ImagePath} alt={Title} crossOrigin='anonymous'/>
           <Link to={`/movies/${_id}`}>

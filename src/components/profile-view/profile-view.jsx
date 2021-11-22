@@ -13,7 +13,7 @@ import { useDispatch } from 'react-redux';
 
 import '../../styles/_profile-view.scss';
 
-const ProfileView = ({ movies, onBackClick }) => {
+const ProfileView = ({ movies }) => {
 	const favoriteMovies = useSelector(state => state.user.value.FavoriteMovies);
 	const [show, setShow] = useState('');
 
@@ -108,20 +108,10 @@ const ProfileView = ({ movies, onBackClick }) => {
 		setShow('');
 	};
 
-	if (show === 'update') {
-		return (
-			<Container>
-				<Row className='justify-content-center'>
-					<Col xs={12}>
-						<InfoForm editUser={editUser} setShow={setShow} />
-					</Col>
-				</Row>
-			</Container>
-		);
-	}
-
+	if (show === 'update') return <InfoForm editUser={editUser} setShow={setShow} />
+	
 	return (
-		<>
+		<Col>
 			<UserInfo
 				user={userValues.Username}
 				email={userValues.Email}
@@ -129,13 +119,13 @@ const ProfileView = ({ movies, onBackClick }) => {
 				setShow={setShow}
 			/>
 			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />
-			{favoriteMovies ? (
+			{favoriteMovies ? 
 				<FavoriteMovies
 					favoriteMovies={favoriteMovies}
 					removeFromFavorites={removeFromFavorites}
 				/>
-      ) : (<MovieReelSpinner />)}
-		</>
+       : <MovieReelSpinner />}
+		</Col>
 	);
 };
 

@@ -1,20 +1,17 @@
 import React from 'react'
-import {Toast} from 'react-bootstrap'
-import {Col, Row } from 'react-bootstrap'
+import {Toast, ToastContainer} from 'react-bootstrap'
+import {Col} from 'react-bootstrap'
 
-function ToastNotification({show, setShow}) {
+function ToastNotification({show, setShow, currentFilmTitle}) {
+  const message = `${currentFilmTitle} has been added to Favorites`
   return (
-    <Row>
       <Col xs={6}>
-        <Toast onClose={() => setShow(false)} position="top-right" show={show} delay={3000} autohide>
-          <Toast.Header>
-            <strong className="me-auto">Bootstrap</strong>
-            <small>11 mins ago</small>
-          </Toast.Header>
-          <Toast.Body>Woohoo, you're reading this text in a Toast!</Toast.Body>
+        <ToastContainer style={{zIndex: '100', position: 'fixed', top: '15%', right: '0', textAlign: 'center'}}>
+        <Toast onClose={setShow} show={show} delay={3000} autohide style={{backgroundColor: 'whitesmoke'}}>
+          <Toast.Body>{message}</Toast.Body>
         </Toast>
+        </ToastContainer>
       </Col>
-    </Row>
   );
 }
 

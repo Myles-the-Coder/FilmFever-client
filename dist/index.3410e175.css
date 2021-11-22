@@ -1,7 +1,7 @@
 @import "https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap";
 @import "https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap";
 .navbar-styling {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .logo-styling {
@@ -77,8 +77,9 @@
   transform: scale(0.98);
 }
 Form {
-  background-color: lightgray;
-  width: 500px;
+  background-color: whitesmoke;
+  max-width: 50%;
+  min-width: 450px;
   border-radius: 10px;
   padding: 20px;
   text-align: center;
@@ -109,6 +110,12 @@ Form {
 }
 .warning-button:hover {
   filter: brightness(110%);
+}
+
+.form-styling {
+  background-color: whitesmoke;
+  max-width: 50%;
+  min-width: 450px;
 }
 
 body {
