@@ -1,0 +1,17 @@
+@import "_button.scss";
+
+.warning-button {
+  @include button-styling();
+  background-color: #cc3300;
+  color: whitesmoke;
+
+  &:hover {
+    filter: brightness(110%)
+  }
+}
+
+.form-styling {
+  background-color: whitesmoke;
+  max-width: 50%;
+  min-width: 450px;
+}

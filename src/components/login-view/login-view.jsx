@@ -1,70 +1,37 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import axios from 'axios';
-import { Form } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
+import LoginForm from '../form/login-form';
+import { URL } from '../../helpers/helpers';
+import ErrorMessage from '../error-message/error-message';
+import '../../styles/_login-view.scss';
 
-import './login-view.scss';
-
-function LoginView({ onRouteChange, onLoggedIn}) {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-
-	const handleSubmit = e => {
-		e.preventDefault();
+function LoginView({ onLoggedIn }) {
+  const [error, setError] = useState(false))
+	const handleLogin = ({ username, password }) => {
 		axios
-			.post('https://film-fever-api.herokuapp.com/login', {
+			.post(`${URL}/login`, {
 				Username: username,
 				Password: password,
 			})
 			.then(res => onLoggedIn(res.data))
-			.catch(err => console.log(err));
+			.catch(err => {
+        setTimeout(() => {
+          setError(false)
+        }, 5000);
+        setError(true)
+      });
 	};
-
-	const switchToSignup = () => {
-		onRouteChange('register');
-	};
-
-	const { Group, Label, Control } = Form;
 
 	return (
-		<Form className='mt-2'>
-			<Group controlId='formUsername'>
-				<Label>Username:</Label>
-				<Control
-					type='text'
-					value={username}
-					name='username'
-					placeholder='Enter Username...'
-					onChange={e => setUsername(e.target.value)}
-				/>
-			</Group>
-			<Group controlId='formPassword'>
-				<Label>Password:</Label>
-				<Control
-					type='password'
-					value={password}
-					name='password'
-					placeholder='Enter Password...'
-					onChange={e => setPassword(e.target.value)}
-				/>
-				<Button type='submit' onClick={handleSubmit} className='m-2'>
-					Submit
-				</Button>
-			</Group>
-			<p>
-				Don't have an account?
-				<Button type='button' onClick={switchToSignup}>
-					Sign Up
-				</Button>
-			</p>
-		</Form>
+    <>
+    <LoginForm handleLogin={handleLogin}/>
+    {error ? <ErrorMessage message='Incorrect username or password'/> : <></>}
+    </>
 	);
 }
-
 LoginView.propTypes = {
-	onRouteChange: PropTypes.func.isRequired,
 	onLoggedIn: PropTypes.func.isRequired,
 };
 
-export default LoginView
+export default LoginView;

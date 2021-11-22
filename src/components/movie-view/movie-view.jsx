@@ -1,11 +1,14 @@
 import React from 'react';
 import { Card, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
-import './movie-view.scss';
+import { Link } from 'react-router-dom';
+
+import '../../styles/_movie-view.scss';
 
 class MovieView extends React.Component {
 	render() {
-		const { movie, onBackClick } = this.props;
+		const { movie, onBackClick, addMovieToFavorites } = this.props;
+    const {ImagePath, Description, Director, Genre, _id} = movie
 		const { Img, Body, Title, Text } = Card;
 
 		return (
@@ -13,15 +16,22 @@ class MovieView extends React.Component {
 				className='text-center mt-1'
 				style={{ backgroundColor: 'lightgray' }}>
 				<Img
-					src={movie.ImagePath}
+					src={ImagePath}
 					alt={movie.Title}
-					className='w-25 m-auto pt-2'
+					className='card-image m-auto pt-2'
 					crossOrigin='anonymous'
 				/>
 				<Body>
 					<Title>{movie.Title}</Title>
-					<Text>{movie.Description}</Text>
-					<Button className='btn' onClick={() => onBackClick(null)}>
+					<Text>{Description}</Text>
+          <Link to={`/directors/${Director.Name}`}>
+            <Button bsPrefix='card-button'>Director</Button>
+          </Link>
+          <Link to={`/genres/${Genre.Name}`}>
+            <Button className='m-2' bsPrefix='card-button'>Genre</Button>
+          </Link>
+          <Button bsPrefix='card-button' onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
+					<Button className='m-2' bsPrefix='card-button' onClick={() => onBackClick()}>
 						Back
 					</Button>
 				</Body>

@@ -1,98 +1,47 @@
-import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import axios from 'axios';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import InfoForm from '../form/info-form'
+import { setUser } from '../../redux/features/userSlice';
+import { useDispatch } from 'react-redux';
+import { URL } from '../../helpers/helpers';
+import '../../styles/_registration-view.scss';
+import ErrorMessage from '../error-message/error-message';
 
-import './registration-view.scss';
-
-function RegistrationView({ onRouteChange }) {
-	const [username, setUsername] = useState('');
-	const [password, setPassword] = useState('');
-	const [email, setEmail] = useState('');
-	const [birthday, setBirthday] = useState('');
-	const [confirmPassword, setConfirmPassword] = useState('');
-
-	const { Group, Label, Control } = Form;
-
-  const	handleRegister = e => {
-		e.preventDefault()
-    // if (password !== confirmPassword) {
-    //   alert('Passwords do not match')
-    // } else {
-		// 	onRouteChange('login')
-    // }
+function RegistrationView({ onBackClick }) {
+  const [error, setError] = useState('')
+  const dispatch = useDispatch()
+  
+	const handleRegister = ({ username, password, email, birthday }) => {
+    axios
+    .post(`${URL}/signup`, {
+      Username: username,
+      Password: password,
+      Email: email,
+      Birthday: birthday,
+    })
+    .then(res => { 
+      dispatch(setUser({Username: username, Password: password, Email: email, Birthday: birthday}))
+      window.open('/', '_self')}
+        )
+			.catch(err => {
+        setTimeout(() => {
+          setError(false)
+        }, 5000);
+        setError(true)
+      });
 	};
 
 	return (
-		<Form className='mt-2' noValidate>
-			<Group>
-				<Label>Username</Label>
-				<Control
-					type='text'
-					value={username}
-					name='username'
-					placeholder='Enter username...'
-					onChange={e => setUsername(e.target.value)}
-          required
-				/>
-			</Group>
-
-			<Group>
-				<Label>Email</Label>
-				<Control
-					type='email'
-					value={email}
-					name='email'
-					placeholder='Enter email...'
-					onChange={e => setEmail(e.target.value)}
-          required
-				/>
-			</Group>
-
-			<Group>
-				<Label htmlFor='birthday'>Birthday (optional)</Label>
-				<Control
-					type='date'
-					value={birthday}
-					id='birthday'
-					name='birthday'
-					onChange={e => setBirthday(e.target.value)}
-				/>
-			</Group>
-
-			<Group>
-				<Label htmlFor='password'>Password</Label>
-				<Control
-					type='password'
-					value={password}
-					id='password'
-					name='password'
-          minLength='8'
-					placeholder='Enter password...'
-					onChange={e => setPassword(e.target.value)}
-          required
-				/>
-			</Group>
-
-			<Group>
-				<Label htmlFor='confirm-password'>Confirm Password</Label>
-				<Control
-					type='password'
-					value={confirmPassword}
-					id='confirm-password'
-					name='confirm-password'
-					placeholder='Enter password again...'
-					onChange={e => setConfirmPassword(e.target.value)}
-				/>
-			</Group>
-			<Button type='submit' className='m-2' onClick={handleRegister}>
-				Register
-			</Button>
-		</Form>
-	);
+    <>
+    <InfoForm handleRegister={handleRegister} onBackClick={onBackClick}/>
+    {error ? <ErrorMessage message='Something went wrong. Please try again.' /> : <></>}
+    </>
+    );
 }
 
 RegistrationView.propTypes = {
-	onRouteChange: PropTypes.func.isRequired,
+	onBackClick: PropTypes.func.isRequired
 };
 
-export default RegistrationView
+export default RegistrationView;

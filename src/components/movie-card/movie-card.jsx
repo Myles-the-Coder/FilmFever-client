@@ -1,40 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Button } from 'react-bootstrap';
+import { Card, Button} from 'react-bootstrap';
+import {Link} from 'react-router-dom'
 
-import './movie-card.scss';
+import '../../styles/_movie-card.scss';
 
 class MovieCard extends React.Component {
 	render() {
-		const { movie, onMovieClick } = this.props;
-		const { Title, ImagePath, Description } = movie;
+		const { movie, addMovieToFavorites } = this.props;
+		const { Title, ImagePath, Description, _id } = movie;
 		const { Img, Body, Text, Header } = Card;
-		const cardStyling = {
-			margin: '5px',
-			backgroundColor: 'lightgray',
-		};
 
 		return (
-			<Card style={cardStyling} className='text-center'>
+			<Card className='text-center m-1 p-1'>
 				<Header as='h5'>{Title}</Header>
 				<Img
 					variant='top'
 					src={ImagePath}
 					alt={Title}
 					crossOrigin='anonymous'
+          className='p-1 w-75 m-auto'
 				/>
-				<Body>
-					<Text>{Description}</Text>
-					<Button onClick={() => onMovieClick(movie)} variant='primary'>
-						Open
-					</Button>
+				<Body className='card-body'>
+					<Text className='h6'>{Description}</Text>
+          <Link to={`/movies/${_id}`}>
+					<Button className="m-2" bsPrefix='card-button'>See Details</Button>
+          </Link>
+          <Button bsPrefix='card-button' onClick={() => addMovieToFavorites(_id)}>Add to Favorites</Button>
 				</Body>
 			</Card>
 		);
 	}
 }
 
-const { shape, string, func, bool } = PropTypes;
+const { shape, string, bool } = PropTypes;
 
 MovieCard.propTypes = {
 	_id: string,
@@ -54,7 +53,6 @@ MovieCard.propTypes = {
 		ImagePath: string.isRequired,
 		Featured: bool,
 	}).isRequired,
-	onMovieClick: func.isRequired,
 };
 
 export default MovieCard;

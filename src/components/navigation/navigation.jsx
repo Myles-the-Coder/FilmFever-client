@@ -1,33 +1,53 @@
-import React from "react";
-import {Button, Navbar} from "react-bootstrap";
-import PropTypes from "prop-types"
-import './navigation.scss'
-import logo from '../../img/FilmFever.png'
+import React from 'react';
+import { Button, Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import logo from '../../img/FilmFever.png';
+import '../../styles/_navigation.scss';
 
-const Navigation = ({ onLoggedOut, route }) => {
-  const {Brand} = Navbar
+const Navigation = ({ onLoggedOut, user }) => {
+	const { Brand, Toggle, Collapse } = Navbar;
 
-	if (route === 'login') {
+	if (!user.Username) {
 		return (
-      <Navbar bg="light">
-      <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
-    </Navbar>
+			<Navbar style={{ maxHeight: '100px' }}></Navbar>
 		);
 	} else {
 		return (
-			<Navbar bg="light">
-        <Brand><img src={logo} alt="FilmFever logo" width='60px'/></Brand>
-				<Button className='btn' onClick={onLoggedOut} >
-					Sign Out
-				</Button>
+			<Navbar
+				collapseOnSelect
+				expand='lg'
+				sticky='top'
+				className='navbar-styling'>
+				<Brand>
+					<Link to='/movies'>
+						<img src={logo} alt='FilmFever logo' className='logo-styling' />
+					</Link>
+				</Brand>
+				<Toggle aria-controls='responsive-navbar-nav' style={{border: 'none'}}/>
+				<Collapse id='responsive-navbar-nav'  className='justify-content-md-end justify-content-sm-center text-center'>
+					<Link to='/'>
+						<Button bsPrefix='nav-button' onClick={onLoggedOut}>
+							Sign Out
+						</Button>
+					</Link>
+					<Link to={`/users/${user.Username}`}>
+						<Button className='m-2' bsPrefix='nav-button'>
+							Profile
+						</Button>
+					</Link>
+					<Link to='/movies'>
+						<Button bsPrefix='nav-button'>Movies</Button>
+					</Link>
+				</Collapse>
 			</Navbar>
 		);
 	}
 };
 
 Navigation.propTypes = {
-  onLoggedOut: PropTypes.func.isRequired,
-  route: PropTypes.string.isRequired
-}
+	onLoggedOut: PropTypes.func.isRequired,
+	user: PropTypes.any,
+};
 
-export default Navigation
+export default Navigation;
