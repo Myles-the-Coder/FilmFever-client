@@ -42,32 +42,9 @@ const ProfileView = ({ movies }) => {
 				);
 			})
 			.catch(err => console.log(err));
-	}, [token]);
+	}, []);
 
-	// getUserInfo = token => {
-	// 	axios
-	// 		.get(`${URL}/users/${user}`, {
-	// 			headers: { Authorization: `Bearer ${token}` },
-	// 		})
-	// 		.then(res => {
-	// 			const { Username, Password, Email, Birthday, FavoriteMovies } =
-	// 				res.data;
-	// 			dispatch(
-	// 				setUser({
-	// 					Username,
-	// 					Password,
-	// 					Email,
-	// 					Birthday: Birthday.slice(0, 10),
-	// 					FavoriteMovies: movies.filter(movie =>
-	// 						FavoriteMovies.includes(movie._id)
-	// 					),
-	// 				})
-	// 			);
-	// 		})
-	// 		.catch(err => console.log(err));
-	// };
-
-	editUserInfo = ({ username, password, email, birthday }) => {
+const editUserInfo = ({ username, password, email, birthday }) => {
 		axios
 			.put(
 				`${URL}/users/update/${user}`,
@@ -96,7 +73,7 @@ const ProfileView = ({ movies }) => {
 			.catch(err => console.log(err));
 	};
 
-	removeFromFavorites = id => {
+const	removeFromFavorites = id => {
 		axios
 			.delete(`${URL}/users/${user}/movies/${id}`, {
 				headers: { Authorization: `Bearer ${token}` },
@@ -105,7 +82,7 @@ const ProfileView = ({ movies }) => {
 			.catch(err => console.log(err));
 	};
 
-	deleteUser = () => {
+const deleteUser = () => {
 		axios
 			.delete(`${URL}/users/${user}`, {
 				headers: { Authorization: `Bearer ${token}` },

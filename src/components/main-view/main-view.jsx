@@ -35,7 +35,7 @@ class MainView extends React.Component {
 		this.state = {
 			show: false,
 			isLoading: true,
-      currentFilmTitle: ''
+			currentFilmTitle: '',
 		};
 	}
 
@@ -108,13 +108,13 @@ class MainView extends React.Component {
 			.then(res => {
 				addToFavorites(movieId);
 				axios
-        .get(`${URL}/movies/${movieId}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-        .then(res => {
-            this.setState({ show: true });
-            this.setState({currentFilmTitle: res.data.Title})
-          });
+					.get(`${URL}/movies/${movieId}`, {
+						headers: { Authorization: `Bearer ${token}` },
+					})
+					.then(res => {
+						this.setState({ show: true });
+						this.setState({ currentFilmTitle: res.data.Title });
+					});
 			})
 			.catch(err => console.log(err));
 	};
@@ -161,7 +161,7 @@ class MainView extends React.Component {
 													<ToastNotification
 														setShow={this.setShow}
 														show={show}
-                            currentFilmTitle={currentFilmTitle}
+														currentFilmTitle={currentFilmTitle}
 													/>
 												) : (
 													<div></div>
@@ -233,11 +233,11 @@ class MainView extends React.Component {
 											return <div className='main-view'>Loading...</div>;
 										return (
 											<Col md={8}>
-                        	{show === true ? (
+												{show === true ? (
 													<ToastNotification
 														setShow={this.setShow}
 														show={show}
-                            currentFilmTitle={currentFilmTitle}
+														currentFilmTitle={currentFilmTitle}
 													/>
 												) : (
 													<div></div>
@@ -322,12 +322,7 @@ class MainView extends React.Component {
 											);
 										if (movies.length === 0)
 											return <div className='main-view' />;
-										return (
-											<ProfileView
-												history={history}
-												movies={movies}
-											/>
-										);
+										return <ProfileView history={history} movies={movies} />;
 									}}
 								/>
 							</Switch>
