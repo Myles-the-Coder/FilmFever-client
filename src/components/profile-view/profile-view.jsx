@@ -15,18 +15,16 @@ import '../../styles/_profile-view.scss';
 
 const ProfileView = ({ movies }) => {
 	const favoriteMovies = useSelector(state => state.user.value.FavoriteMovies);
+	const userValues = useSelector(state => state.user.value);
 	const [show, setShow] = useState('');
 
 	const token = localStorage.getItem('token');
 	const user = localStorage.getItem('user');
-	const userValues = useSelector(state => state.user.value);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		if (user) {
-			getUserInfo(token);
-		}
-	}, []);
+		getUserInfo(token);
+	}, [token]);
 
 	getUserInfo = token => {
 		axios

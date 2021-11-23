@@ -56408,15 +56408,17 @@ const ProfileView = ({ movies  })=>{
     _s();
     const favoriteMovies = _reactRedux.useSelector((state)=>state.user.value.FavoriteMovies
     );
+    const userValues = _reactRedux.useSelector((state)=>state.user.value
+    );
     const [show, setShow] = _react.useState('');
     const token1 = localStorage.getItem('token');
     const user = localStorage.getItem('user');
-    const userValues = _reactRedux.useSelector((state)=>state.user.value
-    );
     const dispatch = _reactRedux.useDispatch();
     _react.useEffect(()=>{
-        if (user) getUserInfo(token1);
-    }, []);
+        getUserInfo(token1);
+    }, [
+        token1
+    ]);
     getUserInfo = (token)=>{
         _axiosDefault.default.get(`${_helpers.URL}/users/${user}`, {
             headers: {
@@ -56484,7 +56486,7 @@ const ProfileView = ({ movies  })=>{
         setShow: setShow,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 107,
+            lineNumber: 105,
             columnNumber: 10
         },
         __self: undefined
@@ -56492,7 +56494,7 @@ const ProfileView = ({ movies  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 110,
+            lineNumber: 108,
             columnNumber: 3
         },
         __self: undefined,
@@ -56504,7 +56506,7 @@ const ProfileView = ({ movies  })=>{
                 setShow: setShow,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 111,
+                    lineNumber: 109,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56515,7 +56517,7 @@ const ProfileView = ({ movies  })=>{
                 deleteUser: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 117,
+                    lineNumber: 115,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56525,14 +56527,14 @@ const ProfileView = ({ movies  })=>{
                 removeFromFavorites: removeFromFavorites,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 119,
+                    lineNumber: 117,
                     columnNumber: 5
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_movieReelSpinnerDefault.default, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 124,
+                    lineNumber: 122,
                     columnNumber: 5
                 },
                 __self: undefined
@@ -56540,7 +56542,7 @@ const ProfileView = ({ movies  })=>{
         ]
     }));
 };
-_s(ProfileView, "Y1kaBMH6lVL7X1rsN5cXBF84OMg=", false, function() {
+_s(ProfileView, "nwaRLrd/Q9KixJU2Q0/nMV4NQA8=", false, function() {
     return [
         _reactRedux.useSelector,
         _reactRedux.useSelector,
