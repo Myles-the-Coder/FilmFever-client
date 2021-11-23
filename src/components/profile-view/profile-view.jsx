@@ -12,7 +12,7 @@ import { setUser, removeFromFavs } from '../../redux/features/userSlice';
 
 import '../../styles/_profile-view.scss';
 
-const ProfileView = ({ movies }) => {
+const ProfileView = ({ getUser }) => {
 	const favoriteMovies = useSelector(state => state.user.value.FavoriteMovies);
 	const userValues = useSelector(state => state.user.value);
 	const [show, setShow] = useState('');
@@ -21,30 +21,9 @@ const ProfileView = ({ movies }) => {
 	const user = localStorage.getItem('user');
 	const dispatch = useDispatch();
 
-	useEffect(() => {
-		axios
-			.get(`${URL}/users/${user}`, {
-				headers: { Authorization: `Bearer ${token}` },
-			})
-			.then(res => {
-				const { Username, Password, Email, Birthday, FavoriteMovies } =
-					res.data;
-				dispatch(
-					setUser({
-						Username,
-						Password,
-						Email,
-						Birthday: Birthday.slice(0, 10),
-						FavoriteMovies: movies.filter(movie =>
-							FavoriteMovies.includes(movie._id)
-						),
-					})
-				);
-			})
-			.catch(err => console.log(err));
-	}, []);
+	useEffect(() => getUser(user, token), []);
 
-const editUserInfo = ({ username, password, email, birthday }) => {
+	const editUserInfo = ({ username, password, email, birthday }) => {
 		axios
 			.put(
 				`${URL}/users/update/${user}`,
@@ -73,7 +52,7 @@ const editUserInfo = ({ username, password, email, birthday }) => {
 			.catch(err => console.log(err));
 	};
 
-const	removeFromFavorites = id => {
+	const removeFromFavorites = id => {
 		axios
 			.delete(`${URL}/users/${user}/movies/${id}`, {
 				headers: { Authorization: `Bearer ${token}` },
@@ -82,7 +61,7 @@ const	removeFromFavorites = id => {
 			.catch(err => console.log(err));
 	};
 
-const deleteUser = () => {
+	const deleteUser = () => {
 		axios
 			.delete(`${URL}/users/${user}`, {
 				headers: { Authorization: `Bearer ${token}` },
@@ -110,7 +89,7 @@ const deleteUser = () => {
 			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />
 			{favoriteMovies ? (
 				<FavoriteMovies
-					favoriteMovies={favoriteMovies}
+					favoriteMovies={userValues.FavoriteMovies}
 					removeFromFavorites={removeFromFavorites}
 				/>
 			) : (

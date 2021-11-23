@@ -124,6 +124,8 @@ class MainView extends React.Component {
 	render() {
 		let { movies, user } = this.props;
 		let { show, isLoading, currentFilmTitle } = this.state;
+
+    console.log(user)
 		return (
 			<>
 				<Router>
@@ -322,7 +324,7 @@ class MainView extends React.Component {
 											);
 										if (movies.length === 0)
 											return <div className='main-view' />;
-										return <ProfileView history={history} movies={movies} />;
+										return <ProfileView getUser={this.getUser} history={history} movies={movies} />;
 									}}
 								/>
 							</Switch>

@@ -8,8 +8,10 @@ import NoMoviesFound from '../no-movies-found/no-movies-found'
 import '../../styles/_profile-view.scss'
 
 const FavoriteMovies = ({favoriteMovies, removeFromFavorites}) => {
-  let filteredFavs = favoriteMovies;
   const filter = useSelector((state) => state.filter.value)
+  const movies = useSelector((state) => state.movies.value)
+  let filteredFavs = movies.filter(movie =>
+    favoriteMovies.includes(movie._id))
 
 	if (filter !== '') {
 		filteredFavs = favoriteMovies.filter(movie =>
