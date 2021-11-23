@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserInfo from './user-info';
-import { Container, Row, Col} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import MovieReelSpinner from '../MovieReelSpinner/MovieReelSpinner';
 import InfoForm from '../form/info-form';
 import FavoriteMovies from './favorite-movies';
@@ -23,17 +23,12 @@ const ProfileView = ({ movies }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		let isMounted = true;
-		let accessToken = localStorage.getItem('token');
-		if (isMounted) {
-			getUser(accessToken);
+		if (user) {
+			getUserInfo(token);
 		}
-		return () => {
-			isMounted = false;
-		};
 	}, []);
 
-	getUser = token => {
+	getUserInfo = token => {
 		axios
 			.get(`${URL}/users/${user}`, {
 				headers: { Authorization: `Bearer ${token}` },
@@ -56,7 +51,7 @@ const ProfileView = ({ movies }) => {
 			.catch(err => console.log(err));
 	};
 
-	editUser = ({ username, password, email, birthday }) => {
+	editUserAccount = ({ username, password, email, birthday }) => {
 		axios
 			.put(
 				`${URL}/users/update/${user}`,
@@ -108,8 +103,9 @@ const ProfileView = ({ movies }) => {
 		setShow('');
 	};
 
-	if (show === 'update') return <InfoForm editUser={editUser} setShow={setShow} />
-	
+	if (show === 'update')
+		return <InfoForm editUser={editUserInfo} setShow={setShow} />;
+
 	return (
 		<Col>
 			<UserInfo
@@ -119,12 +115,14 @@ const ProfileView = ({ movies }) => {
 				setShow={setShow}
 			/>
 			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />
-			{favoriteMovies ? 
+			{favoriteMovies ? (
 				<FavoriteMovies
 					favoriteMovies={favoriteMovies}
 					removeFromFavorites={removeFromFavorites}
 				/>
-       : <MovieReelSpinner />}
+			) : (
+				<MovieReelSpinner />
+			)}
 		</Col>
 	);
 };

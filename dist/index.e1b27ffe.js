@@ -56041,7 +56041,7 @@ var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
 var _yup = require("yup");
 var _profileViewScss = require("../../styles/_profile-view.scss");
-const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
+const InfoForm = ({ handleRegister , editUserInfo , setShow , onBackClick  })=>{
     const schema = _yup.object({
         username: _yup.string().min(3, 'Username must be at least 3 characters in length').max(15, 'Username cannot be more than 15 characters long').required('Valid username is required'),
         password: _yup.string().min(5, 'Password must be at least 5 characters in length').required('Valid password is required'),
@@ -56063,7 +56063,7 @@ const InfoForm = ({ handleRegister , editUser , setShow , onBackClick  })=>{
         __self: undefined,
         children: /*#__PURE__*/ _jsxRuntime.jsx(_formik.Formik, {
             validationSchema: schema,
-            onSubmit: handleRegister || editUser,
+            onSubmit: handleRegister || editUserInfo,
             initialValues: {
                 username: '',
                 password: '',
@@ -56415,14 +56415,9 @@ const ProfileView = ({ movies  })=>{
     );
     const dispatch = _reactRedux.useDispatch();
     _react.useEffect(()=>{
-        let isMounted = true;
-        let accessToken = localStorage.getItem('token');
-        if (isMounted) getUser(accessToken);
-        return ()=>{
-            isMounted = false;
-        };
+        if (user) getUserInfo(token1);
     }, []);
-    getUser = (token)=>{
+    getUserInfo = (token)=>{
         _axiosDefault.default.get(`${_helpers.URL}/users/${user}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -56440,7 +56435,7 @@ const ProfileView = ({ movies  })=>{
         }).catch((err)=>console.log(err)
         );
     };
-    editUser = ({ username , password , email , birthday  })=>{
+    editUserAccount = ({ username , password , email , birthday  })=>{
         _axiosDefault.default.put(`${_helpers.URL}/users/update/${user}`, {
             Username: username,
             Password: password,
@@ -56485,19 +56480,19 @@ const ProfileView = ({ movies  })=>{
         setShow('');
     };
     if (show === 'update') return(/*#__PURE__*/ _jsxRuntime.jsx(_infoFormDefault.default, {
-        editUser: editUser,
+        editUser: editUserInfo,
         setShow: setShow,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 111,
-            columnNumber: 32
+            lineNumber: 107,
+            columnNumber: 10
         },
         __self: undefined
     }));
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 114,
+            lineNumber: 110,
             columnNumber: 3
         },
         __self: undefined,
@@ -56509,7 +56504,7 @@ const ProfileView = ({ movies  })=>{
                 setShow: setShow,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 115,
+                    lineNumber: 111,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56520,7 +56515,7 @@ const ProfileView = ({ movies  })=>{
                 deleteUser: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 121,
+                    lineNumber: 117,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56530,15 +56525,15 @@ const ProfileView = ({ movies  })=>{
                 removeFromFavorites: removeFromFavorites,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 123,
+                    lineNumber: 119,
                     columnNumber: 5
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_movieReelSpinnerDefault.default, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 127,
-                    columnNumber: 10
+                    lineNumber: 124,
+                    columnNumber: 5
                 },
                 __self: undefined
             })

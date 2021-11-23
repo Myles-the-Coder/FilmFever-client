@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 
 import '../../styles/_profile-view.scss';
 
-const InfoForm = ({ handleRegister, editUser, setShow, onBackClick }) => {
+const InfoForm = ({ handleRegister, editUserInfo, setShow, onBackClick }) => {
 	const schema = Yup.object({
 		username: Yup.string()
 			.min(3, 'Username must be at least 3 characters in length')
@@ -26,10 +26,10 @@ const InfoForm = ({ handleRegister, editUser, setShow, onBackClick }) => {
 	const { Group, Label, Control } = Form;
 
 	return (
-		<Col  className='m-2'>
+		<Col className='m-2'>
 			<Formik
 				validationSchema={schema}
-				onSubmit={handleRegister || editUser}
+				onSubmit={handleRegister || editUserInfo}
 				initialValues={{
 					username: '',
 					password: '',
