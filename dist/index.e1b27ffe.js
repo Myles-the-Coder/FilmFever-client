@@ -22880,11 +22880,12 @@ class MainView extends _reactDefault.default.Component {
     render() {
         let { movies , user: user1  } = this.props;
         let { show , isLoading , currentFilmTitle  } = this.state;
+        console.log(user1);
         return(/*#__PURE__*/ _jsxRuntime.jsx(_jsxRuntime.Fragment, {
             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.BrowserRouter, {
                 __source: {
                     fileName: "src/components/main-view/main-view.jsx",
-                    lineNumber: 129,
+                    lineNumber: 131,
                     columnNumber: 5
                 },
                 __self: this,
@@ -22894,7 +22895,7 @@ class MainView extends _reactDefault.default.Component {
                         user: user1,
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 130,
+                            lineNumber: 132,
                             columnNumber: 6
                         },
                         __self: this
@@ -22902,7 +22903,7 @@ class MainView extends _reactDefault.default.Component {
                     /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
                         __source: {
                             fileName: "src/components/main-view/main-view.jsx",
-                            lineNumber: 131,
+                            lineNumber: 133,
                             columnNumber: 6
                         },
                         __self: this,
@@ -22910,14 +22911,14 @@ class MainView extends _reactDefault.default.Component {
                             className: "main-view justify-content-md-center",
                             __source: {
                                 fileName: "src/components/main-view/main-view.jsx",
-                                lineNumber: 132,
+                                lineNumber: 134,
                                 columnNumber: 7
                             },
                             __self: this,
                             children: /*#__PURE__*/ _jsxRuntime.jsxs(_reactRouterDom.Switch, {
                                 __source: {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 133,
+                                    lineNumber: 135,
                                     columnNumber: 8
                                 },
                                 __self: this,
@@ -22934,7 +22935,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 134,
+                                            lineNumber: 136,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -22971,7 +22972,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 143,
+                                            lineNumber: 145,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -22999,7 +23000,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 179,
+                                            lineNumber: 181,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23019,7 +23020,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 205,
+                                            lineNumber: 207,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23058,7 +23059,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 220,
+                                            lineNumber: 222,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23087,7 +23088,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 257,
+                                            lineNumber: 259,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23116,7 +23117,7 @@ class MainView extends _reactDefault.default.Component {
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 286,
+                                            lineNumber: 288,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -23132,13 +23133,14 @@ class MainView extends _reactDefault.default.Component {
                                                 className: "main-view"
                                             }));
                                             return(/*#__PURE__*/ _jsxRuntime.jsx(_profileViewDefault.default, {
+                                                getUser: this.getUser,
                                                 history: history,
                                                 movies: movies
                                             }));
                                         },
                                         __source: {
                                             fileName: "src/components/main-view/main-view.jsx",
-                                            lineNumber: 315,
+                                            lineNumber: 317,
                                             columnNumber: 9
                                         },
                                         __self: this
@@ -56404,7 +56406,7 @@ var _reactRedux = require("react-redux");
 var _userSlice = require("../../redux/features/userSlice");
 var _profileViewScss = require("../../styles/_profile-view.scss");
 var _s = $RefreshSig$();
-const ProfileView = ({ movies  })=>{
+const ProfileView = ({ getUser  })=>{
     _s();
     const favoriteMovies = _reactRedux.useSelector((state)=>state.user.value.FavoriteMovies
     );
@@ -56414,24 +56416,8 @@ const ProfileView = ({ movies  })=>{
     const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
     const dispatch = _reactRedux.useDispatch();
-    _react.useEffect(()=>{
-        _axiosDefault.default.get(`${_helpers.URL}/users/${user}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).then((res)=>{
-            const { Username , Password , Email , Birthday , FavoriteMovies  } = res.data;
-            dispatch(_userSlice.setUser({
-                Username,
-                Password,
-                Email,
-                Birthday: Birthday.slice(0, 10),
-                FavoriteMovies: movies.filter((movie)=>FavoriteMovies.includes(movie._id)
-                )
-            }));
-        }).catch((err)=>console.log(err)
-        );
-    }, []);
+    _react.useEffect(()=>getUser(user, token)
+    , []);
     const editUserInfo = ({ username , password , email , birthday  })=>{
         _axiosDefault.default.put(`${_helpers.URL}/users/update/${user}`, {
             Username: username,
@@ -56481,7 +56467,7 @@ const ProfileView = ({ movies  })=>{
         setShow: setShow,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 100,
+            lineNumber: 79,
             columnNumber: 10
         },
         __self: undefined
@@ -56489,7 +56475,7 @@ const ProfileView = ({ movies  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 103,
+            lineNumber: 82,
             columnNumber: 3
         },
         __self: undefined,
@@ -56501,7 +56487,7 @@ const ProfileView = ({ movies  })=>{
                 setShow: setShow,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 104,
+                    lineNumber: 83,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56512,24 +56498,24 @@ const ProfileView = ({ movies  })=>{
                 deleteUser: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 110,
+                    lineNumber: 89,
                     columnNumber: 4
                 },
                 __self: undefined
             }),
             favoriteMovies ? /*#__PURE__*/ _jsxRuntime.jsx(_favoriteMoviesDefault.default, {
-                favoriteMovies: favoriteMovies,
+                favoriteMovies: userValues.FavoriteMovies,
                 removeFromFavorites: removeFromFavorites,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 112,
+                    lineNumber: 91,
                     columnNumber: 5
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_movieReelSpinnerDefault.default, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 117,
+                    lineNumber: 96,
                     columnNumber: 5
                 },
                 __self: undefined
@@ -56720,8 +56706,11 @@ var _profileViewScss = require("../../styles/_profile-view.scss");
 var _s = $RefreshSig$();
 const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
     _s();
-    let filteredFavs = favoriteMovies;
     const filter = _reactRedux.useSelector((state)=>state.filter.value
+    );
+    const movies = _reactRedux.useSelector((state)=>state.movies.value
+    );
+    let filteredFavs = movies.filter((movie)=>favoriteMovies.includes(movie._id)
     );
     if (filter !== '') filteredFavs = favoriteMovies.filter((movie)=>movie.Title.toLowerCase().includes(filter.toLowerCase())
     );
@@ -56729,7 +56718,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
         className: "justify-content-center text-center",
         __source: {
             fileName: "src/components/profile-view/favorite-movies.jsx",
-            lineNumber: 21,
+            lineNumber: 23,
             columnNumber: 5
         },
         __self: undefined,
@@ -56738,7 +56727,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                 className: "p-2 m-4 text-light",
                 __source: {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 22,
+                    lineNumber: 24,
                     columnNumber: 5
                 },
                 __self: undefined,
@@ -56749,7 +56738,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                 className: "m-2",
                 __source: {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 23,
+                    lineNumber: 25,
                     columnNumber: 5
                 },
                 __self: undefined,
@@ -56757,7 +56746,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                     filter: filter,
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 24,
+                        lineNumber: 26,
                         columnNumber: 5
                     },
                     __self: undefined
@@ -56771,7 +56760,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                     md: 3,
                     __source: {
                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                        lineNumber: 29,
+                        lineNumber: 31,
                         columnNumber: 9
                     },
                     __self: undefined,
@@ -56782,7 +56771,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                         },
                         __source: {
                             fileName: "src/components/profile-view/favorite-movies.jsx",
-                            lineNumber: 30,
+                            lineNumber: 32,
                             columnNumber: 11
                         },
                         __self: undefined,
@@ -56790,7 +56779,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                             /*#__PURE__*/ _jsxRuntime.jsx("h4", {
                                 __source: {
                                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                                    lineNumber: 31,
+                                    lineNumber: 33,
                                     columnNumber: 11
                                 },
                                 __self: undefined,
@@ -56802,7 +56791,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                                 crossOrigin: "anonymous",
                                 __source: {
                                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                                    lineNumber: 32,
+                                    lineNumber: 34,
                                     columnNumber: 11
                                 },
                                 __self: undefined
@@ -56811,7 +56800,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                                 to: `/movies/${_id}`,
                                 __source: {
                                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                                    lineNumber: 33,
+                                    lineNumber: 35,
                                     columnNumber: 11
                                 },
                                 __self: undefined,
@@ -56820,7 +56809,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                                     className: "m-1",
                                     __source: {
                                         fileName: "src/components/profile-view/favorite-movies.jsx",
-                                        lineNumber: 34,
+                                        lineNumber: 36,
                                         columnNumber: 13
                                     },
                                     __self: undefined,
@@ -56834,7 +56823,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                                 className: "w-75 m-auto",
                                 __source: {
                                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                                    lineNumber: 36,
+                                    lineNumber: 38,
                                     columnNumber: 11
                                 },
                                 __self: undefined,
@@ -56847,7 +56836,7 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
                 message: 'Movie not found',
                 __source: {
                     fileName: "src/components/profile-view/favorite-movies.jsx",
-                    lineNumber: 40,
+                    lineNumber: 42,
                     columnNumber: 10
                 },
                 __self: undefined
@@ -56855,8 +56844,9 @@ const FavoriteMovies = ({ favoriteMovies , removeFromFavorites  })=>{
         ]
     }));
 };
-_s(FavoriteMovies, "CTxSmkRKeY17NmVdjL4FcSzygAI=", false, function() {
+_s(FavoriteMovies, "MSd7x/siruKrXV1/adySYeist+c=", false, function() {
     return [
+        _reactRedux.useSelector,
         _reactRedux.useSelector
     ];
 });
