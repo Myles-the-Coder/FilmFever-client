@@ -56411,30 +56411,10 @@ const ProfileView = ({ movies  })=>{
     const userValues = _reactRedux.useSelector((state)=>state.user.value
     );
     const [show, setShow] = _react.useState('');
-    const token1 = localStorage.getItem('token');
+    const token = localStorage.getItem('token');
     const user = localStorage.getItem('user');
     const dispatch = _reactRedux.useDispatch();
     _react.useEffect(()=>{
-        _axiosDefault.default.get(`${_helpers.URL}/users/${user}`, {
-            headers: {
-                Authorization: `Bearer ${token1}`
-            }
-        }).then((res)=>{
-            const { Username , Password , Email , Birthday , FavoriteMovies  } = res.data;
-            dispatch(_userSlice.setUser({
-                Username,
-                Password,
-                Email,
-                Birthday: Birthday.slice(0, 10),
-                FavoriteMovies: movies.filter((movie)=>FavoriteMovies.includes(movie._id)
-                )
-            }));
-        }).catch((err)=>console.log(err)
-        );
-    }, [
-        token1
-    ]);
-    getUserInfo = (token)=>{
         _axiosDefault.default.get(`${_helpers.URL}/users/${user}`, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -56451,7 +56431,31 @@ const ProfileView = ({ movies  })=>{
             }));
         }).catch((err)=>console.log(err)
         );
-    };
+    }, [
+        token
+    ]);
+    // getUserInfo = token => {
+    // 	axios
+    // 		.get(`${URL}/users/${user}`, {
+    // 			headers: { Authorization: `Bearer ${token}` },
+    // 		})
+    // 		.then(res => {
+    // 			const { Username, Password, Email, Birthday, FavoriteMovies } =
+    // 				res.data;
+    // 			dispatch(
+    // 				setUser({
+    // 					Username,
+    // 					Password,
+    // 					Email,
+    // 					Birthday: Birthday.slice(0, 10),
+    // 					FavoriteMovies: movies.filter(movie =>
+    // 						FavoriteMovies.includes(movie._id)
+    // 					),
+    // 				})
+    // 			);
+    // 		})
+    // 		.catch(err => console.log(err));
+    // };
     editUserAccount = ({ username , password , email , birthday  })=>{
         _axiosDefault.default.put(`${_helpers.URL}/users/update/${user}`, {
             Username: username,
@@ -56460,7 +56464,7 @@ const ProfileView = ({ movies  })=>{
             Birthday: birthday
         }, {
             headers: {
-                Authorization: `Bearer ${token1}`
+                Authorization: `Bearer ${token}`
             }
         }).then((res)=>{
             localStorage.setItem('user', username);
@@ -56477,7 +56481,7 @@ const ProfileView = ({ movies  })=>{
     removeFromFavorites = (id)=>{
         _axiosDefault.default.delete(`${_helpers.URL}/users/${user}/movies/${id}`, {
             headers: {
-                Authorization: `Bearer ${token1}`
+                Authorization: `Bearer ${token}`
             }
         }).then((res)=>dispatch(_userSlice.removeFromFavs(favoriteMovies.indexOf(id)))
         ).catch((err)=>console.log(err)
@@ -56486,7 +56490,7 @@ const ProfileView = ({ movies  })=>{
     deleteUser = ()=>{
         _axiosDefault.default.delete(`${_helpers.URL}/users/${user}`, {
             headers: {
-                Authorization: `Bearer ${token1}`
+                Authorization: `Bearer ${token}`
             }
         }).then((res)=>{
             alert(`${user} has been deleted`);
