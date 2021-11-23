@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import UserInfo from './user-info';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 import MovieReelSpinner from '../MovieReelSpinner/MovieReelSpinner';
 import InfoForm from '../form/info-form';
 import FavoriteMovies from './favorite-movies';
@@ -9,7 +9,6 @@ import DeleteModal from './delete-modal';
 import { URL } from '../../helpers/helpers';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, removeFromFavs } from '../../redux/features/userSlice';
-import { useDispatch } from 'react-redux';
 
 import '../../styles/_profile-view.scss';
 
@@ -68,7 +67,7 @@ const ProfileView = ({ movies }) => {
 	// 		.catch(err => console.log(err));
 	// };
 
-	editUserAccount = ({ username, password, email, birthday }) => {
+	editUserInfo = ({ username, password, email, birthday }) => {
 		axios
 			.put(
 				`${URL}/users/update/${user}`,
@@ -121,7 +120,7 @@ const ProfileView = ({ movies }) => {
 	};
 
 	if (show === 'update')
-		return <InfoForm editUser={editUserInfo} setShow={setShow} />;
+		return <InfoForm editUserInfo={editUserInfo} setShow={setShow} />;
 
 	return (
 		<Col>

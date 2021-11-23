@@ -56456,7 +56456,7 @@ const ProfileView = ({ movies  })=>{
     // 		})
     // 		.catch(err => console.log(err));
     // };
-    editUserAccount = ({ username , password , email , birthday  })=>{
+    editUserInfo = ({ username , password , email , birthday  })=>{
         _axiosDefault.default.put(`${_helpers.URL}/users/update/${user}`, {
             Username: username,
             Password: password,
@@ -56501,11 +56501,11 @@ const ProfileView = ({ movies  })=>{
         setShow('');
     };
     if (show === 'update') return(/*#__PURE__*/ _jsxRuntime.jsx(_infoFormDefault.default, {
-        editUser: editUserInfo,
+        editUserInfo: editUserInfo,
         setShow: setShow,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 124,
+            lineNumber: 123,
             columnNumber: 10
         },
         __self: undefined
@@ -56513,7 +56513,7 @@ const ProfileView = ({ movies  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 127,
+            lineNumber: 126,
             columnNumber: 3
         },
         __self: undefined,
@@ -56525,7 +56525,7 @@ const ProfileView = ({ movies  })=>{
                 setShow: setShow,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 128,
+                    lineNumber: 127,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56536,7 +56536,7 @@ const ProfileView = ({ movies  })=>{
                 deleteUser: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 134,
+                    lineNumber: 133,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56546,14 +56546,14 @@ const ProfileView = ({ movies  })=>{
                 removeFromFavorites: removeFromFavorites,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 136,
+                    lineNumber: 135,
                     columnNumber: 5
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_movieReelSpinnerDefault.default, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 141,
+                    lineNumber: 140,
                     columnNumber: 5
                 },
                 __self: undefined
