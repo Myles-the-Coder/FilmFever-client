@@ -23,7 +23,26 @@ const ProfileView = ({ movies }) => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		getUserInfo(token);
+    axios
+    .get(`${URL}/users/${user}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(res => {
+      const { Username, Password, Email, Birthday, FavoriteMovies } =
+        res.data;
+      dispatch(
+        setUser({
+          Username,
+          Password,
+          Email,
+          Birthday: Birthday.slice(0, 10),
+          FavoriteMovies: movies.filter(movie =>
+            FavoriteMovies.includes(movie._id)
+          ),
+        })
+      );
+    })
+    .catch(err => console.log(err));
 	}, [token]);
 
 	getUserInfo = token => {

@@ -56415,7 +56415,22 @@ const ProfileView = ({ movies  })=>{
     const user = localStorage.getItem('user');
     const dispatch = _reactRedux.useDispatch();
     _react.useEffect(()=>{
-        getUserInfo(token1);
+        _axiosDefault.default.get(`${_helpers.URL}/users/${user}`, {
+            headers: {
+                Authorization: `Bearer ${token1}`
+            }
+        }).then((res)=>{
+            const { Username , Password , Email , Birthday , FavoriteMovies  } = res.data;
+            dispatch(_userSlice.setUser({
+                Username,
+                Password,
+                Email,
+                Birthday: Birthday.slice(0, 10),
+                FavoriteMovies: movies.filter((movie)=>FavoriteMovies.includes(movie._id)
+                )
+            }));
+        }).catch((err)=>console.log(err)
+        );
     }, [
         token1
     ]);
@@ -56486,7 +56501,7 @@ const ProfileView = ({ movies  })=>{
         setShow: setShow,
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 105,
+            lineNumber: 124,
             columnNumber: 10
         },
         __self: undefined
@@ -56494,7 +56509,7 @@ const ProfileView = ({ movies  })=>{
     return(/*#__PURE__*/ _jsxRuntime.jsxs(_reactBootstrap.Col, {
         __source: {
             fileName: "src/components/profile-view/profile-view.jsx",
-            lineNumber: 108,
+            lineNumber: 127,
             columnNumber: 3
         },
         __self: undefined,
@@ -56506,7 +56521,7 @@ const ProfileView = ({ movies  })=>{
                 setShow: setShow,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 109,
+                    lineNumber: 128,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56517,7 +56532,7 @@ const ProfileView = ({ movies  })=>{
                 deleteUser: deleteUser,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 115,
+                    lineNumber: 134,
                     columnNumber: 4
                 },
                 __self: undefined
@@ -56527,14 +56542,14 @@ const ProfileView = ({ movies  })=>{
                 removeFromFavorites: removeFromFavorites,
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 117,
+                    lineNumber: 136,
                     columnNumber: 5
                 },
                 __self: undefined
             }) : /*#__PURE__*/ _jsxRuntime.jsx(_movieReelSpinnerDefault.default, {
                 __source: {
                     fileName: "src/components/profile-view/profile-view.jsx",
-                    lineNumber: 122,
+                    lineNumber: 141,
                     columnNumber: 5
                 },
                 __self: undefined
