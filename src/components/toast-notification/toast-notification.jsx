@@ -1,9 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Toast, ToastContainer} from 'react-bootstrap'
 import {Col} from 'react-bootstrap'
 
 function ToastNotification({show, setShow, currentFilmTitle}) {
-  const message = `${currentFilmTitle} has been added to Favorites`
+  const [message, setMessage] = useState('')
+  if (currentFilmTitle) {
+    setMessage(`${currentFilmTitle} has been added to Favorites`)
+  }
   return (
       <Col xs={6}>
         <ToastContainer style={{zIndex: '100', position: 'fixed', top: '15%', right: '0', textAlign: 'center'}}>

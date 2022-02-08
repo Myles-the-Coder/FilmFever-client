@@ -57022,13 +57022,16 @@ var _jsxRuntime = require("react/jsx-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactBootstrap = require("react-bootstrap");
+var _s = $RefreshSig$();
 function ToastNotification({ show , setShow , currentFilmTitle  }) {
-    const message = `${currentFilmTitle} has been added to Favorites`;
+    _s();
+    const [message, setMessage] = _react.useState('');
+    if (currentFilmTitle) setMessage(`${currentFilmTitle} has been added to Favorites`);
     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
         xs: 6,
         __source: {
             fileName: "src/components/toast-notification/toast-notification.jsx",
-            lineNumber: 8,
+            lineNumber: 11,
             columnNumber: 7
         },
         __self: this,
@@ -57042,7 +57045,7 @@ function ToastNotification({ show , setShow , currentFilmTitle  }) {
             },
             __source: {
                 fileName: "src/components/toast-notification/toast-notification.jsx",
-                lineNumber: 9,
+                lineNumber: 12,
                 columnNumber: 9
             },
             __self: this,
@@ -57056,14 +57059,14 @@ function ToastNotification({ show , setShow , currentFilmTitle  }) {
                 },
                 __source: {
                     fileName: "src/components/toast-notification/toast-notification.jsx",
-                    lineNumber: 10,
+                    lineNumber: 13,
                     columnNumber: 9
                 },
                 __self: this,
                 children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Toast.Body, {
                     __source: {
                         fileName: "src/components/toast-notification/toast-notification.jsx",
-                        lineNumber: 11,
+                        lineNumber: 14,
                         columnNumber: 11
                     },
                     __self: this,
@@ -57073,6 +57076,7 @@ function ToastNotification({ show , setShow , currentFilmTitle  }) {
         })
     }));
 }
+_s(ToastNotification, "l8KXAebGu4sZHsyCIQX7P8si41w=");
 _c = ToastNotification;
 exports.default = ToastNotification;
 var _c;
