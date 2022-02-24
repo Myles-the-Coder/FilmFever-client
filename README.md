@@ -20,6 +20,11 @@ This project was built for the purpose of gaining more experince with full-stack
 3. Save movies to a favorites list
 
 ## ⛏️Built with
+-React
+-Redux-Toolkit
+-React-Router
+-React-Bootstrap
+
 "dependencies": 
 
     "@reduxjs/toolkit": "^1.6.2",
