@@ -9,7 +9,7 @@ import DeleteModal from './delete-modal';
 import { URL } from '../../helpers/helpers';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, removeFromFavs } from '../../redux/features/userSlice';
-
+import { useNavigate } from 'react-router-dom';
 import '../../styles/_profile-view.scss';
 
 const ProfileView = ({ getUser }) => {
@@ -31,7 +31,6 @@ const ProfileView = ({ getUser }) => {
 					Username: username,
 					Password: password,
 					Email: email,
-					Birthday: birthday,
 				},
 				{
 					headers: { Authorization: `Bearer ${token}` },
@@ -44,7 +43,6 @@ const ProfileView = ({ getUser }) => {
 						Username: username,
 						Password: password,
 						Email: email,
-						Birthday: birthday,
 					})
 				);
 				alert(`${username} has been updated!`);
@@ -80,12 +78,7 @@ const ProfileView = ({ getUser }) => {
 
 	return (
 		<Col>
-			<UserInfo
-				user={userValues.Username}
-				email={userValues.Email}
-				birthday={userValues.Birthday}
-				setShow={setShow}
-			/>
+			<UserInfo user={userValues} setShow={setShow} />
 			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />
 			{favoriteMovies ? (
 				<FavoriteMovies

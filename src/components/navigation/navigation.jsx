@@ -8,12 +8,9 @@ import '../../styles/_navigation.scss';
 const Navigation = ({ onLoggedOut, user }) => {
 	const { Brand, Toggle, Collapse } = Navbar;
 
-	if (!user.Username) {
-		return (
-			<Navbar style={{ maxHeight: '100px' }}></Navbar>
-		);
-	} else {
-		return (
+	return !user.Username
+  ? <Navbar style={{ maxHeight: '100px' }}></Navbar> 
+  : (
 			<Navbar
 				collapseOnSelect
 				expand='lg'
@@ -43,7 +40,6 @@ const Navigation = ({ onLoggedOut, user }) => {
 			</Navbar>
 		);
 	}
-};
 
 Navigation.propTypes = {
 	onLoggedOut: PropTypes.func.isRequired,

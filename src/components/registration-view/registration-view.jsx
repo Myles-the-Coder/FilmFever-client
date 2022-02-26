@@ -8,7 +8,7 @@ import { URL } from '../../helpers/helpers';
 import '../../styles/_registration-view.scss';
 import ErrorMessage from '../error-message/error-message';
 
-function RegistrationView({ onBackClick }) {
+function RegistrationView({ navigate }) {
   const [error, setError] = useState('')
   const dispatch = useDispatch()
   
@@ -35,7 +35,7 @@ function RegistrationView({ onBackClick }) {
 	return (
     <>
     <InfoForm handleRegister={handleRegister} onBackClick={onBackClick}/>
-    {error ? <ErrorMessage message='Something went wrong. Please try again.' /> : <></>}
+    {error && <ErrorMessage message='Something went wrong. Please try again.' />}
     </>
     );
 }

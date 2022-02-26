@@ -1,29 +1,31 @@
 import React from 'react'
 import {Card, Button} from 'react-bootstrap'
+import { useParams, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import '../../styles/_button.scss'
 
-class GenreView extends React.Component{
-  render() {
-    const {genre, onBackClick} = this.props
+const GenreView = ({movies}) => {
+  const params = useParams()
+  const navigate = useNavigate()
+  const genre = movies.find(
+    movie => movie.Genre.Name === params.Name
+  ).Genre
     const {Body, Title, Text} = Card
-    const {Name, Description} = genre
 
     return (
       <Card
       className='text-center mt-1'
       style={{ backgroundColor: 'whitesmoke' }}>
       <Body>
-        <Title>{Name}</Title>
-        <Text>{Description}</Text>
-        <Button bsPrefix='card-button' onClick={() => onBackClick()}>
+        <Title>{genre.Name}</Title>
+        <Text>{genre.Description}</Text>
+        <Button bsPrefix='card-button' onClick={() => navigate(-1)}>
           Back
         </Button>
       </Body>
     </Card>
     )
-  }
 }
 
 export default GenreView

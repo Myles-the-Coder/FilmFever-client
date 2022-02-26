@@ -1,12 +1,13 @@
 import React from 'react';
 import { Formik } from 'formik';
 import { Form, Button, Col } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import * as Yup from 'yup';
 
 import '../../styles/_profile-view.scss';
 
-const InfoForm = ({ handleRegister, editUserInfo, setShow, onBackClick }) => {
+const InfoForm = ({ handleRegister, editUserInfo, setShow }) => {
 	const schema = Yup.object({
 		username: Yup.string()
 			.min(3, 'Username must be at least 3 characters in length')
@@ -22,6 +23,7 @@ const InfoForm = ({ handleRegister, editUserInfo, setShow, onBackClick }) => {
 			'Passwords must match'
 		),
 	});
+  const navigate = useNavigate()
 
 	const { Group, Label, Control } = Form;
 
@@ -123,7 +125,7 @@ const InfoForm = ({ handleRegister, editUserInfo, setShow, onBackClick }) => {
 							type='button'
 							bsPrefix='card-button'
 							onClick={() => {
-								handleRegister ? onBackClick() : setShow('');
+								handleRegister ? navigate(-1) : setShow('');
 							}}>
 							Back
 						</Button>

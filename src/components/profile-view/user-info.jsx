@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, Button, Row, Col } from 'react-bootstrap';
 import '../../styles/_profile-view.scss';
 
-const UserInfo = ({ user, email, birthday, setShow }) => {
+const UserInfo = ({ user, setShow }) => {
 	const { Body, Text, Header } = Card;
 	return (
 		<Row className='justify-content-center'>
@@ -10,9 +10,9 @@ const UserInfo = ({ user, email, birthday, setShow }) => {
 				<Card className='text-center m-2'>
 					<Header className='h1'>Your Profile Info</Header>
 					<Body style={{ backgroundColor: 'whitesmoke' }}>
-						<Text>Username: {`${user}`}</Text>
-						<Text>Email: {`${email}`}</Text>
-						<Text>Birthday: {`${birthday}`}</Text>
+						<Text>Username: {`${user.Username}`}</Text>
+						<Text>Email: {`${user.Email}`}</Text>
+						<Text>Birthday: {`${user.Birthday}`}</Text>
 						<Button
 							className='m-1'
 							bsPrefix='card-button'

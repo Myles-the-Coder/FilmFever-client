@@ -5,7 +5,7 @@ import MovieCard from '../movie-card/movie-card';
 import FilterInput from '../filter-input/filter-input';
 import NoMoviesFound from '../no-movies-found/no-movies-found';
 
-function MoviesList({ movies, addMovieToFavorites }) {
+const MoviesList = ({ movies, addMovieToFavorites }) => {
 	let filteredMovies = movies;
 	const filter = useSelector(state => state.filter.value);
 
