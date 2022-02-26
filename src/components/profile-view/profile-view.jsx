@@ -9,7 +9,6 @@ import DeleteModal from './delete-modal';
 import { URL } from '../../helpers/helpers';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, removeFromFavs } from '../../redux/features/userSlice';
-import { useNavigate } from 'react-router-dom';
 import '../../styles/_profile-view.scss';
 
 const ProfileView = ({ getUser }) => {

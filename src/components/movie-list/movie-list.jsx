@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import MovieCard from '../movie-card/movie-card';
 import FilterInput from '../filter-input/filter-input';
 import NoMoviesFound from '../no-movies-found/no-movies-found';
+import MovieReelSpinner from '../MovieReelSpinner/MovieReelSpinner';
 
 const MoviesList = ({ movies, addMovieToFavorites }) => {
 	let filteredMovies = movies;

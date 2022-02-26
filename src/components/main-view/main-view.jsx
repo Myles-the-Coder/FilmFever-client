@@ -187,9 +187,9 @@ class MainView extends React.Component {
 							<Route
 								path='/movies'
 								element={
-									// this.checkUsername();
-									// this.checkMovieLength();
-									<>
+                  <>
+									{this.checkUsername()}
+									{this.checkMovieLength()}
 										{show === true && (
 											<ToastNotification
 												setShow={this.setShow}
@@ -207,7 +207,9 @@ class MainView extends React.Component {
 							<Route
 								path='/movies/:movieId'
 								element={
-										<Col md={8}>
+                  <Col md={8}>
+                      {this.checkUsername()}
+                      {this.checkMovieLength()}
 											{show === true && 
 												<ToastNotification
 													setShow={this.setShow}
@@ -227,6 +229,8 @@ class MainView extends React.Component {
 								path='/genres/:Name'
 								element={
 									<Col md={8}>
+                    {this.checkUsername()}
+									{this.checkMovieLength()}
 										<GenreView movies={movies} />
 									</Col>
 								}
@@ -235,9 +239,9 @@ class MainView extends React.Component {
 							<Route
 								path='/directors/:Name'
 								element={
-									// this.checkUsername();
-									// this.checkMovieLength();
-										<Col md={8}>
+                  <Col md={8}>
+                      {this.checkUsername()}
+                      {this.checkMovieLength()}
 											<DirectorView movies={movies}/>
 										</Col>
 									}
@@ -246,9 +250,11 @@ class MainView extends React.Component {
 							<Route
 								path='/users/:Username'
 								element={
-									// this.checkUsername();
-									// this.checkMovieLength();
+                  <>
+                  {this.checkUsername()}
+									{this.checkMovieLength()}
 									<ProfileView getUser={this.getUser} movies={movies} />
+                  </>
 								}
 							/>
 						</Routes>

@@ -7,7 +7,7 @@ function FilterInput({ filter }) {
 	const dispatch = useDispatch();
 	return (
 		<Form.Control
-			className='w-75 m-auto'
+			className='w-75 m-auto p-2 m-2'
 			onChange={e => dispatch(setFilter(e.target.value))}
 			value={filter}
 			placeholder='Filter Movies...'

@@ -28638,10 +28638,10 @@ class MainView extends _reactDefault.default.Component {
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
                                     path: "/movies",
-                                    element: // this.checkUsername();
-                                    // this.checkMovieLength();
-                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+                                    element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
                                         children: [
+                                            this.checkUsername(),
+                                            this.checkMovieLength(),
                                             show === true && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_toastNotificationDefault.default, {
                                                 setShow: this.setShow,
                                                 currentFilmTitle: currentFilmTitle
@@ -28662,6 +28662,8 @@ class MainView extends _reactDefault.default.Component {
                                     element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
                                         md: 8,
                                         children: [
+                                            this.checkUsername(),
+                                            this.checkMovieLength(),
                                             show === true && /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_toastNotificationDefault.default, {
                                                 setShow: this.setShow,
                                                 currentFilmTitle: currentFilmTitle
@@ -28689,41 +28691,51 @@ class MainView extends _reactDefault.default.Component {
                                     path: "/genres/:Name",
                                     element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
                                         md: 8,
-                                        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_genreViewDefault.default, {
-                                            movies: movies
-                                        }, void 0, false, void 0, void 0)
-                                    }, void 0, false, void 0, void 0)
+                                        children: [
+                                            this.checkUsername(),
+                                            this.checkMovieLength(),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_genreViewDefault.default, {
+                                                movies: movies
+                                            }, void 0, false, void 0, void 0)
+                                        ]
+                                    }, void 0, true, void 0, void 0)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 226,
+                                    lineNumber: 228,
                                     columnNumber: 8
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
                                     path: "/directors/:Name",
-                                    element: // this.checkUsername();
-                                    // this.checkMovieLength();
-                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
+                                    element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
                                         md: 8,
-                                        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_directorViewDefault.default, {
-                                            movies: movies
-                                        }, void 0, false, void 0, void 0)
-                                    }, void 0, false, void 0, void 0)
+                                        children: [
+                                            this.checkUsername(),
+                                            this.checkMovieLength(),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_directorViewDefault.default, {
+                                                movies: movies
+                                            }, void 0, false, void 0, void 0)
+                                        ]
+                                    }, void 0, true, void 0, void 0)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 235,
+                                    lineNumber: 239,
                                     columnNumber: 8
                                 }, this),
                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactRouterDom.Route, {
                                     path: "/users/:Username",
-                                    element: // this.checkUsername();
-                                    // this.checkMovieLength();
-                                    /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_profileViewDefault.default, {
-                                        getUser: this.getUser,
-                                        movies: movies
-                                    }, void 0, false, void 0, void 0)
+                                    element: /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
+                                        children: [
+                                            this.checkUsername(),
+                                            this.checkMovieLength(),
+                                            /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_profileViewDefault.default, {
+                                                getUser: this.getUser,
+                                                movies: movies
+                                            }, void 0, false, void 0, void 0)
+                                        ]
+                                    }, void 0, true)
                                 }, void 0, false, {
                                     fileName: "src/components/main-view/main-view.jsx",
-                                    lineNumber: 246,
+                                    lineNumber: 250,
                                     columnNumber: 8
                                 }, this)
                             ]
@@ -45070,6 +45082,8 @@ var _filterInput = require("../filter-input/filter-input");
 var _filterInputDefault = parcelHelpers.interopDefault(_filterInput);
 var _noMoviesFound = require("../no-movies-found/no-movies-found");
 var _noMoviesFoundDefault = parcelHelpers.interopDefault(_noMoviesFound);
+var _movieReelSpinner = require("../MovieReelSpinner/MovieReelSpinner");
+var _movieReelSpinnerDefault = parcelHelpers.interopDefault(_movieReelSpinner);
 var _s = $RefreshSig$();
 const MoviesList = ({ movies , addMovieToFavorites  })=>{
     _s();
@@ -45082,7 +45096,7 @@ const MoviesList = ({ movies , addMovieToFavorites  })=>{
         className: "main-view"
     }, void 0, false, {
         fileName: "src/components/movie-list/movie-list.jsx",
-        lineNumber: 19,
+        lineNumber: 20,
         columnNumber: 10
     }, undefined));
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_jsxDevRuntime.Fragment, {
@@ -45094,12 +45108,12 @@ const MoviesList = ({ movies , addMovieToFavorites  })=>{
                     filter: filter
                 }, void 0, false, {
                     fileName: "src/components/movie-list/movie-list.jsx",
-                    lineNumber: 25,
+                    lineNumber: 26,
                     columnNumber: 5
                 }, undefined)
             }, void 0, false, {
                 fileName: "src/components/movie-list/movie-list.jsx",
-                lineNumber: 24,
+                lineNumber: 25,
                 columnNumber: 4
             }, undefined),
             filteredMovies.length > 0 ? filteredMovies.map((movie)=>/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
@@ -45113,19 +45127,19 @@ const MoviesList = ({ movies , addMovieToFavorites  })=>{
                         addMovieToFavorites: addMovieToFavorites
                     }, void 0, false, {
                         fileName: "src/components/movie-list/movie-list.jsx",
-                        lineNumber: 30,
+                        lineNumber: 31,
                         columnNumber: 12
                     }, undefined)
                 }, movie._id, false, {
                     fileName: "src/components/movie-list/movie-list.jsx",
-                    lineNumber: 29,
+                    lineNumber: 30,
                     columnNumber: 6
                 }, undefined)
             ) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_noMoviesFoundDefault.default, {
                 message: 'No movie found with that title'
             }, void 0, false, {
                 fileName: "src/components/movie-list/movie-list.jsx",
-                lineNumber: 37,
+                lineNumber: 38,
                 columnNumber: 5
             }, undefined)
         ]
@@ -45146,7 +45160,7 @@ $RefreshReg$(_c, "MoviesList");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-redux":"bdVon","../movie-card/movie-card":"bwuIu","../filter-input/filter-input":"dpyIA","../no-movies-found/no-movies-found":"9yZju","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"bwuIu":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","react-redux":"bdVon","../movie-card/movie-card":"bwuIu","../filter-input/filter-input":"dpyIA","../no-movies-found/no-movies-found":"9yZju","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","../MovieReelSpinner/MovieReelSpinner":"5Q8W5"}],"bwuIu":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$67b2 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45288,7 +45302,7 @@ function FilterInput({ filter  }) {
     _s();
     const dispatch = _reactRedux.useDispatch();
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Form.Control, {
-        className: "w-75 m-auto",
+        className: "w-75 m-auto p-2 m-2",
         onChange: (e)=>dispatch(_filterSlice.setFilter(e.target.value))
         ,
         value: filter,
@@ -45359,7 +45373,51 @@ $RefreshReg$(_c, "NoMoviesFound");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"ggaUx":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"5Q8W5":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$4901 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+var prevRefreshReg = window.$RefreshReg$;
+var prevRefreshSig = window.$RefreshSig$;
+$parcel$ReactRefreshHelpers$4901.prelude(module);
+
+try {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+var _jsxDevRuntime = require("react/jsx-dev-runtime");
+var _react = require("react");
+var _reactDefault = parcelHelpers.interopDefault(_react);
+var _movieReelSvg = require("../../img/movie-reel.svg");
+var _movieReelSvgDefault = parcelHelpers.interopDefault(_movieReelSvg);
+function MovieReelSpinner() {
+    return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
+        className: "text-center m-3",
+        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("img", {
+            src: _movieReelSvgDefault.default,
+            alt: "Spinner"
+        }, void 0, false, {
+            fileName: "src/components/MovieReelSpinner/MovieReelSpinner.jsx",
+            lineNumber: 7,
+            columnNumber: 7
+        }, this)
+    }, void 0, false, {
+        fileName: "src/components/MovieReelSpinner/MovieReelSpinner.jsx",
+        lineNumber: 6,
+        columnNumber: 5
+    }, this));
+}
+_c = MovieReelSpinner;
+exports.default = MovieReelSpinner;
+var _c;
+$RefreshReg$(_c, "MovieReelSpinner");
+
+  $parcel$ReactRefreshHelpers$4901.postlude(module);
+} finally {
+  window.$RefreshReg$ = prevRefreshReg;
+  window.$RefreshSig$ = prevRefreshSig;
+}
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../img/movie-reel.svg":"buP76","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"buP76":[function(require,module,exports) {
+module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "movie-reel.24394afc.svg" + "?" + Date.now();
+
+},{"./helpers/bundle-url":"lgJ39"}],"ggaUx":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$e9f6 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -45496,7 +45554,7 @@ $RefreshReg$(_c, "MovieView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","react-router-dom":"fdOAw","../../styles/_movie-view.scss":"7vyHB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react/jsx-dev-runtime":"iTorj"}],"7vyHB":[function() {},{}],"4tuA0":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","prop-types":"7wKI2","react-router-dom":"fdOAw","../../styles/_movie-view.scss":"7vyHB","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"7vyHB":[function() {},{}],"4tuA0":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$377f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -56724,7 +56782,6 @@ var _deleteModalDefault = parcelHelpers.interopDefault(_deleteModal);
 var _helpers = require("../../helpers/helpers");
 var _reactRedux = require("react-redux");
 var _userSlice = require("../../redux/features/userSlice");
-var _reactRouterDom = require("react-router-dom");
 var _profileViewScss = require("../../styles/_profile-view.scss");
 var _s = $RefreshSig$();
 const ProfileView = ({ getUser  })=>{
@@ -56786,7 +56843,7 @@ const ProfileView = ({ getUser  })=>{
         setShow: setShow
     }, void 0, false, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 77,
+        lineNumber: 76,
         columnNumber: 10
     }, undefined));
     return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV(_reactBootstrap.Col, {
@@ -56796,7 +56853,7 @@ const ProfileView = ({ getUser  })=>{
                 setShow: setShow
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 81,
+                lineNumber: 80,
                 columnNumber: 4
             }, undefined),
             /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_deleteModalDefault.default, {
@@ -56805,7 +56862,7 @@ const ProfileView = ({ getUser  })=>{
                 deleteUser: deleteUser
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 82,
+                lineNumber: 81,
                 columnNumber: 4
             }, undefined),
             favoriteMovies ? /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_favoriteMoviesDefault.default, {
@@ -56813,18 +56870,18 @@ const ProfileView = ({ getUser  })=>{
                 removeFromFavorites: removeFromFavorites
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 84,
+                lineNumber: 83,
                 columnNumber: 5
             }, undefined) : /*#__PURE__*/ _jsxDevRuntime.jsxDEV(_movieReelSpinnerDefault.default, {
             }, void 0, false, {
                 fileName: "src/components/profile-view/profile-view.jsx",
-                lineNumber: 89,
+                lineNumber: 88,
                 columnNumber: 5
             }, undefined)
         ]
     }, void 0, true, {
         fileName: "src/components/profile-view/profile-view.jsx",
-        lineNumber: 80,
+        lineNumber: 79,
         columnNumber: 3
     }, undefined));
 };
@@ -56845,7 +56902,7 @@ $RefreshReg$(_c, "ProfileView");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","./user-info":"66eot","react-bootstrap":"3AD9A","../MovieReelSpinner/MovieReelSpinner":"5Q8W5","../form/info-form":"6zrdc","./favorite-movies":"dTTQH","./delete-modal":"eHP3Y","../../helpers/helpers":"1iQT4","react-redux":"bdVon","../../redux/features/userSlice":"esrXZ","../../styles/_profile-view.scss":"hYvzG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru","react-router-dom":"fdOAw"}],"66eot":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","axios":"jo6P5","./user-info":"66eot","react-bootstrap":"3AD9A","../MovieReelSpinner/MovieReelSpinner":"5Q8W5","../form/info-form":"6zrdc","./favorite-movies":"dTTQH","./delete-modal":"eHP3Y","../../helpers/helpers":"1iQT4","react-redux":"bdVon","../../redux/features/userSlice":"esrXZ","../../styles/_profile-view.scss":"hYvzG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"66eot":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$1330 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
@@ -56968,51 +57025,7 @@ $RefreshReg$(_c, "UserInfo");
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","../../styles/_profile-view.scss":"hYvzG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hYvzG":[function() {},{}],"5Q8W5":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$4901 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
-var prevRefreshReg = window.$RefreshReg$;
-var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$4901.prelude(module);
-
-try {
-var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
-parcelHelpers.defineInteropFlag(exports);
-var _jsxDevRuntime = require("react/jsx-dev-runtime");
-var _react = require("react");
-var _reactDefault = parcelHelpers.interopDefault(_react);
-var _movieReelSvg = require("../../img/movie-reel.svg");
-var _movieReelSvgDefault = parcelHelpers.interopDefault(_movieReelSvg);
-function MovieReelSpinner() {
-    return(/*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
-        className: "text-center m-3",
-        children: /*#__PURE__*/ _jsxDevRuntime.jsxDEV("img", {
-            src: _movieReelSvgDefault.default,
-            alt: "Spinner"
-        }, void 0, false, {
-            fileName: "src/components/MovieReelSpinner/MovieReelSpinner.jsx",
-            lineNumber: 7,
-            columnNumber: 7
-        }, this)
-    }, void 0, false, {
-        fileName: "src/components/MovieReelSpinner/MovieReelSpinner.jsx",
-        lineNumber: 6,
-        columnNumber: 5
-    }, this));
-}
-_c = MovieReelSpinner;
-exports.default = MovieReelSpinner;
-var _c;
-$RefreshReg$(_c, "MovieReelSpinner");
-
-  $parcel$ReactRefreshHelpers$4901.postlude(module);
-} finally {
-  window.$RefreshReg$ = prevRefreshReg;
-  window.$RefreshSig$ = prevRefreshSig;
-}
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","../../img/movie-reel.svg":"buP76","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"buP76":[function(require,module,exports) {
-module.exports = require('./helpers/bundle-url').getBundleURL('byUka') + "movie-reel.24394afc.svg" + "?" + Date.now();
-
-},{"./helpers/bundle-url":"lgJ39"}],"dTTQH":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-bootstrap":"3AD9A","../../styles/_profile-view.scss":"hYvzG","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"hYvzG":[function() {},{}],"dTTQH":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$8767 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
