@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import {request} from '../../requestMethods'
 import { connect } from 'react-redux';
 import { setMovies } from '../../redux/features/moviesSlice';
 import {
@@ -7,13 +7,7 @@ import {
 	logoutUser,
 	addToFavorites,
 } from '../../redux/features/userSlice';
-import {
-	Route,
-	Routes,
-	Navigate,
-	useNavigate,
-} from 'react-router-dom';
-import { URL } from '../../helpers/helpers';
+import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import Navigation from '../navigation/navigation';
 import MoviesList from '../movie-list/movie-list';
 import MovieView from '../movie-view/movie-view';
@@ -48,8 +42,8 @@ class MainView extends React.Component {
 	};
 
 	getUser = (user, token) => {
-		axios
-			.get(`${URL}/users/${user}`, {
+		request
+			.get(`/users/${user}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
 			.then(res => {
@@ -83,8 +77,8 @@ class MainView extends React.Component {
 
 	getMovies = token => {
 		const { setMovies } = this.props;
-		axios
-			.get(`${URL}/movies`, {
+		request
+			.get(`/movies`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
 			.then(res => {
@@ -98,21 +92,21 @@ class MainView extends React.Component {
 		const { addToFavorites } = this.props;
 		const user = localStorage.getItem('user');
 		const token = localStorage.getItem('token');
-		axios
+		request
 			.post(
-				`${URL}/users/${user}/movies/${movieId}`,
+				`/users/${user}/movies/${movieId}`,
 				{ FavoriteMovies: movieId },
 				{ headers: { Authorization: `Bearer ${token}` } }
 			)
 			.then(res => {
 				addToFavorites(movieId);
-				axios
-					.get(`${URL}/movies/${movieId}`, {
+				request
+					.get(`/movies/${movieId}`, {
 						headers: { Authorization: `Bearer ${token}` },
 					})
-					.then(res => {
+					.then(({ data }) => {
 						this.setState({ show: true });
-						this.setState({ currentFilmTitle: res.data.Title });
+						this.setState({ currentFilmTitle: data.Title });
 					});
 			})
 			.catch(err => console.log(err));
@@ -153,43 +147,41 @@ class MainView extends React.Component {
 										/>
 									) : (
 										<HomeView />
-                    )
-                  }
+									)
+								}
 							/>
-                  <Route
-                    path='/login'
-                    element={
-                      // this.checkUsername();
-                      // this.checkMovieLength();
-                      user.Username ? (
-                        <Navigate replace to='/movies' />
-                      ) : (
-                        <Col>
-                          <LoginView onLoggedIn={user => this.onLoggedIn(user)} />
-                        </Col>
-                      )
-                    }
-                  />
-    
-                  <Route
-                    path='/register'
-                    element={
-                      user.Username ? (
-                        <Navigate replace to='/' />
-                      ) : (
-                        <Col>
-                          <RegistrationView onBackClick={() => useNavigate(-1)} />
-                        </Col>
-                      )
-                    }
-                  />
-                  
+							<Route
+								path='/login'
+								element={
+									user.Username ? (
+										<Navigate replace to='/movies' />
+									) : (
+										<Col>
+											<LoginView onLoggedIn={user => this.onLoggedIn(user)} />
+										</Col>
+									)
+								}
+							/>
+
+							<Route
+								path='/register'
+								element={
+									user.Username ? (
+										<Navigate replace to='/' />
+									) : (
+										<Col>
+											<RegistrationView onBackClick={() => useNavigate(-1)} />
+										</Col>
+									)
+								}
+							/>
+
 							<Route
 								path='/movies'
 								element={
-                  <>
-									{this.checkUsername()}
-									{this.checkMovieLength()}
+									<>
+										{this.checkUsername()}
+										{this.checkMovieLength()}
 										{show === true && (
 											<ToastNotification
 												setShow={this.setShow}
@@ -207,30 +199,30 @@ class MainView extends React.Component {
 							<Route
 								path='/movies/:movieId'
 								element={
-                  <Col md={8}>
-                      {this.checkUsername()}
-                      {this.checkMovieLength()}
-											{show === true && 
-												<ToastNotification
-													setShow={this.setShow}
-													currentFilmTitle={currentFilmTitle}
-												/>
-											}
-											<MovieView
-												movies={movies}
-												onBackClick={() => useNavigate(-1)}
-												addMovieToFavorites={this.addMovieToFavorites}
+									<Col md={8}>
+										{this.checkUsername()}
+										{this.checkMovieLength()}
+										{show === true && (
+											<ToastNotification
+												setShow={this.setShow}
+												currentFilmTitle={currentFilmTitle}
 											/>
-										</Col>
-                }
+										)}
+										<MovieView
+											movies={movies}
+											onBackClick={() => useNavigate(-1)}
+											addMovieToFavorites={this.addMovieToFavorites}
+										/>
+									</Col>
+								}
 							/>
 
 							<Route
 								path='/genres/:Name'
 								element={
 									<Col md={8}>
-                    {this.checkUsername()}
-									{this.checkMovieLength()}
+										{this.checkUsername()}
+										{this.checkMovieLength()}
 										<GenreView movies={movies} />
 									</Col>
 								}
@@ -239,22 +231,22 @@ class MainView extends React.Component {
 							<Route
 								path='/directors/:Name'
 								element={
-                  <Col md={8}>
-                      {this.checkUsername()}
-                      {this.checkMovieLength()}
-											<DirectorView movies={movies}/>
-										</Col>
-									}
+									<Col md={8}>
+										{this.checkUsername()}
+										{this.checkMovieLength()}
+										<DirectorView movies={movies} />
+									</Col>
+								}
 							/>
 
 							<Route
 								path='/users/:Username'
 								element={
-                  <>
-                  {this.checkUsername()}
-									{this.checkMovieLength()}
-									<ProfileView getUser={this.getUser} movies={movies} />
-                  </>
+									<>
+										{this.checkUsername()}
+										{this.checkMovieLength()}
+										<ProfileView getUser={this.getUser} movies={movies} />
+									</>
 								}
 							/>
 						</Routes>

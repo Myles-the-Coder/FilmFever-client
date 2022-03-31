@@ -24,7 +24,6 @@ const InfoForm = ({ handleRegister, editUserInfo, setShow }) => {
 		),
 	});
   const navigate = useNavigate()
-
 	const { Group, Label, Control } = Form;
 
 	return (

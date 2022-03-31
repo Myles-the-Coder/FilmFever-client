@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import {request} from '../../requestMethods'
 import UserInfo from './user-info';
 import { Col } from 'react-bootstrap';
 import MovieReelSpinner from '../MovieReelSpinner/MovieReelSpinner';
 import InfoForm from '../form/info-form';
 import FavoriteMovies from './favorite-movies';
 import DeleteModal from './delete-modal';
-import { URL } from '../../helpers/helpers';
 import { useSelector, useDispatch } from 'react-redux';
 import { setUser, removeFromFavs } from '../../redux/features/userSlice';
 import '../../styles/_profile-view.scss';
@@ -23,13 +22,14 @@ const ProfileView = ({ getUser }) => {
 	useEffect(() => getUser(user, token), []);
 
 	const editUserInfo = ({ username, password, email, birthday }) => {
-		axios
+		request
 			.put(
-				`${URL}/users/update/${user}`,
+				`/users/update/${user}`,
 				{
 					Username: username,
 					Password: password,
 					Email: email,
+          Birthday: birthday,
 				},
 				{
 					headers: { Authorization: `Bearer ${token}` },
@@ -42,6 +42,7 @@ const ProfileView = ({ getUser }) => {
 						Username: username,
 						Password: password,
 						Email: email,
+            Birthday: birthday,
 					})
 				);
 				alert(`${username} has been updated!`);
@@ -50,8 +51,8 @@ const ProfileView = ({ getUser }) => {
 	};
 
 	const removeFromFavorites = id => {
-		axios
-			.delete(`${URL}/users/${user}/movies/${id}`, {
+		request
+			.delete(`/users/${user}/movies/${id}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
 			.then(res => dispatch(removeFromFavs(favoriteMovies.indexOf(id))))
@@ -59,8 +60,8 @@ const ProfileView = ({ getUser }) => {
 	};
 
 	const deleteUser = () => {
-		axios
-			.delete(`${URL}/users/${user}`, {
+		request
+			.delete(`/users/${user}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
 			.then(res => {
@@ -79,14 +80,10 @@ const ProfileView = ({ getUser }) => {
 		<Col>
 			<UserInfo user={userValues} setShow={setShow} />
 			<DeleteModal show={show} setShow={setShow} deleteUser={deleteUser} />
-			{favoriteMovies ? (
 				<FavoriteMovies
 					favoriteMovies={userValues.FavoriteMovies}
 					removeFromFavorites={removeFromFavorites}
 				/>
-			) : (
-				<MovieReelSpinner />
-			)}
 		</Col>
 	);
 };

@@ -17,7 +17,7 @@ const MoviesList = ({ movies, addMovieToFavorites }) => {
 	}
 
 	if (!movies) {
-		return <div className='main-view'></div>;
+		return <div className='main-view' ></div>;
 	}
 
 	return (
