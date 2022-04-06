@@ -8,11 +8,11 @@ import MovieReelSpinner from '../MovieReelSpinner/MovieReelSpinner';
 
 const MoviesList = ({ movies, addMovieToFavorites }) => {
 	let filteredMovies = movies;
-	const filter = useSelector(state => state.filter.value);
+	const {value} = useSelector(state => state.filter);
 
-	if (filter !== '') {
-		filteredMovies = movies.filter(movie =>
-			movie.Title.toLowerCase().includes(filter.toLowerCase())
+	if (value !== '') {
+		filteredMovies = movies.filter(({Title}) =>
+			Title.toLowerCase().includes(value.toLowerCase())
 		);
 	}
 
@@ -23,7 +23,7 @@ const MoviesList = ({ movies, addMovieToFavorites }) => {
 	return (
 		<>
 			<Col md={12} className='m-2'>
-				<FilterInput filter={filter} />
+				<FilterInput filter={value} />
 			</Col>
 			{filteredMovies.length > 0 ? (
 				filteredMovies.map(movie => (

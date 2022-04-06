@@ -1,11 +1,11 @@
-import React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { Card, Button} from 'react-bootstrap';
 import {Link} from 'react-router-dom'
 
 import '../../styles/_movie-card.scss';
 
-class MovieCard extends React.Component {
+class MovieCard extends Component {
 	render() {
 		const { movie, addMovieToFavorites } = this.props;
 		const { Title, ImagePath, Description, _id } = movie;

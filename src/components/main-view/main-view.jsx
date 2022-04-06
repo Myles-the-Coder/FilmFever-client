@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {request} from '../../requestMethods'
 import { connect } from 'react-redux';
 import { setMovies } from '../../redux/features/moviesSlice';
@@ -22,7 +22,7 @@ import ToastNotification from '../toast-notification/toast-notification';
 
 import '../../styles/main-view.scss';
 
-class MainView extends React.Component {
+class MainView extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -46,10 +46,10 @@ class MainView extends React.Component {
 			.get(`/users/${user}`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
-			.then(res => {
+			.then(({data}) => {
 				const { setUser } = this.props;
 				const { Username, Password, Email, Birthday, FavoriteMovies } =
-					res.data;
+					data;
 				setUser({
 					Username,
 					Password,
@@ -81,9 +81,9 @@ class MainView extends React.Component {
 			.get(`/movies`, {
 				headers: { Authorization: `Bearer ${token}` },
 			})
-			.then(res => {
+			.then(({data}) => {
 				this.setState({ isLoading: false });
-				setMovies(res.data);
+				setMovies(data);
 			})
 			.catch(err => console.log(err));
 	};
@@ -210,7 +210,6 @@ class MainView extends React.Component {
 										)}
 										<MovieView
 											movies={movies}
-											onBackClick={() => useNavigate(-1)}
 											addMovieToFavorites={this.addMovieToFavorites}
 										/>
 									</Col>

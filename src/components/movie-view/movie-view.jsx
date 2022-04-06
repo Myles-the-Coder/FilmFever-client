@@ -3,12 +3,13 @@ import { Card, Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
 import '../../styles/_movie-view.scss';
 
-const MovieView = ({ movies, onBackClick, addMovieToFavorites }) => {
+const MovieView = ({ movies, addMovieToFavorites }) => {
+  const navigate = useNavigate();
 	const { movieId } = useParams();
-	const movie = movies.find(movie => movie._id === movieId);
+	const movie = movies.find(({_id}) => _id === movieId);
 	const { ImagePath, Description, Director, Genre, _id } = movie;
 	const { Img, Body, Title, Text } = Card;
 
@@ -37,7 +38,7 @@ const MovieView = ({ movies, onBackClick, addMovieToFavorites }) => {
 				<Button
 					className='m-2'
 					bsPrefix='card-button'
-					onClick={() => onBackClick()}>
+					onClick={() => navigate(-1)}>
 					Back
 				</Button>
 			</Body>
