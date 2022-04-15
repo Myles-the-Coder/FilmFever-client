@@ -25,9 +25,8 @@ const FavoriteMovies = ({ favoriteMovies, removeFromFavorites }) => {
 				<FilterInput filter={filter} />
 			</Col>
 			{filteredFavs.length > 0 ? (
-				filteredFavs.map(movie => {
-					const { _id, Title, ImagePath } = movie;
-					return (
+				filteredFavs.map(({_id, Title, ImagePath}) => 
+					(
 						<Col xs={9} sm={6} md={3} key={_id}>
 							<Card
 								className='p-3 text-center m-1'
@@ -47,8 +46,8 @@ const FavoriteMovies = ({ favoriteMovies, removeFromFavorites }) => {
 								</Button>
 							</Card>
 						</Col>
-					);
-				})
+					)
+        )
 			) : (
 				<NoMoviesFound message={'No Movies in Favorites'} />
 			)}
