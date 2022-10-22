@@ -16,11 +16,7 @@ const MoviesList = ({ movies, addMovieToFavorites }) => {
 		);
 	}
 
-	if (!movies) {
-		return <div className='main-view' ></div>;
-	}
-
-	return (
+	return !movies ? <div className='main-view' /> : (
 		<>
 			<Col md={12} className='m-2'>
 				<FilterInput filter={value} />

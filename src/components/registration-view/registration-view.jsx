@@ -21,7 +21,7 @@ function RegistrationView({ onBackClick }) {
 				Email: email,
 				Birthday: birthday,
 			})
-			.then(res => {
+			.then(() => {
 				dispatch(
 					setUser({
 						Username: username,

@@ -2,8 +2,7 @@ import React from 'react';
 import { Toast, ToastContainer } from 'react-bootstrap';
 import { Col } from 'react-bootstrap';
 
-function ToastNotification({ show, setShow, currentFilmTitle }) {
-	return (
+const ToastNotification = ({ show, setShow, currentFilmTitle }) => (
 		<Col xs={6}>
 			<ToastContainer
 				style={{
@@ -23,6 +22,6 @@ function ToastNotification({ show, setShow, currentFilmTitle }) {
 			</ToastContainer>
 		</Col>
 	);
-}
+
 
 export default ToastNotification;

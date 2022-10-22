@@ -1,6 +1,6 @@
 <svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 200px; height: 200px"><style>.line-movie-reel1 {
   transform-origin: 49.5px 50.5px;
-  animation: line-movie-reel1 2s linear infinite;
+  animation: 2s linear infinite line-movie-reel1;
 }
 
 @keyframes line-movie-reel1 {

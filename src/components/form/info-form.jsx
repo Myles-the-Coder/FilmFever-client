@@ -40,7 +40,7 @@ const InfoForm = ({ handleRegister, editUserInfo, setShow }) => {
 				}}>
 				{({ handleSubmit, handleChange, values, touched, errors }) => (
 					<Form noValidate onSubmit={handleSubmit} className='form-styling'>
-						{handleRegister ? <h1>Register Account</h1> : <h1>Update Info</h1>}
+            <h1>{handleRegister ? 'Register Account' : 'Update Info'}</h1>
 						<Group controlId='validationFormik01'>
 							<Label>Username</Label>
 							<Control

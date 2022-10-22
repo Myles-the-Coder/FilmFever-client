@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 
 import '../../styles/_button.scss'
 
-function LoginForm({ handleLogin }) {
+const LoginForm = ({ handleLogin }) => {
 	const loginSchema = Yup.object({
 		username: Yup.string().required('Enter username'),
 		password: Yup.string().required('Enter password'),

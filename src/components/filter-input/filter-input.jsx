@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { setFilter } from '../../redux/features/filterSlice';
 
-function FilterInput({ filter }) {
+const FilterInput = ({ filter }) => {
 	const dispatch = useDispatch();
 	return (
 		<Form.Control

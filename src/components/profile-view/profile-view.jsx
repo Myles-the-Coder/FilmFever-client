@@ -14,7 +14,6 @@ const ProfileView = ({ getUser }) => {
 	const favoriteMovies = useSelector(state => state.user.value.FavoriteMovies);
 	const userValues = useSelector(state => state.user.value);
 	const [show, setShow] = useState('');
-
 	const token = localStorage.getItem('token');
 	const user = localStorage.getItem('user');
 	const dispatch = useDispatch();

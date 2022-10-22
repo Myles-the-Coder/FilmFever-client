@@ -1,30 +1,28 @@
-import React from 'react'
-import {Card, Button} from 'react-bootstrap'
-import PropTypes from 'prop-types'
-import { useNavigate, useParams } from 'react-router-dom'
+import React from 'react';
+import { Card, Button } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import { useNavigate, useParams } from 'react-router-dom';
 
-import '../../styles/_button.scss'
+import '../../styles/_button.scss';
 
-const DirectorView = ({movies}) => {
-  const params = useParams()
-  const navigate = useNavigate()
-    const director = movies.find(movie => movie.Director.Name === params.Name).Director
-    const {Body, Title, Text} = Card
-    const {Name, Bio} = director
-    return (
-      <Card
-      className='text-center mt-1'
-      style={{ backgroundColor: 'lightgray' }}>
-      <Body>
-        <Title>{Name}</Title>
-        <Text>{Bio}</Text>
-        <Button bsPrefix='card-button' onClick={() => navigate(-1)}>
-          Back
-        </Button>
-      </Body>
-    </Card>
-    )
-}
+const DirectorView = ({ movies }) => {
+	const params = useParams();
+	const navigate = useNavigate();
+	const { Director } = movies.find(movie => movie.Director.Name === params.Name);
+	const { Body, Title, Text } = Card;
+	const { Name, Bio } = director;
+	return (
+		<Card className='text-center mt-1' style={{ backgroundColor: 'lightgray' }}>
+			<Body>
+				<Title>{Name}</Title>
+				<Text>{Bio}</Text>
+				<Button bsPrefix='card-button' onClick={() => navigate(-1)}>
+					Back
+				</Button>
+			</Body>
+		</Card>
+	);
+};
 
 // const {string, func, shape} = PropTypes
 
@@ -38,4 +36,4 @@ const DirectorView = ({movies}) => {
 //   onBackClick: func.isRequired
 // }
 
-export default DirectorView
+export default DirectorView;
